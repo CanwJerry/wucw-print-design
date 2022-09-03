@@ -33,7 +33,7 @@ export default defineConfig({
   base: './',
   server: {
     host: '0.0.0.0',
-    port: 50000,
+    port: 5555,
     fs: {
       strict: false,
     },

@@ -7,10 +7,11 @@
     :animation="180"
     ghostClass="moving"
     item-key="id"
+    class="drag-wrap"
     @end="handleStart(list)"
   >
     <template #item="{ element, index }">
-      <li @click="handleClick(element)">
+      <li class="drag-item" @click="handleClick(element)">
         <!-- <svg v-if="element.icon" class="icon" aria-hidden="true">
           <use :xlink:href="`#${element.icon}`"></use>
         </svg> -->
@@ -47,4 +48,5 @@
 </script>
 
 <style lang="scss" scope>
+  @import './index.scss';
 </style>

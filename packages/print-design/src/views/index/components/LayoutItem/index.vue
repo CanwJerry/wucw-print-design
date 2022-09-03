@@ -1,5 +1,5 @@
 <template>
-  <div class="dragMove">
+  <div class="drag-move">
     <!-- table组件 -->
     <template v-if="record.type === 'table'">
       <FormModulTable
@@ -27,8 +27,8 @@
 </script>
 
 <script setup>
-  import FormModul from "./FormModul.vue";
-  import FormModulTable from './FormModulTable/index.vue';
+  import FormModul from "../FormModul.vue";
+  import FormModulTable from '../FormModulTable/index.vue';
 
   const emits = defineEmits(['handleSelectItem']);
   const props = defineProps({
@@ -47,6 +47,6 @@
   }
 </script>
 
-<script lang='scss' scope>
-
-</script>
+<style lang='scss' scope>
+  @import './index.scss';
+</style>

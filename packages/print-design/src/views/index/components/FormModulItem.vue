@@ -19,6 +19,6 @@
   })
 </script>
 
-<script lang='scss' scope>
-
-</script>
+<style lang='scss' scope>
+  
+</style>

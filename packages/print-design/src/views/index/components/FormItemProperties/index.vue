@@ -6,11 +6,15 @@
 
     <el-form v-show="selectItem.type">
       <template v-if="typeof selectItem.label !== 'undefined'">
-        <el-form-item label="标签">
+        <el-form-item label="关键字：">
+          {{ selectItem.key }}
+        </el-form-item>
+        <el-form-item label="标签：">
           <el-input v-model="selectItem.label" placeholder="请输入" />
         </el-form-item>
       </template>
-    </el-form></div>
+    </el-form>
+  </div>
 </template>
 
 <script>

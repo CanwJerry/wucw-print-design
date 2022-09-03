@@ -6,7 +6,6 @@
     <!-- 该组件的其他功能 -->
     <!-- 该组件的其他功能 -->
     <!-- 该组件的其他功能 -->
-    {{ record.label }}
     <!-- 该组件的其他功能 -->
     <FormModulItem :record="record" />
   </div>
@@ -30,6 +29,10 @@
   })
 </script>
 
-<script lang='scss' scope>
-
-</script>
+<style lang='scss' scope>
+  .FormModul {
+    .el-form-item {
+      margin-bottom: 0;
+    }
+  }
+</style>

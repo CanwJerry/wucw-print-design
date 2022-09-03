@@ -23,7 +23,6 @@
               :key="element.key"
               :record="element"
               :startType="startType"
-              @handleSelectItem="handleSelectItem"
             />
           </transition-group>
         </template>
@@ -40,9 +39,8 @@
 
 <script setup>
   import draggable from 'vuedraggable';
-  import LayoutItem from '../LayoutItem.vue';
+  import LayoutItem from '../LayoutItem/index.vue';
 
-  const emits = defineEmits(['handleSelectItem', 'handleSetSelectItem']);
   const props = defineProps({
     startType: {
       type: String,
@@ -53,11 +51,6 @@
       required: true,
     },
   });
-
-  function handleSelectItem(record) {
-    // 修改选择Item
-    emits('handleSetSelectItem', record);
-  }
 </script>
 
 <stype lang='scss' scope>

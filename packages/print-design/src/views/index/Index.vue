@@ -7,14 +7,13 @@
           <el-collapse-item title="基础控件" name="base">
             <CollapseItem
               :list="basicsList"
-              @start="handleStart"
               @addItemClick="handleAddItemClick"
             />
           </el-collapse-item>
           <el-collapse-item title="布局控件" name="layout">
             <CollapseItem
               :list="layoutList"
-              @start="handleStart"
+              @addItemClick="handleAddItemClick"
             />
           </el-collapse-item>
         </el-collapse>
@@ -22,17 +21,25 @@
 
       <!-- 中间面板区域 -->
       <section class="main">
-        <!-- <FormComponentPanel /> -->
+        <FormComponentPanel
+          :data="dataJson"
+        />
       </section>
 
       <!-- 右侧控件区域 -->
       <aside class="right">
         <el-tabs v-model="rightActiveName" class="tabs">
-          <el-tab-pane label="表单属性设置" name="formProperties">表单属性设置</el-tab-pane>
+          <el-tab-pane label="表单属性设置" name="formProperties">
+            <template #default>
+              <FormProperties />
+            </template>
+          </el-tab-pane>
           <el-tab-pane label="控件属性设置" name="formItemProperties">
-            <!-- <template #default>
-              <FormItemProperties />
-            </template> -->
+            <template #default>
+              <FormItemProperties
+                :selectItem="selectItem"
+              />
+            </template>
           </el-tab-pane>
         </el-tabs>
       </aside>
@@ -51,18 +58,30 @@
   import CollapseItem from '@/views/index/components/CollapseItem/index.vue';
   import FormComponentPanel from '@/views/index/components/FormComponentPanel/index.vue';
   import FormItemProperties from '@/views/index/components/FormItemProperties/index.vue';
+  import FormProperties from '@/views/index/components/FormProperties/index.vue';
   import { basicsList, layoutList } from './config/formItem.config.js';
 
   const leftActiveName = ref('base');
   const rightActiveName = ref('formItemProperties');
   const selectItem = ref({});
-
-  function handleStart(list) {
-    console.log(list);
-  }
+  const dataJson = ref({
+    list: [],
+    config: {
+      layout: '',
+      labelCol: {},
+      labelWidth: 100,
+      labelLayout: 'flex',
+      wrapperCol: {},
+      hideRequiredMark: false,
+      customStyle: '',
+    },
+  })
 
   function handleAddItemClick(list) {
-    console.log(list);
+    const key = `${list.type}_${new Date().getTime()}`
+    selectItem.value = { ...list, key };
+    // 向dataJson.list中添加选中的item
+    dataJson.value.list.push(selectItem.value);
   }
 </script>
 
