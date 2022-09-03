@@ -1,0 +1,9 @@
+.FormComponentPanel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .el-form, .draggable-box {
+    height: 100%;
+  }
+}
