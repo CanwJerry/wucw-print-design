@@ -11,11 +11,7 @@
     border: 1px solid #d4d4d4;
     border-radius: 4px;
     overflow: hidden;
-}
-
-  .left {
-    width: 20%;
-  };
+  }
 
   .main {
     flex: 1;
@@ -25,9 +21,11 @@
     overflow-y: auto;
   };
 
+  .left, .right {
+    width: 18%;
+  };
+  
   .right {
-    width: 20%;
-
     .tabs {
       :deep(.el-tabs__nav) {
         width: 100%;

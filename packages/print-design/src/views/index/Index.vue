@@ -55,6 +55,7 @@
 
 <script setup>
   import { ref } from 'vue';
+  import mut from '@/hooks/useMutations.js';
   import CollapseItem from '@/views/index/components/CollapseItem/index.vue';
   import FormComponentPanel from '@/views/index/components/FormComponentPanel/index.vue';
   import FormItemProperties from '@/views/index/components/FormItemProperties/index.vue';
@@ -81,7 +82,8 @@
     const key = `${list.type}_${new Date().getTime()}`
     selectItem.value = { ...list, key };
     // 向dataJson.list中添加选中的item
-    dataJson.value.list.push(selectItem.value);
+    mut.addDateJsonListItem(123);
+    console.log(mut.addDateJsonListItem.value);
   }
 </script>
 
