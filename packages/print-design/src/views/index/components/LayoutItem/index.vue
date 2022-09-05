@@ -1,11 +1,13 @@
 <template>
-  <div class="drag-move">
+  <div
+    class="drag-move"
+  >
     <!-- table组件 -->
     <template v-if="record.type === 'table'">
       <FormModulTable
         :key="record.key"
         :record="record"
-        @handleSelectItem="handleSelectItem"
+        @click="handleSelectItem(record)"
       />
     </template>
 
@@ -14,7 +16,7 @@
       <FormModul
         :key="record.key"
         :record="record"
-        @handleSelectItem="handleSelectItem"
+        @click="handleSelectItem(record)"
       />
     </template>
   </div>
@@ -27,23 +29,20 @@
 </script>
 
 <script setup>
+  import { useStore } from 'vuex';
   import FormModul from "../FormModul.vue";
   import FormModulTable from '../FormModulTable/index.vue';
+  const store = useStore();
 
-  const emits = defineEmits(['handleSelectItem']);
   const props = defineProps({
     record: {
       type: Object,
       required: true
     },
-    startType: {
-      type: String,
-      default: ''
-    },
   })
 
-  function handleSelectItem(record) {
-    emits('handleSelectItem', record);
+  function handleSelectItem(item) {
+    store.commit('updateSelectItem', item);
   }
 </script>
 

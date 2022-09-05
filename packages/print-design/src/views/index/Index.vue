@@ -21,9 +21,10 @@
 
       <!-- 中间面板区域 -->
       <section class="main">
-        <FormComponentPanel
-          :data="dataJson"
-        />
+        <!-- 头部操作按钮 -->
+        <OperateHeader />
+        <!-- 内容区域 -->
+        <FormComponentPanel />
       </section>
 
       <!-- 右侧控件区域 -->
@@ -36,9 +37,7 @@
           </el-tab-pane>
           <el-tab-pane label="控件属性设置" name="formItemProperties">
             <template #default>
-              <FormItemProperties
-                :selectItem="selectItem"
-              />
+              <FormItemProperties />
             </template>
           </el-tab-pane>
         </el-tabs>
@@ -55,35 +54,27 @@
 
 <script setup>
   import { ref } from 'vue';
-  import mut from '@/hooks/useMutations.js';
+  import { useStore } from 'vuex';
+  // 暂时有点问题
+  // import storeMutations from '@/hooks/useMutations.js';
   import CollapseItem from '@/views/index/components/CollapseItem/index.vue';
   import FormComponentPanel from '@/views/index/components/FormComponentPanel/index.vue';
   import FormItemProperties from '@/views/index/components/FormItemProperties/index.vue';
   import FormProperties from '@/views/index/components/FormProperties/index.vue';
+  import OperateHeader from '@/views/index/components/OperateHeader/index.vue';
   import { basicsList, layoutList } from './config/formItem.config.js';
 
+  const store = useStore();
   const leftActiveName = ref('base');
   const rightActiveName = ref('formItemProperties');
-  const selectItem = ref({});
-  const dataJson = ref({
-    list: [],
-    config: {
-      layout: '',
-      labelCol: {},
-      labelWidth: 100,
-      labelLayout: 'flex',
-      wrapperCol: {},
-      hideRequiredMark: false,
-      customStyle: '',
-    },
-  })
 
   function handleAddItemClick(list) {
     const key = `${list.type}_${new Date().getTime()}`
-    selectItem.value = { ...list, key };
+    const selectItem = JSON.parse(JSON.stringify({ ...list, key }));
+    // 更新selectItem的值
+    store.commit('updateSelectItem', selectItem);
     // 向dataJson.list中添加选中的item
-    mut.addDateJsonListItem(123);
-    console.log(mut.addDateJsonListItem.value);
+    store.commit('addDateJsonListItem', selectItem);
   }
 </script>
 

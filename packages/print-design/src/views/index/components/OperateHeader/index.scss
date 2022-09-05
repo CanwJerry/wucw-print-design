@@ -1,0 +1,11 @@
+.OperateHeader {
+  min-height: 42px;
+  padding: 8px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  .options {
+    flex: 1;
+  }
+}

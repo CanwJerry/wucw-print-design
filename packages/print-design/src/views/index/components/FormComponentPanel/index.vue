@@ -22,7 +22,6 @@
             <LayoutItem
               :key="element.key"
               :record="element"
-              :startType="startType"
             />
           </transition-group>
         </template>
@@ -38,19 +37,13 @@
 </script>
 
 <script setup>
+  import { ref } from 'vue';
+  import storeGetters from '@/hooks/useGetters.js';
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
 
-  const props = defineProps({
-    startType: {
-      type: String,
-      default: '',
-    },
-    data: {
-      type: Object,
-      required: true,
-    },
-  });
+  const { getDataJson } = storeGetters(['getDataJson']);
+  const data = ref(getDataJson);
 </script>
 
 <stype lang='scss' scope>

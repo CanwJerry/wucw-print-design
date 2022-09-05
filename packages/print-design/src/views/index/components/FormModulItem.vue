@@ -1,6 +1,15 @@
 <template>
   <el-form-item v-if="record.type === 'text'">
-    {{ record.label }}
+    <div
+      class="textStyle"
+      :style="{
+        textAlign: record.options.textAlign,
+        color: record.options.color,
+        fontSize: record.options.fontSize + 'px'
+      }"
+    >
+      {{ record.label }}
+    </div>
   </el-form-item>
 </template>
 
@@ -20,5 +29,8 @@
 </script>
 
 <style lang='scss' scope>
-  
+  .textStyle {
+    width: 100%;
+    background-color: #fff;
+  }
 </style>

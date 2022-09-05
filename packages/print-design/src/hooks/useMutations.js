@@ -1,13 +1,7 @@
-import { mapMutations } from 'vuex';
+import { useStore } from "vuex";
 
-const mutations = {
-  ...mapMutations([
-    'addDateJsonListItem', 
-    'delDateJsonListItem', 
-    'clearDataJson', 
-    'updateSelectItem'
-  ])
+export default async function mutations(mapper, value) {
+  const store = useStore();
+
+  return await store.commit(mapper, value);
 }
-
-
-export default mutations;

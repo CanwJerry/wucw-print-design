@@ -7,10 +7,9 @@ export const basicsList = [
     options: {
       textAlign: 'left',
       hidden: false, // 是否隐藏，false显示，true隐藏
-      showRequiredMark: false,
-      color: 'rgb(0, 0, 0)',
+      color: '#000',
       fontFamily: 'SimHei',
-      fontSize: '16pt',
+      fontSize: 16,
     },
     key: '',
   },

@@ -6,7 +6,9 @@ import { createStore } from 'vuex';
 export const store = createStore({
   state: {
     // 当前选中的选项
-    selectItem: {},
+    selectItem: {
+      type: ''
+    },
     // 最终要预览的JSON
     dataJson: {
       list: [],
@@ -21,11 +23,19 @@ export const store = createStore({
       },
     },
   },
-  getters: {},
+
+  getters: {
+    getSelectItem(state) {
+      return state.selectItem;
+    },
+    getDataJson(state) {
+      return state.dataJson;
+    }
+  },
+
   mutations: {
     // 新增控件dataJson.list
     addDateJsonListItem(state, obj) {
-      console.log(state, obj);
       state.dataJson.list.push(obj);
     },
 
@@ -37,7 +47,7 @@ export const store = createStore({
     },
 
     // 清空dataJson数据
-    clearDataJson(state, val) {
+    clearDataJson(state) {
       state.dataJson = {
         list: [],
         config: {

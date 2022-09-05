@@ -5,3 +5,7 @@
   width: 100%;
 }
 
+.FormProperties, .FormItemProperties {
+  position: relative;
+  height: calc(100vh - 94px);
+}

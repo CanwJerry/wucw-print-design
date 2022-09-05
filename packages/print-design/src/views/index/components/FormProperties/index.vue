@@ -18,9 +18,4 @@
 
 <style lang='scss' scope>
   @import '../../scss/common.scss';
-  
-  .FormProperties {
-    position: relative;
-    height: calc(100vh - 138px);
-  }
 </style>
