@@ -1,0 +1,21 @@
+.previewStyle {
+  width: 100% !important;
+  padding: 2% 12%;
+  box-sizing: border-box;
+
+  .drag-move {
+    background-color: #fff;
+    margin-bottom: 0;
+    cursor: unset;
+  }
+
+  .draggable-box {
+    height: auto;
+  }
+}
+
+@media print{
+  .printBtn{
+    display: none;
+  }
+}

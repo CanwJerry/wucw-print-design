@@ -16,14 +16,19 @@
 
 <script setup>
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
   import storeGetters from '@/hooks/useGetters.js';
 
   const { getDataJson } = storeGetters(['getDataJson']);
   const data = ref(getDataJson);
 
+  const router = useRouter();
   function handleClickPreview() {
-    console.log(data.value);
-    window.open('', '_blank');
+    // 将当前数据保存到缓存，用于预览新界面的渲染
+    localStorage.setItem('previewData', JSON.stringify(getDataJson.value));
+
+    const { href } = router.resolve({ name: 'Preview' });
+    window.open(href, '_blank');
   }
 
   function handleClickSave() {

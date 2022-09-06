@@ -22,6 +22,8 @@ export const store = createStore({
         customStyle: '',
       },
     },
+    // 当前是否在预览界面
+    previewPage: false,
   },
 
   getters: {
@@ -62,10 +64,20 @@ export const store = createStore({
       }
     },
 
+    // 更新dataJson
+    updateDataJson(state, data) {
+      state.dataJson = data;
+    },
+
     // 更新selectItem数据
     updateSelectItem(state, val) {
       state.selectItem = val;
     },
+
+    // 更新previewPage
+    updatePreviewPage(state, val) {
+      state.previewPage = val;
+    }
   },
   actions: {},
 });

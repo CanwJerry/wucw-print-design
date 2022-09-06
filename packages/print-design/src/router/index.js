@@ -6,8 +6,8 @@ export const routes = [
   { path: '/', name: 'Root', redirect: '/index' },
   // 重定向
   { path: '/index', name: 'Index', component: () => import('@/views/index/Index.vue') },
-
-  // { path: '/Login', name: 'Login', component: () => import('@/views/Login.vue'), meta: { title: '登录', noLogin: true } },
+  // 预览界面
+  { path: '/preview', name: 'Preview', component: () => import('@/views/index/components/FormComponentPanel/index.vue'), meta: { title: '预览' } },
 
   // 错误页，404页面放最后以匹配*
   { path: '/404', component: () => import('@/views/error/404.vue'), meta: { title: '404', noLogin: true } },
