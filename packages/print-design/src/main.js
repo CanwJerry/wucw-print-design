@@ -20,8 +20,8 @@ import './style.scss';
 //   locale: zhCn,
 //   size: 'large',
 // });
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 
 app.use(ElementPlus)
 

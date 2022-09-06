@@ -2,8 +2,18 @@
   <div
     class="drag-move"
   >
-    <!-- table组件 -->
-    <template v-if="record.type === 'table'">
+    <!-- grid组件 - 栅格布局 -->
+    <template v-if="record.type === 'grid'">
+      <FormModulGrid
+        :key="record.key"
+        :record="record"
+        @click="handleSelectItem(record)"
+        @handleColAdd="handleColAdd"
+      />
+    </template>
+
+    <!-- table组件 - 表格布局 -->
+    <template v-else-if="record.type === 'table'">
       <FormModulTable
         :key="record.key"
         :record="record"
@@ -32,8 +42,10 @@
   import { useStore } from 'vuex';
   import FormModul from "../FormModul.vue";
   import FormModulTable from '../FormModulTable/index.vue';
+  import FormModulGrid from '../FormModulGrid/index.vue';
   const store = useStore();
 
+  const emits = defineEmits(['handleColAdd']);
   const props = defineProps({
     record: {
       type: Object,
@@ -43,6 +55,10 @@
 
   function handleSelectItem(item) {
     store.commit('updateSelectItem', item);
+  }
+
+  function handleColAdd(e, index, columns) {
+    emits("handleColAdd", e, index, columns);
   }
 </script>
 

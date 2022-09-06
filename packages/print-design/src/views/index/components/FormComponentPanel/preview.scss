@@ -12,6 +12,14 @@
   .draggable-box {
     height: auto;
   }
+
+  .grid-content {
+    border: none;
+  }
+
+  .table-td {
+    border: 1px solid #ccc;
+  }
 }
 
 @media print{

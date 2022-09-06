@@ -3,7 +3,7 @@ export const basicsList = [
   {
     type: 'text',
     label: '文字',
-    icon: 'icon-ai-code',
+    icon: 'icon-??',
     options: {
       textAlign: 'left',
       hidden: false, // 是否隐藏，false显示，true隐藏
@@ -20,7 +20,7 @@ export const layoutList = [
   {
     type: 'table',
     label: '表格布局',
-    icon: 'icon-biaoge',
+    icon: 'icon-??',
     trs: [
       {
         tds: [
@@ -60,5 +60,25 @@ export const layoutList = [
     },
     key: '',
     model: '',
+  },
+  {
+    type: "grid",
+    label: "栅格布局",
+    icon: "icon-??",
+    columns: [
+      {
+        span: 12,
+        list: []
+      },
+      {
+        span: 12,
+        list: []
+      }
+    ],
+    options: {
+      gutter: 0
+    },
+    key: "",
+    model: ""
   },
 ];

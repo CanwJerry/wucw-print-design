@@ -2,4 +2,24 @@
   .el-input-number {
     width: 100%;
   }
+
+  .grid-col-config {
+    .item-config {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .el-button {
+        margin-left: 10px;
+      }
+    }
+
+    .item-add {
+      cursor: pointer;
+    }
+    .item-add:hover {
+      color: #409eff;
+    }
+  }
 }
