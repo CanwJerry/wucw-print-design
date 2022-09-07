@@ -44,8 +44,13 @@ export const store = createStore({
     // 删除dataJson.list中的某一项
     delDateJsonListItem(state, key) {
       const index = state.dataJson.list.findIndex(item => item.key === key);
-      const newList = state.dataJson.list.splice(index, 1);
-      state.dataJson.list = newList;
+      state.dataJson.list.splice(index, 1);
+      if (!state.dataJson.list.length) {
+        state.selectItem = { type: '' }
+      }
+      if (state.dataJson.list.length === 1) {
+        state.selectItem = state.dataJson.list.at(0);
+      }
     },
 
     // 清空dataJson数据

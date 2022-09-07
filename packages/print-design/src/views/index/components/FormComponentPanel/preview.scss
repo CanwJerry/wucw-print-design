@@ -7,6 +7,10 @@
     background-color: #fff;
     margin-bottom: 0;
     cursor: unset;
+
+    .drag-move-del {
+      display: none;
+    }
   }
 
   .draggable-box {

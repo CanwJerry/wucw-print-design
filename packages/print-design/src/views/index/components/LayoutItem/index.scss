@@ -1,7 +1,37 @@
 .drag-move {
+  position: relative;
   padding: 30px 8px 8px;
   border-radius: 4px;
   background-color: #f4f5f7;
   margin-bottom: 8px;
-  cursor: pointer;
+
+  .drag-move-del {
+    position: absolute;
+    right: 8px;
+    top: 4px;
+    cursor: pointer;
+  }
+
+  .drag-move-item {
+    cursor: pointer;
+  }
+}
+
+.active {
+  background: linear-gradient(to right, #f4f5f7,#0883087a,#1c8b1c67,#268a2667);
+  background-size: 400%;
+  animation: bgcAnimation 1s ease forwards;
+  
+  .drag-move-del {
+    color: #fff;
+  }
+}
+
+@keyframes bgcAnimation {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
