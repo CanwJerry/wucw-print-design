@@ -55,7 +55,7 @@
 <script setup>
   import { ref } from 'vue';
   import { useStore } from 'vuex';
-  // 暂时有点问题
+  // FIXME:暂时有点问题
   // import storeMutations from '@/hooks/useMutations.js';
   import CollapseItem from '@/views/index/components/CollapseItem/index.vue';
   import FormComponentPanel from '@/views/index/components/FormComponentPanel/index.vue';

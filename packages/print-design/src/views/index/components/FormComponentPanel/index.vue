@@ -15,6 +15,7 @@
           animation: 180,
           handle: '.drag-move',
         }"
+        :disabled="isPreview"
         :list="data.list"
         tag="div"
         class="draggable-box"
@@ -27,6 +28,7 @@
               :key="element.key"
               :record="element"
               @handleColAdd="handleColAdd"
+              @handleDel="handleDel"
             />
           </transition-group>
         </template>
@@ -68,8 +70,8 @@
     // 直接拖拽控件
     if(index === null) {
       const key = columns[newIndex].type + "_" + new Date().getTime();
-      columns[newIndex] = { ...columns[newIndex], key };
-      // 更新selectItem的值, 不使用深拷贝, 让selectItem指向的地址跟dataJson.list指向的地址一样
+      columns[newIndex] = JSON.parse(JSON.stringify({ ...columns[newIndex], key }));
+      // 更新selectItem的值
       store.commit('updateSelectItem', columns[newIndex]);
       // TODO:因为此时操作的的就是dataJson.list里的对象,所以不需要通过store向dataJson.list中添加选中的item
       // store.commit('addDateJsonListItem', selectItem);
@@ -79,6 +81,11 @@
     const key = columns[index].list[newIndex].type + "_" + new Date().getTime();
     const item = JSON.parse(JSON.stringify({ ...columns[index].list[newIndex], key }))
     columns[index].list[newIndex] = item;
+  }
+
+  // 删除已选
+  function handleDel() {
+    store.commit('delDateJsonListItem');
   }
 
   onMounted(() => {

@@ -6,7 +6,6 @@
   .drag-move {
     background-color: #fff;
     margin-bottom: 0;
-    cursor: unset;
 
     .drag-move-del {
       display: none;
@@ -23,6 +22,12 @@
 
   .table-td {
     border: 1px solid #ccc;
+  }
+
+  .drag-move,
+  .drag-move-del,
+  .drag-move-item {
+    cursor: unset;
   }
 }
 

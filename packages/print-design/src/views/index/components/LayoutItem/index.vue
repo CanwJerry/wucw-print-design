@@ -1,9 +1,13 @@
 <template>
   <div
     class="drag-move"
-    :class="{active: record.key === selectItem.key}"
+    :class="{ active: record.key === selectItem.key && !isPreview }"
   >
-    <div class="drag-move-del" @click="handleDel(record)">
+    <div
+      v-show="record.key === selectItem.key"
+      class="drag-move-del"
+      @click.stop="handleDel"
+    >
       <el-tooltip content="删除" placement="top" :hide-after="50">
         <el-icon el-icon><Delete /></el-icon>
       </el-tooltip>
@@ -17,6 +21,7 @@
           :record="record"
           @click="handleSelectItem(record)"
           @handleColAdd="handleColAdd"
+          @handleDel="handleDel"
         />
       </template>
 
@@ -52,15 +57,19 @@
   import { useStore } from 'vuex';
   import { Delete } from '@element-plus/icons-vue'
   import storeGetters from '@/hooks/useGetters.js';
+  import storeState from '@/hooks/useState.js';
   import FormModul from "../FormModul/index.vue";
   import FormModulTable from '../FormModulTable/index.vue';
   import FormModulGrid from '../FormModulGrid/index.vue';
   const store = useStore();
-
+  
+  const { previewPage } = storeState(['previewPage']);
+  const isPreview = ref(previewPage);
+  
   const { getSelectItem } = storeGetters(['getSelectItem']);
   const selectItem = ref(getSelectItem);
 
-  const emits = defineEmits(['handleColAdd']);
+  const emits = defineEmits(['handleColAdd', 'handleDel']);
   const props = defineProps({
     record: {
       type: Object,
@@ -68,17 +77,16 @@
     },
   })
 
-  function handleDel(item) {
-    console.log(item.key);
-    store.commit('delDateJsonListItem', item.key);
-  }
-
   function handleSelectItem(item) {
     store.commit('updateSelectItem', item);
   }
 
   function handleColAdd(e, index, columns) {
     emits("handleColAdd", e, index, columns);
+  }
+
+  function handleDel() {
+    emits('handleDel');
   }
 </script>
 

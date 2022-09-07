@@ -26,6 +26,7 @@
                     :key="element.key"
                     :record="element"
                     @handleColAdd="handleColAdd"
+                    @handleDel="handleDel"
                   />
                 </transition-group>
               </template>
@@ -47,7 +48,7 @@
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
 
-  const emits = defineEmits(['handleSelectItem', 'handleColAdd']);
+  const emits = defineEmits(['handleSelectItem', 'handleColAdd', 'handleDel']);
   const props = defineProps({
     record: {
       type: Object,
@@ -57,6 +58,10 @@
 
   function handleColAdd(e, columns) {
     emits("handleColAdd", e, columns);
+  }
+
+  function handleDel() {
+    emits("handleDel");
   }
 </script>
 

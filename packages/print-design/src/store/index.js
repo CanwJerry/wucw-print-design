@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import { traverse } from '@/utils';
 
 /**
  * vuex仓库
@@ -42,13 +43,14 @@ export const store = createStore({
     },
 
     // 删除dataJson.list中的某一项
-    delDateJsonListItem(state, key) {
-      const index = state.dataJson.list.findIndex(item => item.key === key);
-      state.dataJson.list.splice(index, 1);
-      if (!state.dataJson.list.length) {
+    delDateJsonListItem(state) {
+      const arrs = traverse(state.dataJson.list, state.selectItem.key);
+      state.dataJson.list = arrs;
+      
+      // 当前选项
+      if (!arrs.length) {
         state.selectItem = { type: '' }
-      }
-      if (state.dataJson.list.length === 1) {
+      }else if (arrs.length === 1) {
         state.selectItem = state.dataJson.list.at(0);
       }
     },

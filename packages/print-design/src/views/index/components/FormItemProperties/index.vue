@@ -40,7 +40,7 @@
           <template v-for="(item, index) in selectItem.columns">
             <div
               class="item-config"
-              @click="handleDel(selectItem.columns, index)"
+              @click="handleGridDel(selectItem.columns, index)"
             >
               <div @click.stop>
                 <el-input-number v-model="item.span"></el-input-number>
@@ -78,7 +78,7 @@
     deep: true
   })
 
-  function handleDel(arr, index) {
+  function handleGridDel(arr, index) {
     arr.splice(index, 1);
   }
 
