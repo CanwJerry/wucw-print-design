@@ -68,14 +68,13 @@
     // 直接拖拽控件
     if(index === null) {
       const key = columns[newIndex].type + "_" + new Date().getTime();
-      columns[newIndex].key = key;
-      // 更新selectItem的值
-      store.commit('updateSelectItem', selectItem);
-      // 向dataJson.list中添加选中的item
-      store.commit('addDateJsonListItem', selectItem);
+      columns[newIndex] = { ...columns[newIndex], key };
+      // 更新selectItem的值, 不使用深拷贝, 让selectItem指向的地址跟dataJson.list指向的地址一样
+      store.commit('updateSelectItem', columns[newIndex]);
+      // TODO:因为此时操作的的就是dataJson.list里的对象,所以不需要通过store向dataJson.list中添加选中的item
+      // store.commit('addDateJsonListItem', selectItem);
       return;
     }
-    
     // 往布局控件里面添加控件
     const key = columns[index].list[newIndex].type + "_" + new Date().getTime();
     const item = JSON.parse(JSON.stringify({ ...columns[index].list[newIndex], key }))

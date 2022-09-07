@@ -40,7 +40,7 @@
 
 <script setup>
   import { useStore } from 'vuex';
-  import FormModul from "../FormModul.vue";
+  import FormModul from "../FormModul/index.vue";
   import FormModulTable from '../FormModulTable/index.vue';
   import FormModulGrid from '../FormModulGrid/index.vue';
   const store = useStore();

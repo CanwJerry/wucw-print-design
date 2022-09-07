@@ -69,6 +69,13 @@ export const store = createStore({
       state.dataJson = data;
     },
 
+    // 根据索引更新dataJson.list, 因为没有key, 所以通过索引
+    updateDataJsonListByIndex(state, obj) {
+      state.dataJson.list.forEach((item, itemIndex) => {
+        if(itemIndex === obj.newIndex) Object.assign(item, obj.deepColumns);
+      });;
+    },
+
     // 更新selectItem数据
     updateSelectItem(state, val) {
       state.selectItem = val;

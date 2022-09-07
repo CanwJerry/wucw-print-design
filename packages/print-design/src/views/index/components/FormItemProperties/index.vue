@@ -17,7 +17,7 @@
       <!-- text 控件 -->
       <template v-if="selectItem.type === 'text'">
         <el-form-item label="字体大小：">
-          <el-input-number v-model="selectItem.options.fontSize" :min="12" :max="32"></el-input-number>
+          <el-input-number v-model="selectItem.options.fontSize" :min="12" :max="100"></el-input-number>
         </el-form-item>
         <el-form-item label="内容对齐：" width="100%">
           <el-radio-group v-model="selectItem.options.textAlign">

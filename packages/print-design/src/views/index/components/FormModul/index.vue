@@ -18,7 +18,7 @@
 </script>
 
 <script setup>
-  import FormModulItem from './FormModulItem.vue';
+  import FormModulItem from './components/FormModulItem.vue';
 
   const emits = defineEmits(['handleSelectItem']);
   const props = defineProps({
