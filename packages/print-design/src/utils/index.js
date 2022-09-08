@@ -11,7 +11,7 @@ export function traverse(array, key) {
       // 表格布局
       element.trs.forEach(item => {
         item.tds.forEach(val => {
-          val.list = traverse(val.list);
+          val.list = traverse(val.list, key);
         });
       });
     }

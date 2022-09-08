@@ -29,11 +29,18 @@
               :record="element"
               @handleColAdd="handleColAdd"
               @handleDel="handleDel"
+              @handleShowRightMenu="handleShowRightMenu"
             />
           </transition-group>
         </template>
       </draggable>
     </el-form>
+
+    <!-- 右键菜单栏 -->
+    <RightMenu
+      v-show="showRightMenu"
+      :options="menuOptions"
+    />
   </div>
 </template>
 
@@ -44,12 +51,13 @@
 </script>
 
 <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, onBeforeUnmount } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
-  import storeGetters from '@/hooks/useGetters.js';
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
+  import RightMenu from '../RightMenu/index.vue';
+  import storeGetters from '@/hooks/useGetters.js';
   const store = useStore();
   const route = useRoute();
 
@@ -88,6 +96,27 @@
     store.commit('delDateJsonListItem');
   }
 
+  // 展示右键菜单
+  const showRightMenu = ref(false);
+  const menuOptions = ref({});
+  function handleShowRightMenu(event, record, trIndex, tdIndex) {
+    // 显示右键菜单
+    event.stopPropagation();
+    showRightMenu.value = true;
+    menuOptions.value = {
+      menuTop: event.clientY,
+      menuLeft: event.clientX,
+      trIndex: trIndex,
+      tdIndex: tdIndex,
+      list: record
+    }
+  };
+
+  // 取消右键菜单
+  function handleRemoveRightMenu() {
+    showRightMenu.value = false;
+  }
+
   onMounted(() => {
     // 当前页面是否在预览界面
     if(route.name === 'Preview') {
@@ -96,6 +125,16 @@
       // 获取缓存中的数据
       store.commit('updateDataJson', JSON.parse(localStorage.getItem('previewData')));
     }
+
+    // 添加监听取消右键菜单
+    document.addEventListener('click', handleRemoveRightMenu, true);
+    document.addEventListener('contextmenu', handleRemoveRightMenu, true);
+  })
+
+  onBeforeUnmount(() => {
+    // 移除监听取消右键菜单
+    document.removeEventListener('click', handleRemoveRightMenu, true);
+    document.removeEventListener('contextmenu', handleRemoveRightMenu, true);
   })
 </script>
 

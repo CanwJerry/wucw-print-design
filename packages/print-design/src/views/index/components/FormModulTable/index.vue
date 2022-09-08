@@ -3,7 +3,6 @@
     class="table-box"
     @click.stop="emits('handleSelectItem', record)"
   >
-
     <table class="table-layout">
       <tr v-for="(trItem, trIndex) in record.trs" :key="trIndex">
         <td
@@ -13,7 +12,33 @@
           :colspan="tdItem.colspan"
           :rowspan="tdItem.rowspan"
           class="table-td"
+          @contextmenu.prevent="emits('handleShowRightMenu', $event, record, trIndex, tdIndex)"
         >
+          <draggable
+            v-bind="{
+              group: 'form-draggable',
+              ghostClass: 'moving',
+              animation: 180,
+              handle: '.drag-move',
+            }"
+            :list="tdItem.list"
+            tag="div"
+            class="draggable-box"
+            item-key="id"
+            @add="emits('handleColAdd', $event, tdIndex, trItem.tds)"
+          >
+            <template #item="{ element }">
+              <transition-group tag="div" name="list">
+                <LayoutItem
+                  :key="element.key"
+                  :record="element"
+                  @handleColAdd="handleColAdd"
+                  @handleDel="handleDel"
+                  @handleShowRightMenu="handleShowRightMenu"
+                />
+              </transition-group>
+            </template>
+          </draggable>
         </td>
       </tr>
     </table>
@@ -27,13 +52,28 @@
 </script>
 
 <script setup>
-  const emits = defineEmits(['handleSelectItem']);
+  import draggable from 'vuedraggable';
+  import LayoutItem from '../LayoutItem/index.vue';
+
+  const emits = defineEmits(['handleSelectItem', 'handleColAdd', 'handleDel', 'handleShowRightMenu']);
   const props = defineProps({
     record: {
       type: Object,
       default: () => {},
     },
   });
+
+  function handleColAdd(e, columns) {
+    emits("handleColAdd", e, columns);
+  };
+
+  function handleDel() {
+    emits("handleDel");
+  };
+
+  function handleShowRightMenu(event, record, trIndex, tdIndex) {
+    emits("handleShowRightMenu", event, record, trIndex, tdIndex);
+  };
 </script>
 
 <style lang='scss' scope>

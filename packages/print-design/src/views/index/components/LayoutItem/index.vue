@@ -31,6 +31,9 @@
           :key="record.key"
           :record="record"
           @click="handleSelectItem(record)"
+          @handleColAdd="handleColAdd"
+          @handleDel="handleDel"
+          @handleShowRightMenu="handleShowRightMenu"
         />
       </template>
 
@@ -69,7 +72,7 @@
   const { getSelectItem } = storeGetters(['getSelectItem']);
   const selectItem = ref(getSelectItem);
 
-  const emits = defineEmits(['handleColAdd', 'handleDel']);
+  const emits = defineEmits(['handleColAdd', 'handleDel', 'handleShowRightMenu']);
   const props = defineProps({
     record: {
       type: Object,
@@ -87,6 +90,10 @@
 
   function handleDel() {
     emits('handleDel');
+  }
+
+  function handleShowRightMenu(event, record, trIndex, tdIndex) {
+    emits('handleShowRightMenu', event, record, trIndex, tdIndex);
   }
 </script>
 

@@ -1,0 +1,28 @@
+.right-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 3px 7px 0px #b1a7a7;
+  background-color: #fff;
+  border-radius: 4px;
+
+  ul {
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      padding: 4px 38px 4px 8px;
+      margin: 8px 0;
+      cursor: pointer;
+
+      .el-icon {
+        margin-right: 4px;
+      }
+
+      &:hover {
+        background-color: #c9e2cb;
+        color: #fff;
+      }
+    }
+  }
+}

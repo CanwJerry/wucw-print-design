@@ -18,7 +18,7 @@
               tag="div"
               class="draggable-box"
               item-key="id"
-              @add="emits('handleColAdd', $event, index, record.columns)"
+              @add="emits('handleColAdd', $event, index, item.list)"
             >
               <template #item="{ element }">
                 <transition-group tag="div" name="list">
