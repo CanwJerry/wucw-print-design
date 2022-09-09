@@ -21,6 +21,7 @@
               animation: 180,
               handle: '.drag-move',
             }"
+            :disabled="previewPage"
             :list="tdItem.list"
             tag="div"
             class="draggable-box"
@@ -54,6 +55,8 @@
 <script setup>
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
+  import storeState from '@/hooks/useState.js';
+  const { previewPage } = storeState(['previewPage']);
 
   const emits = defineEmits(['handleSelectItem', 'handleColAdd', 'handleDel', 'handleShowRightMenu']);
   const props = defineProps({
