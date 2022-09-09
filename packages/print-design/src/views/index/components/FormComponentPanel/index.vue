@@ -20,7 +20,7 @@
         @add="handleColAdd($event, null, data.list)"
       >
         <template #item="{ element }">
-          <transition-group tag="div" name="list">
+          <div>
             <LayoutItem
               :key="element.key"
               :record="element"
@@ -28,7 +28,7 @@
               @handleDel="handleDel"
               @handleShowRightMenu="handleShowRightMenu"
             />
-          </transition-group>
+          </div>
         </template>
       </draggable>
     </el-form>

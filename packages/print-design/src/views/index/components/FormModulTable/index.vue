@@ -29,7 +29,7 @@
             @add="emits('handleColAdd', $event, tdIndex, trItem.tds)"
           >
             <template #item="{ element }">
-              <transition-group tag="div" name="list">
+              <div>
                 <LayoutItem
                   :key="element.key"
                   :record="element"
@@ -37,7 +37,7 @@
                   @handleDel="handleDel"
                   @handleShowRightMenu="handleShowRightMenu"
                 />
-              </transition-group>
+              </div>
             </template>
           </draggable>
         </td>

@@ -22,14 +22,14 @@
               @add="emits('handleColAdd', $event, index, record.columns)"
             >
               <template #item="{ element }">
-                <transition-group tag="div" name="list">
+                <div>
                   <LayoutItem
                     :key="element.key"
                     :record="element"
                     @handleColAdd="handleColAdd"
                     @handleDel="handleDel"
                   />
-                </transition-group>
+                </div>
               </template>
             </draggable>
           </div>
