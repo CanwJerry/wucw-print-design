@@ -2,9 +2,12 @@
   position: relative;
   flex: 1;
   overflow-y: auto;
-  padding: 0 8px;
 
   .el-form, .draggable-box {
     height: 100%;
+  }
+
+  .draggable-box {
+    padding: 0 8px;
   }
 }

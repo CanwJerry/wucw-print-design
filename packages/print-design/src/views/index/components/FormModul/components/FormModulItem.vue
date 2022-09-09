@@ -17,8 +17,10 @@
   <!-- 按钮控件 -->
   <el-form-item v-if="record.type === 'button'">
     <el-button
+      class="btn"
       :type='record.options.type'
       :size='record.options.size'
+      @click="previewPage ? handleDynamic(record.options.dynamicFun) : ''"
     >
       {{ record.label }}
     </el-button>
@@ -32,12 +34,19 @@
 </script>
 
 <script setup>
+  import storeState from '@/hooks/useState.js';
+  const { previewPage } = storeState(['previewPage']);
+
   const props = defineProps({
     record: {
       type: Object,
       required: true
     },
   })
+
+  function handleDynamic(fun) {
+    (new Function(fun))();
+  }
 </script>
 
 <style lang='scss' scope>

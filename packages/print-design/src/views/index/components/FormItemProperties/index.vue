@@ -57,6 +57,14 @@
             <el-radio-button label="small"/>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="动态函数：">
+          <el-input
+            type="textarea"
+            :rows="2"
+            placeholder="请输入内容"
+            v-model="selectItem.options.dynamicFun">
+          </el-input>
+        </el-form-item>
       </template>
 
       <!-- grid 控件 -->

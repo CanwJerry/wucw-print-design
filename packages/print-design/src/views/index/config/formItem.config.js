@@ -23,6 +23,7 @@ export const basicsList = [
       type: 'primary',
       size: 'default',
       hidden: false, // 是否隐藏，false显示，true隐藏
+      dynamicFun: '',
     },
     key: '',
   },

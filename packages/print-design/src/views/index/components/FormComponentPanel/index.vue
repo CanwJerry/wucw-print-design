@@ -5,9 +5,6 @@
     </p>
 
     <el-form>
-      <el-form-item v-if="isPreview">
-        <el-button type="primary" class="printBtn" @click="handlePrint">打印</el-button>
-      </el-form-item>
       <draggable
         v-bind="{
           group: 'form-draggable',
@@ -66,11 +63,6 @@
   const { getDataJson } = storeGetters(['getDataJson']);
   const data = ref(getDataJson);
   const isPreview = ref(false);
-
-  // 打印功能
-  function handlePrint() {
-    window.print();
-  }
 
   // 通过拖拽的方式添加控件,给对应的key赋值
   function handleColAdd(e, index, columns) {
