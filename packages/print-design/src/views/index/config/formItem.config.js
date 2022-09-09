@@ -10,6 +10,19 @@ export const basicsList = [
       color: '#000',
       fontFamily: 'SimHei',
       fontSize: 16,
+      fontWeight: 'normal',
+      letterSpacing: 0
+    },
+    key: '',
+  },
+  {
+    type: 'button',
+    label: '按钮',
+    icon: 'icon-??',
+    options: {
+      type: 'primary',
+      size: 'default',
+      hidden: false, // 是否隐藏，false显示，true隐藏
     },
     key: '',
   },

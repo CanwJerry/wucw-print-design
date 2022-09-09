@@ -19,6 +19,9 @@
         <el-form-item label="字体大小：">
           <el-input-number v-model="selectItem.options.fontSize" :min="12" :max="100"></el-input-number>
         </el-form-item>
+        <el-form-item label="字符间距：">
+          <el-input-number v-model="selectItem.options.letterSpacing" :min="0" :max="100"></el-input-number>
+        </el-form-item>
         <el-form-item label="内容对齐：" width="100%">
           <el-radio-group v-model="selectItem.options.textAlign">
             <el-radio-button label="left">左</el-radio-button>
@@ -26,8 +29,33 @@
             <el-radio-button label="right">右</el-radio-button>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="字体加粗：">
+          <el-radio-group v-model="selectItem.options.fontWeight">
+            <el-radio-button label="normal">正常</el-radio-button>
+            <el-radio-button label="bold">加粗</el-radio-button>
+          </el-radio-group>
+        </el-form-item>
         <el-form-item label="字体颜色：">
           <el-color-picker v-model="selectItem.options.color"></el-color-picker>
+        </el-form-item>
+      </template>
+
+      <!-- button 控件 -->
+      <template v-if="selectItem.type === 'button'">
+        <el-form-item label="按钮类型：">
+          <el-radio-group v-model="selectItem.options.type">
+            <el-radio label="primary"/>
+            <el-radio label="success"/>
+            <el-radio label="danger"/>
+            <el-radio label="default"/>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="按钮尺寸：">
+          <el-radio-group v-model="selectItem.options.size">
+            <el-radio-button label="large"/>
+            <el-radio-button label="default"/>
+            <el-radio-button label="small"/>
+          </el-radio-group>
         </el-form-item>
       </template>
 
