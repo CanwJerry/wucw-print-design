@@ -96,7 +96,7 @@
     event.stopPropagation();
     showRightMenu.value = true;
     menuOptions.value = {
-      menuTop: event.clientY,
+      menuTop: event.clientY < 700 ? event.clientY : event.clientY - 250,
       menuLeft: event.clientX,
       trIndex: trIndex,
       tdIndex: tdIndex,
