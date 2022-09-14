@@ -22,9 +22,15 @@
     border: none;
   }
 
-  .table-td {
-    border: 1px solid #ccc;
+  .table-layout {
+    .table-td {
+      border: 1px solid #ccc;
+    }
+    .borders {
+      border: none;
+    }
   }
+  
 
   .drag-move,
   .drag-move-del,

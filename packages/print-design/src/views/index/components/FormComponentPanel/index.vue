@@ -92,6 +92,7 @@
   const showRightMenu = ref(false);
   const menuOptions = ref({});
   function handleShowRightMenu(event, record, trIndex, tdIndex) {
+    if(isPreview.value) return;
     // 显示右键菜单
     event.stopPropagation();
     showRightMenu.value = true;

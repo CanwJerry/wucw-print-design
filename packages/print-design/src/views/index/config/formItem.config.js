@@ -80,9 +80,6 @@ export const layoutList = [
     options: {
       width: '100%',
       bordered: true,
-      bright: false,
-      small: true,
-      customStyle: '',
       showLabel: false,
     },
     key: '',

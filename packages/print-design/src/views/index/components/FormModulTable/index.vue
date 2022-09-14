@@ -4,7 +4,9 @@
     @click.stop="emits('handleSelectItem', record)"
   >
     <p v-show="record.options.showLabel">{{record.label}}</p>
-    <table class="table-layout">
+    <table
+      class="table-layout"
+    >
       <tr v-for="(trItem, trIndex) in record.trs" :key="trIndex">
         <td
           v-for="(tdItem, tdIndex) in trItem.tds"
@@ -13,6 +15,7 @@
           :colspan="tdItem.colspan"
           :rowspan="tdItem.rowspan"
           class="table-td"
+          :class="{borders: !record.options.bordered}"
           @contextmenu.prevent="emits('handleShowRightMenu', $event, record, trIndex, tdIndex)"
         >
           <draggable

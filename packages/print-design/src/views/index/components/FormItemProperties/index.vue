@@ -78,6 +78,15 @@
         </el-form-item>
       </template>
 
+      <template v-if="selectItem.type === 'table'">
+        <el-form-item label="展示边框：" class="common-radio">
+          <el-radio-group v-model="selectItem.options.bordered">
+            <el-radio :label="true" size="large">是</el-radio>
+            <el-radio :label="false" size="large">否</el-radio>
+          </el-radio-group>
+        </el-form-item>
+      </template>
+
       <!-- grid 控件 -->
       <template v-if="selectItem.type === 'grid'">
         <el-form-item label="栅格间距：">
