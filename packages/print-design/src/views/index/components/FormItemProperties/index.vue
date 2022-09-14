@@ -13,6 +13,16 @@
         <el-form-item label="标签：">
           <el-input v-model="selectItem.label" placeholder="请输入" />
         </el-form-item>
+        <el-form-item
+          v-if="!['button', 'text'].includes(selectItem.type)"
+          label="展示标签："
+          class="common-radio"
+        >
+          <el-radio-group v-model="selectItem.options.showLabel">
+            <el-radio :label="true" size="large">是</el-radio>
+            <el-radio :label="false" size="large">否</el-radio>
+          </el-radio-group>
+        </el-form-item>
       </template>
       
       <!-- text 控件 -->
@@ -94,6 +104,7 @@
         <el-form-item label="头部字段：">
           <el-button type="primary" @click="handleBatch(true)">添加</el-button>
         </el-form-item>
+
         <BatchTableHead v-if="headDialogVisible" :headList="batchTableHeadList" @btnEvent="handleBatch"/>
       </template>
     </el-form>

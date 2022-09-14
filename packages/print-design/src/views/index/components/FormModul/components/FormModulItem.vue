@@ -14,6 +14,7 @@
       {{ record.label }}
     </div>
   </el-form-item>
+  
   <!-- 按钮控件 -->
   <el-form-item v-if="record.type === 'button'">
     <el-button
@@ -25,21 +26,35 @@
       {{ record.label }}
     </el-button>
   </el-form-item>
+
   <!-- 动态表格控件 -->
   <el-form-item v-if="record.type === 'batchTable'">
-    <el-table
-      class="batch-table"
-      :data="record.tableData"
-      style="width: 100%"
-      border
-    >
-      <template #empty>
-        暂无数据
-      </template>
-      <template v-for="item in record.headList">
-        <el-table-column :prop="item.prop" :label="item.label" :width="item.width"/>
-      </template>
-    </el-table>
+    <div class="batch-table">
+      <p v-show="record.options.showLabel">{{record.label}}</p>
+      <table border>
+        <thead>
+          <tr>
+            <th v-for="item in record.headList">{{ item.label }}</th>
+          </tr>
+        </thead>
+        <template v-if="record.tableData.length && previewPage">
+          <tbody>
+            <tr v-for="item in record.tableData" :key="item.matterID">
+              <td v-for="subItem in record.headList">{{ item[subItem.prop] }}</td>
+            </tr>
+          </tbody>
+        </template>
+        <template v-else>
+          <tbody>
+            <tr style="margin: 0 auto;">
+              <td :colspan="record.headList.length">
+                暂无数据
+              </td>
+            </tr>
+          </tbody>
+        </template>
+      </table>
+    </div>
   </el-form-item>
 </template>
 
@@ -69,5 +84,32 @@
   .textStyle {
     width: 100%;
     background-color: #fff;
+  }
+
+  .batch-table{
+    width: 100%;
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      border-top: 1px solid #909399;
+      border-left: 1px solid #909399;
+      tr{
+        th{
+          line-height: 32px;
+        }
+        td{
+          line-height: 32px;
+          text-align: center;
+        }
+      }
+      thead{
+        background-color: #f1f1f1;
+        color: #909399;
+        font-size: 14px;
+      }
+      tbody {
+        background-color: #fff;
+      }
+    }
   }
 </style>

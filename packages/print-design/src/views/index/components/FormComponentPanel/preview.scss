@@ -38,17 +38,11 @@
     display: none;
   }
 
-  .batch-table {
-    table,
-    tbody,
-    thead,
-    table + div {
-      width: 100% !important;
-    }
-
-    colgroup {
-      position: absolute;
-      width: 100% !important;
-    }
+  // 强制使用背景图形渲染，不论是否勾选
+  * {
+    -webkit-print-color-adjust: exact !important;
+    -moz-print-color-adjust: exact !important;
+    -ms-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }

@@ -3,6 +3,7 @@
     class="table-box"
     @click.stop="emits('handleSelectItem', record)"
   >
+    <p v-show="record.options.showLabel">{{record.label}}</p>
     <table class="table-layout">
       <tr v-for="(trItem, trIndex) in record.trs" :key="trIndex">
         <td

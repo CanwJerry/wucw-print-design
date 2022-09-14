@@ -3,6 +3,7 @@
     class="grid-box"
     @click.stop="emits('handleSelectItem', record)"
   >
+    <p v-show="record.options.showLabel">{{record.label}}</p>
     <el-row :gutter="record.options.gutter">
       <template v-for="(item, index) in record.columns">
         <el-col :span="item.span">

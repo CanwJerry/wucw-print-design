@@ -11,7 +11,7 @@ export const basicsList = [
       fontFamily: 'SimHei',
       fontSize: 16,
       fontWeight: 'normal',
-      letterSpacing: 0
+      letterSpacing: 0,
     },
     key: '',
   },
@@ -83,6 +83,7 @@ export const layoutList = [
       bright: false,
       small: true,
       customStyle: '',
+      showLabel: false,
     },
     key: '',
     model: '',
@@ -102,7 +103,8 @@ export const layoutList = [
       }
     ],
     options: {
-      gutter: 0
+      gutter: 0,
+      showLabel: false,
     },
     key: "",
     model: ""
