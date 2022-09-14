@@ -46,7 +46,7 @@
         </template>
         <template v-else>
           <tbody>
-            <tr style="margin: 0 auto;">
+            <tr style="margin: 0 auto;height: 80px;">
               <td :colspan="record.headList.length">
                 暂无数据
               </td>
