@@ -37,4 +37,18 @@
   .btn{
     display: none;
   }
+
+  .batch-table {
+    table,
+    tbody,
+    thead,
+    table + div {
+      width: 100% !important;
+    }
+
+    colgroup {
+      position: absolute;
+      width: 100% !important;
+    }
+  }
 }

@@ -25,6 +25,22 @@
       {{ record.label }}
     </el-button>
   </el-form-item>
+  <!-- 动态表格控件 -->
+  <el-form-item v-if="record.type === 'batchTable'">
+    <el-table
+      class="batch-table"
+      :data="record.tableData"
+      style="width: 100%"
+      border
+    >
+      <template #empty>
+        暂无数据
+      </template>
+      <template v-for="item in record.headList">
+        <el-table-column :prop="item.prop" :label="item.label" :width="item.width"/>
+      </template>
+    </el-table>
+  </el-form-item>
 </template>
 
 <script>

@@ -27,6 +27,18 @@ export const basicsList = [
     },
     key: '',
   },
+  {
+    type: "batchTable",
+    label: "动态表格",
+    icon: "icon-??",
+    headList: [],
+    tableData: [],
+    options: {
+      showLabel: false,
+      showSequence: false,
+    },
+    key: "",
+  },
 ];
 
 // 布局控件

@@ -5,6 +5,7 @@
     </p>
 
     <el-form v-if="selectItem.type" label-width="82px">
+      <!-- 公共的 -->
       <template v-if="typeof selectItem.label !== 'undefined'">
         <el-form-item label="关键字：">
           {{ selectItem.key }}
@@ -87,6 +88,14 @@
           <p class="item-add" @click.stop="handleAdd(selectItem.columns)">添加</p>
         </el-form-item>
       </template>
+
+      <!-- batchTabel 控件 -->
+      <template v-if="selectItem.type === 'batchTable'">
+        <el-form-item label="头部字段：">
+          <el-button type="primary" @click="handleBatch(true)">添加</el-button>
+        </el-form-item>
+        <BatchTableHead v-if="headDialogVisible" :headList="batchTableHeadList" @btnEvent="handleBatch"/>
+      </template>
     </el-form>
   </div>
 </template>
@@ -100,7 +109,8 @@
 <script setup>
   import { ref, watch } from 'vue';
   import { useStore } from 'vuex';
-  import { Delete } from '@element-plus/icons-vue'
+  import { Delete } from '@element-plus/icons-vue';
+  import BatchTableHead from './components/BatchTableHead.vue';
   import storeGetters from '@/hooks/useGetters.js';
   const store = useStore();
 
@@ -123,6 +133,22 @@
       span: 12,
       list: []
     },)
+  }
+
+  const batchTableHeadList = ref([]);
+  const headDialogVisible = ref(false);
+  function handleBatch(show, data) {
+    // 添加的情况下
+    if(show) {
+      batchTableHeadList.value = selectItem.value.headList;
+    }
+    
+    // 保存的情况下
+    if(data) {
+      selectItem.value.headList = data;
+    }
+
+    headDialogVisible.value = show;
   }
 </script>
 
