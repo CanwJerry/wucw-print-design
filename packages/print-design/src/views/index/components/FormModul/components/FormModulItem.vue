@@ -2,7 +2,7 @@
   <!-- 文字控件 -->
   <el-form-item v-if="record.type === 'text'">
     <div
-      class="textStyle"
+      class="text-style"
       :style="{
         textAlign: record.options.textAlign,
         color: record.options.color,
@@ -11,7 +11,8 @@
         letterSpacing: record.options.letterSpacing + 'px'
       }"
     >
-      {{ record.label }}
+      <span class="text-label">{{ record.label }}</span>
+      <span v-if="record.value">{{ record.value }}</span>
     </div>
   </el-form-item>
   
@@ -81,9 +82,13 @@
 </script>
 
 <style lang='scss' scope>
-  .textStyle {
+  .text-style {
     width: 100%;
     background-color: #fff;
+
+    .text-label {
+      display: inline-block;
+    }
   }
 
   .batch-table{

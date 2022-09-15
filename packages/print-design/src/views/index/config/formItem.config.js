@@ -4,6 +4,9 @@ export const basicsList = [
     type: 'text',
     label: '文字',
     icon: 'icon-??',
+    fields: '',
+    value: '',
+    key: '',
     options: {
       textAlign: 'left',
       hidden: false, // 是否隐藏，false显示，true隐藏
@@ -13,32 +16,32 @@ export const basicsList = [
       fontWeight: 'normal',
       letterSpacing: 0,
     },
-    key: '',
   },
   {
     type: 'button',
     label: '按钮',
     icon: 'icon-??',
+    key: '',
     options: {
       type: 'primary',
       size: 'default',
       hidden: false, // 是否隐藏，false显示，true隐藏
       dynamicFun: '',
     },
-    key: '',
   },
   {
     type: "batchTable",
     label: "动态表格",
     icon: "icon-??",
+    fields: '',
     headList: [],
     tableData: [],
+    key: "",
     options: {
       showLabel: false,
       showSequence: false,
     },
-    key: "",
-  },
+  }  
 ];
 
 // 布局控件

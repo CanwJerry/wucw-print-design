@@ -10,9 +10,15 @@
         <el-form-item label="关键字：">
           {{ selectItem.key }}
         </el-form-item>
+
         <el-form-item label="标签：">
           <el-input v-model="selectItem.label" placeholder="请输入" />
         </el-form-item>
+
+        <el-form-item label="字段名：">
+          <el-input v-model="selectItem.fields" placeholder="请输入" />
+        </el-form-item>
+
         <el-form-item
           v-if="!['button', 'text'].includes(selectItem.type)"
           label="展示标签："

@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { traverse } from '@/utils';
+import { traverse, traverseItemData } from '@/utils';
 
 /**
  * vuex仓库
@@ -74,6 +74,12 @@ export const store = createStore({
     // 更新dataJson
     updateDataJson(state, data) {
       state.dataJson = data;
+    },
+
+    // 更新dataJson里面每一项的数据
+    updateDataJsonItemData(state, data) {
+      traverseItemData(state.dataJson.list, data);
+      // console.log('更新dataJson里面每一项的数据', data);
     },
 
     // 根据索引更新dataJson.list, 因为没有key, 所以通过索引

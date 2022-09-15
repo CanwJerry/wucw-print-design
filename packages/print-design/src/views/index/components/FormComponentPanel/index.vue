@@ -48,6 +48,7 @@
 </script>
 
 <script setup>
+  import { companyInfo, externalManage } from '@/views/index/testdata.js';
   import { ref, onMounted, onBeforeUnmount } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
@@ -63,7 +64,7 @@
   const { getDataJson } = storeGetters(['getDataJson']);
   const data = ref(getDataJson);
   const isPreview = ref(false);
-
+  
   // 通过拖拽的方式添加控件,给对应的key赋值
   function handleColAdd(e, index, columns) {
     const newIndex = e.newIndex;
@@ -115,8 +116,16 @@
     if(route.name === 'Preview') {
       isPreview.value = true;
       store.commit('updatePreviewPage', true);
+      
       // 获取缓存中的数据
       store.commit('updateDataJson', JSON.parse(localStorage.getItem('previewData')));
+
+      // 更新dataJson里面每一项的数据
+      const newObj = {...companyInfo.data, ...externalManage.data}
+      if(newObj.matters.at(0).child.length) {
+        newObj.child = newObj.matters.at(0).child;
+      }
+      store.commit('updateDataJsonItemData', newObj);
     }
 
     // 添加监听取消右键菜单
