@@ -53,7 +53,7 @@
 </script>
 
 <script setup>
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
   import { useStore } from 'vuex';
   // FIXME:暂时有点问题
   // import storeMutations from '@/hooks/useMutations.js';
@@ -76,6 +76,13 @@
     // 向dataJson.list中添加选中的item
     store.commit('addDateJsonListItem', selectItem);
   }
+
+  onMounted(() => {
+    // 给当前的表单添加一个唯一的key值
+    if(!store.state.dataJson.config.key) {
+      store.state.dataJson.config.key = `form_${new Date().getTime()}`;
+    }
+  })
 </script>
 
 <style lang="scss" scoped>

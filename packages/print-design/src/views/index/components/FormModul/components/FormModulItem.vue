@@ -12,7 +12,7 @@
       }"
     >
       <span class="text-label">{{ record.label }}</span>
-      <span v-if="record.value">{{ record.value }}</span>
+      <span v-if="record.value && previewPage">{{ record.value }}</span>
     </div>
   </el-form-item>
   

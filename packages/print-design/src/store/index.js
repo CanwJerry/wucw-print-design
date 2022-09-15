@@ -14,13 +14,8 @@ export const store = createStore({
     dataJson: {
       list: [],
       config: {
-        layout: '',
-        labelCol: {},
-        labelWidth: 100,
-        labelLayout: 'flex',
-        wrapperCol: {},
-        hideRequiredMark: false,
-        customStyle: '',
+        formName: '',
+        key: ''
       },
     },
     // 当前是否在预览界面
@@ -67,6 +62,8 @@ export const store = createStore({
           wrapperCol: {},
           hideRequiredMark: false,
           customStyle: '',
+          formName: '',
+          key: ''
         },
       }
     },
