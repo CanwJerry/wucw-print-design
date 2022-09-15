@@ -15,6 +15,10 @@ export const basicsList = [
       fontSize: 16,
       fontWeight: 'normal',
       letterSpacing: 0,
+      marginTop: '',
+      marginRight: '',
+      marginBottom: '',
+      marginLeft: '',
     },
   },
   {
@@ -27,6 +31,10 @@ export const basicsList = [
       size: 'default',
       hidden: false, // 是否隐藏，false显示，true隐藏
       dynamicFun: '',
+      marginTop: '',
+      marginRight: '',
+      marginBottom: '',
+      marginLeft: '',
     },
   },
   {
@@ -40,6 +48,10 @@ export const basicsList = [
     options: {
       showLabel: false,
       showSequence: false,
+      marginTop: '',
+      marginRight: '',
+      marginBottom: '',
+      marginLeft: '',
     },
   }  
 ];
@@ -84,6 +96,10 @@ export const layoutList = [
       width: '100%',
       bordered: true,
       showLabel: false,
+      marginTop: '',
+      marginRight: '',
+      marginBottom: '',
+      marginLeft: '',
     },
     key: '',
     model: '',
@@ -105,6 +121,10 @@ export const layoutList = [
     options: {
       gutter: 0,
       showLabel: false,
+      marginTop: '',
+      marginRight: '',
+      marginBottom: '',
+      marginLeft: '',
     },
     key: "",
     model: ""

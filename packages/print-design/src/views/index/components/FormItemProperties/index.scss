@@ -28,4 +28,13 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .common-margin .el-form-item__content {
+    display: flex;
+    flex-wrap: nowrap !important;
+    margin-right: -5px;
+    .el-input {
+      margin-right: 5px;
+    }
+  }
 }

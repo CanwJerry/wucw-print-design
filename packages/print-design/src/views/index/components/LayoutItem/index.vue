@@ -2,6 +2,12 @@
   <div
     class="drag-move"
     :class="{ active: record.key === selectItem.key && !isPreview }"
+    :style="{
+      marginTop: record.options.marginTop + 'px',
+      marginRight: record.options.marginRight + 'px',
+      marginBottom: record.options.marginBottom + 'px',
+      marginLeft: record.options.marginLeft + 'px',
+    }"
   >
     <div
       v-show="record.key === selectItem.key"

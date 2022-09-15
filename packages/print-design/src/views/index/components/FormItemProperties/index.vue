@@ -29,6 +29,13 @@
             <el-radio :label="false" size="large">否</el-radio>
           </el-radio-group>
         </el-form-item>
+
+        <el-form-item label="控件间距：" class="common-margin">
+          <el-input v-model="selectItem.options.marginTop"></el-input>
+          <el-input v-model="selectItem.options.marginRight"></el-input>
+          <el-input v-model="selectItem.options.marginBottom"></el-input>
+          <el-input v-model="selectItem.options.marginLeft"></el-input>
+        </el-form-item>
       </template>
       
       <!-- text 控件 -->
