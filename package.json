@@ -7,8 +7,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "print:dev": "pnpm run -C packages/print-design dev",
-    "print:build": "pnpm run -C packages/print-design build"
+    "print:dev": "pnpm run -C packages/print-design dev  --mode=dev",
+    "print:build": "pnpm run -C packages/print-design build  --mode=build"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",

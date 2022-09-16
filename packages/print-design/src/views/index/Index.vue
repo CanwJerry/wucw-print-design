@@ -53,6 +53,7 @@
 </script>
 
 <script setup>
+  import { GetCompanyInfo, InvoiceDetail } from '@/api/api.js';
   import { ref, onMounted } from 'vue';
   import { useStore } from 'vuex';
   // FIXME:暂时有点问题
@@ -78,6 +79,14 @@
   }
 
   onMounted(() => {
+    GetCompanyInfo({}).then(res => {
+      console.log('公司信息', res);
+    });
+
+    InvoiceDetail({ no: 'WW20220914000002' }).then(res => {
+      console.log('单据信息', res);
+    });
+
     // 给当前的表单添加一个唯一的key值
     if(!store.state.dataJson.config.key) {
       store.state.dataJson.config.key = `form_${new Date().getTime()}`;

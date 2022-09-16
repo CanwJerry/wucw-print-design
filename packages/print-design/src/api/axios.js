@@ -1,0 +1,70 @@
+import axios from "axios";
+import { showMessage } from "./status";
+import { ElMessage, ElMessageBox } from 'element-plus';
+
+// 设置接口超时时间
+axios.defaults.timeout = 10000;
+// 动态赋值的的环境变量
+axios.defaults.baseURL = import.meta.env.VITE_API_ENV;
+//http request 拦截器
+axios.interceptors.request.use(
+  config => {
+  // 配置请求头
+    config.headers = {
+      'Content-Type':'application/json',         // 传参方式json
+      'Account-Token':'ek9jZHZ4OW5lVDBLakNJNGk4NDg0NFFESTFONk40d3N1NzExMU0wM2NYN3I0dUZHUXFFTW5weFBUbVBGdGlUZVBsdVhxcUROVnRnMnNITmxFaHhEaEZ3TWw5d0tqYWRVOG51SFBobkx0cWtFMHNWUWxQSWExREZPYkM4SVdqR1pHQmxzVHlZR3BGUVBkOFNnQVlRcVZDZGU3V2x0aGE4UHFSSVhUMFl2Z2R4Y0lsNmlhSlFJSUR4Z0QrUnBhQ1JzeFB6UE5HemM3bnhLTGgzdHpPTGdnWlNwUzVOZytZdkRqd2dCcy9VdHI4b0pVbmFVb1VSQkhka1FWa0Y0RFN4VTJYMDNuaEdYN2w2dHlTSS9sdVZhZ0wxdS8za2dmTDNYdU1tS0xiMUVTU1hVakM5TDJFMms5S1VtTEkxTjI0ZFBXNEJsLy9mbHB6Y0cwQXoyWENlQXhpR1VuVEpYbnVZaDFoNXpmbzB0SzhOM3NTa2h6SUJlT2ZtTzNvUWJvVDls',
+      'ClientVersion': '20220916-1',
+    };
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+//http response 拦截器
+axios.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    const {response} = error;
+    if (response) {
+      // 请求已发出，但是不在2xx的范围
+      showMessage(response.status);           // 传入响应码，匹配响应码对应信息
+      return Promise.reject(response.data);
+    } else {
+      ElMessage.warning('网络连接异常,请稍后再试!');
+    }
+  }
+);
+
+// 封装 GET POST 请求并导出
+export function request({url = '', method = 'POST', params = {}, paramsKey = false}){
+  //设置 url params method 的默认值
+  return new Promise((resolve,reject)=>{
+    let promise
+    if( method.toUpperCase()==='GET' ){
+      promise = axios({
+        url,
+        params
+      })
+    }else if( method.toUpperCase()=== 'POST' ){
+      let key = 'data';
+      if(paramsKey) {
+        key = 'params';
+      }
+      promise = axios({
+        method:'POST',
+        url,
+        [key]:params
+      })
+    }
+    //处理返回
+    promise.then(res=>{
+      resolve(res)
+    }).catch(err=>{
+      reject(err)
+    })
+  })
+}
