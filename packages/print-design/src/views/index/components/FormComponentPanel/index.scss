@@ -3,7 +3,14 @@
   flex: 1;
   overflow-y: auto;
 
+  // 此处加上100%是为了从左往内容区域拖拽的时候盒子默认高度
+  .el-form, .draggable-box {
+    height: 100%;
+  }
+
   .draggable-box {
     padding: 0 8px;
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -123,6 +123,22 @@
 
       <!-- batchTabel 控件 -->
       <template v-if="selectItem.type === 'batchTable'">
+        <el-form-item label="标题大小：">
+          <el-input-number v-model="selectItem.options.fontSize" :min="12" :max="100"></el-input-number>
+        </el-form-item>
+
+        <el-form-item label="表格标题颜色：" label-width="110px">
+          <el-color-picker v-model="selectItem.options.color"></el-color-picker>
+        </el-form-item>
+
+        <el-form-item label="表头背景颜色：" label-width="110px">
+          <el-color-picker v-model="selectItem.options.headBgColor"></el-color-picker>
+        </el-form-item>
+
+        <el-form-item label="表头标题颜色：" label-width="110px">
+          <el-color-picker v-model="selectItem.options.headColor"></el-color-picker>
+        </el-form-item>
+
         <el-form-item label="头部字段：">
           <el-button type="primary" @click="handleBatch(true)">添加</el-button>
         </el-form-item>

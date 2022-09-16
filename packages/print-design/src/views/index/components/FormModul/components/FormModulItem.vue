@@ -31,9 +31,21 @@
   <!-- 动态表格控件 -->
   <el-form-item v-if="record.type === 'batchTable'">
     <div class="batch-table">
-      <p v-show="record.options.showLabel">{{record.label}}</p>
+      <p
+        v-show="record.options.showLabel"
+        :style="{
+          fontSize: record.options.fontSize + 'px',
+          color: record.options.color,
+        }"
+      >
+        {{record.label}}
+      </p>
       <table border>
-        <thead>
+        <thead
+          :style="{
+            backgroundColor: record.options.headBgColor,
+            color: record.options.headColor
+          }" >
           <tr>
             <th v-for="item in record.headList">{{ item.label }}</th>
           </tr>
