@@ -139,7 +139,7 @@
           <el-color-picker v-model="selectItem.options.headColor"></el-color-picker>
         </el-form-item>
 
-        <el-form-item label="头部字段：">
+        <el-form-item label="表头字段：">
           <el-button type="primary" @click="handleBatch(true)">添加</el-button>
         </el-form-item>
 
