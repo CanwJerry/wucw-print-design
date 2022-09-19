@@ -12,7 +12,7 @@ axios.interceptors.request.use(
   // 配置请求头
     config.headers = {
       'Content-Type':'application/json',         // 传参方式json
-      'Account-Token':'ek9jZHZ4OW5lVDBLakNJNGk4NDg0NFFESTFONk40d3N1NzExMU0wM2NYN3I0dUZHUXFFTW5weFBUbVBGdGlUZVBsdVhxcUROVnRnMnNITmxFaHhEaEZ3TWw5d0tqYWRVOG51SFBobkx0cWtFMHNWUWxQSWExREZPYkM4SVdqR1pHQmxzVHlZR3BGUVBkOFNnQVlRcVZDZGU3V2x0aGE4UHFSSVhUMFl2Z2R4Y0lsNmlhSlFJSUR4Z0QrUnBhQ1JzeFB6UE5HemM3bnhLTGgzdHpPTGdnWlNwUzVOZytZdkRqd2dCcy9VdHI4b0pVbmFVb1VSQkhka1FWa0Y0RFN4VTJYMDNuaEdYN2w2dHlTSS9sdVZhZ0wxdS8za2dmTDNYdU1tS0xiMUVTU1hVakM5TDJFMms5S1VtTEkxTjI0ZFBXNEJsLy9mbHB6Y0cwQXoyWENlQXhpR1VuVEpYbnVZaDFoNXpmbzB0SzhOM3NTa2h6SUJlT2ZtTzNvUWJvVDls',
+      'Account-Token': localStorage.getItem('accessToken') ?? '',
       'ClientVersion': '20220916-1',
     };
     return config;
