@@ -3,6 +3,7 @@
     <li
       @click="handleChangeDataJson(item)"
       v-for="item in documentData"
+      :class="{ active: item.formName === activeName }"
     >
       {{ item.formName }}
     </li>
@@ -22,9 +23,11 @@
   const store = useStore();
 
   const documentData = ref([]);
+  const activeName = ref('');
 
   function handleChangeDataJson(item) {
     if(documentData.value.length) {
+      activeName.value = item.formName;
       const dataJson = {
         list: JSON.parse(item.formJson),
         config: {
@@ -64,15 +67,20 @@
       border-radius: 4px;
       padding: 0 5px;
       box-sizing: border-box;
+      margin-bottom: 4px;
 
       &:hover {
         cursor: pointer;
-        color: #fff;
-        background: linear-gradient(to right, #f4f5f7, rgba(8, 131, 8, 0.4784313725), rgba(28, 139, 28, 0.4039215686), rgba(38, 138, 38, 0.4039215686));
-        background-size: 400%;
-        animation: bgcAnimation .5s ease forwards;
+        background-color: #f4f5f7;
       }
     }
+  }
+
+  .active {
+    color: #fff;
+    background: linear-gradient(to right, #f4f5f7, rgba(8, 131, 8, 0.4784313725), rgba(28, 139, 28, 0.4039215686), rgba(38, 138, 38, 0.4039215686));
+    background-size: 400%;
+    animation: bgcAnimation .5s ease forwards;
   }
 
   @keyframes bgcAnimation {

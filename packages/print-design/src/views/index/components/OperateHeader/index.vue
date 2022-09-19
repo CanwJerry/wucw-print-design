@@ -4,6 +4,7 @@
     <div class="btn">
       <el-button type="primary" size="small" @click="handleClickPreview" :disabled="!data.list.length">预览</el-button>
       <el-button type="primary" size="small" @click="handleClickSave" :disabled="!data.list.length">保存</el-button>
+      <el-button type="primary" size="small" @click="handleClickSave('other')" :disabled="!data.list.length">另存为</el-button>
     </div>
   </div>
 </template>
@@ -34,18 +35,27 @@
   }
 
   // 保存按钮
-  function handleClickSave() {
+  function handleClickSave(type) {
     const { config, list } = data.value;
     const form = {
       formName: config.formName,
       formKey: config.key,
       formJson: JSON.stringify(list)
     }
+    // 如果是另存为的话重新获取key值，将当前表单作为新的表单保存
+    if(type === 'other') {
+      form.formKey = `form_${new Date().getTime()}`;
+    }
     SaveDocumentPrint(form).then(res => {
       if(res.code === 0) {
-        ElMessage.success('保存成功');
+        ElMessage.success(type === 'other' ? '另存存成功' :'保存成功');
       }
     })
+  };
+
+  // 另存为
+  function handleClickOtherSave() {
+    console.log('123123123');
   }
 </script>
 
