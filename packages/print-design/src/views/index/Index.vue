@@ -16,6 +16,9 @@
               @addItemClick="handleAddItemClick"
             />
           </el-collapse-item>
+          <el-collapse-item title="单据数据" name="form">
+            <CollapseForm />
+          </el-collapse-item>
         </el-collapse>
       </aside>
 
@@ -53,12 +56,12 @@
 </script>
 
 <script setup>
-  import { InvoiceDetail } from '@/api/api.js';
   import { ref, onMounted } from 'vue';
   import { useStore } from 'vuex';
   // FIXME:暂时有点问题
   // import storeMutations from '@/hooks/useMutations.js';
   import CollapseItem from '@/views/index/components/CollapseItem/index.vue';
+  import CollapseForm from '@/views/index/components/CollapseForm/index.vue';
   import FormComponentPanel from '@/views/index/components/FormComponentPanel/index.vue';
   import FormItemProperties from '@/views/index/components/FormItemProperties/index.vue';
   import FormProperties from '@/views/index/components/FormProperties/index.vue';
@@ -80,10 +83,6 @@
 
   onMounted(() => {
     localStorage.setItem('accessToken', 'ek9jZHZ4OW5lVDBLakNJNGk4NDg0NFFESTFONk40d3N1NzExMU0wM2NYN3I0dUZHUXFFTW5weFBUbVBGdGlUZVBsdVhxcUROVnRnMnNITmxFaHhEaEZ3TWw5d0tqYWRVOG51SFBobkx0cWtFMHNWUWxQSWExREZPYkM4SVdqR1pHQmxzVHlZR3BGUVBkOFNnQVlRcVZDZGU3V2x0aGE4UHFSSVhUMFl2Z2R4Y0lsNmlhSlFJSUR4Z0QrUnBhQ1JzbUFNZ2pQYkxqTDI3M0YxdmVndnpYbEhpS1FzQzQvS3Y5VGlmWnJYS1pVb0pVbmFVb1VSQkhka1FWa0Y0RFN4VTJYMDNuaEdYN2w2dHlTSS9sdVZhZ0wxdS8za2dmTDNYdU1tS0xiMUVTU1hVakM5TDJFMms5S1VtTEkxTjI0ZFBXNEJsLy9mbHB6Y0cwQXoyWENlQXhpR1VuVEpYbnVZaDFoNXpmbzB0SzhOM3NTa2h6SUJlT2ZtTzNvUWJvVDls');
-
-    InvoiceDetail({ no: 'WW20220914000002' }).then(res => {
-      console.log('单据信息', res);
-    });
 
     // 给当前的表单添加一个唯一的key值
     if(!store.state.dataJson.config.key) {

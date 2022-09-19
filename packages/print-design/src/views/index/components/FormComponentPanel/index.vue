@@ -48,11 +48,10 @@
 </script>
 
 <script setup>
-  import { externalManage } from '@/views/index/testdata.js';
-  import { ref, onMounted, onBeforeUnmount } from 'vue';
+  import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
-  import { GetCompanyInfo } from '@/api/api.js';
+  import { GetCompanyInfo, InvoiceDetail } from '@/api/api.js';
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
   import RightMenu from '../RightMenu/index.vue';
@@ -114,17 +113,39 @@
 
   // 获取公司信息
   function getCompanyInfo() {
-    GetCompanyInfo({}).then(res => {
-      // 更新dataJson里面每一项的数据
-      const newObj = {...res.data, ...externalManage.data}
-      if(newObj.matters.at(0).child.length) {
-        newObj.child = newObj.matters.at(0).child;
+    const componentInfo = GetCompanyInfo({}).then(res => {
+      if(res.code === 0) {
+        return res.data;
       }
-      store.commit('updateDataJsonItemData', newObj);
     })
-  }
+    return componentInfo;
+  };
 
-  onMounted(() => {
+  // 获取单据信息
+  function getInvoiceDetail() {
+    const data = {
+      no: 'WW20220914000002'
+    };
+    const documentInfo = InvoiceDetail(data).then(res => {
+      if(res.code === 0) {
+        return res.data;
+      }
+    })
+    return documentInfo;
+  };
+
+  // 更新dataJson里面每一项的数据
+  function updateDataJson(c, d) {
+    const newObj = { ...c, ...d };
+
+    if(newObj.matters.at(0).child?.length) {
+      newObj.child = newObj.matters.at(0).child;
+    }
+
+    store.commit('updateDataJsonItemData', newObj);
+  };
+
+  onMounted(async () => {
     // 当前页面是否在预览界面
     if(route.name === 'Preview') {
       isPreview.value = true;
@@ -133,7 +154,9 @@
       // 获取缓存中的数据
       store.commit('updateDataJson', JSON.parse(localStorage.getItem('previewData')));
       
-      getCompanyInfo();
+      const cInfo = await getCompanyInfo();
+      const dInfo = await getInvoiceDetail();
+      updateDataJson(cInfo, dInfo);
     }
 
     // 添加监听取消右键菜单

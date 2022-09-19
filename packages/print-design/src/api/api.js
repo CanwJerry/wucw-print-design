@@ -27,3 +27,12 @@ export function SaveDocumentPrint(params) {
     params
   });
 }
+
+// 获取单据数据
+export function GetDocumentPrintInfo(params) {
+  return request({
+    url: '/api/DocumentPrint/GetDocumentPrintInfo',
+    method: 'post',
+    params
+  });
+}

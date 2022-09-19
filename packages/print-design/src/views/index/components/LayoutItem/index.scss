@@ -19,7 +19,7 @@
 .active {
   background: linear-gradient(to right, #f4f5f7,#0883087a,#1c8b1c67,#268a2667);
   background-size: 400%;
-  animation: bgcAnimation 1s ease forwards;
+  animation: bgcAnimation .5s ease forwards;
   
   .drag-move-del {
     color: #fff;

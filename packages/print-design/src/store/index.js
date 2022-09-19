@@ -55,13 +55,6 @@ export const store = createStore({
       state.dataJson = {
         list: [],
         config: {
-          layout: '',
-          labelCol: {},
-          labelWidth: 100,
-          labelLayout: 'flex',
-          wrapperCol: {},
-          hideRequiredMark: false,
-          customStyle: '',
           formName: '',
           key: ''
         },

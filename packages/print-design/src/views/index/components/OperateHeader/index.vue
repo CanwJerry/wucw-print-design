@@ -19,6 +19,7 @@
   import { useRouter } from 'vue-router';
   import storeGetters from '@/hooks/useGetters.js';
   import { SaveDocumentPrint } from '@/api/api.js';
+  import { ElMessage } from 'element-plus';
 
   const { getDataJson } = storeGetters(['getDataJson']);
   const data = ref(getDataJson);
@@ -32,6 +33,7 @@
     window.open(href, '_blank');
   }
 
+  // 保存按钮
   function handleClickSave() {
     const { config, list } = data.value;
     const form = {
@@ -40,7 +42,9 @@
       formJson: JSON.stringify(list)
     }
     SaveDocumentPrint(form).then(res => {
-      console.log(res);
+      if(res.code === 0) {
+        ElMessage.success('保存成功');
+      }
     })
   }
 </script>
