@@ -3,7 +3,7 @@
     <li
       @click="handleChangeDataJson(item)"
       v-for="item in documentData"
-      :class="{ active: item.formName === activeName }"
+      :class="{ active: item.formKey === activeName }"
     >
       {{ item.formName }}
     </li>
@@ -20,14 +20,18 @@
   import { ref, onMounted } from 'vue';
   import { GetDocumentPrintInfo } from '@/api/api.js';
   import { useStore } from 'vuex';
+  import storeGetters from '@/hooks/useGetters.js';
   const store = useStore();
+  const { getActiveName } = storeGetters(['getActiveName']);
 
   const documentData = ref([]);
-  const activeName = ref('');
+  const activeName = ref(getActiveName);
 
   function handleChangeDataJson(item) {
     if(documentData.value.length) {
-      activeName.value = item.formName;
+      // 更新activeName
+      store.commit('updateActiveName', item.formKey);
+      
       const dataJson = {
         list: JSON.parse(item.formJson),
         config: {

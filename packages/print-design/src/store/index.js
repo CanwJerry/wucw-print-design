@@ -20,6 +20,8 @@ export const store = createStore({
     },
     // 当前是否在预览界面
     previewPage: false,
+    // 左侧单据数据选中项
+    activeName: ''
   },
 
   getters: {
@@ -28,6 +30,9 @@ export const store = createStore({
     },
     getDataJson(state) {
       return state.dataJson;
+    },
+    getActiveName(state) {
+      return state.activeName;
     }
   },
 
@@ -51,14 +56,17 @@ export const store = createStore({
     },
 
     // 清空dataJson数据
-    clearDataJson(state) {
+    addNewDataJson(state, newKey) {
       state.dataJson = {
         list: [],
         config: {
           formName: '',
-          key: ''
+          key: newKey
         },
       }
+      state.selectItem = {};
+      state.previewPage = false;
+      state.activeName = '';
     },
 
     // 更新dataJson
@@ -87,6 +95,11 @@ export const store = createStore({
     // 更新previewPage
     updatePreviewPage(state, val) {
       state.previewPage = val;
+    },
+
+    // 更新activeName
+    updateActiveName(state, val) {
+      state.activeName = val;
     }
   },
   actions: {},

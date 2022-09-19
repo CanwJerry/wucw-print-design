@@ -1,6 +1,8 @@
 <template>
   <div class="OperateHeader">
-    <div class="options"></div>
+    <div class="options">
+      <el-button type="primary" size="small" @click="handleAddNewForm">新建</el-button>
+    </div>
     <div class="btn">
       <el-button type="primary" size="small" @click="handleClickPreview" :disabled="!data.list.length">预览</el-button>
       <el-button type="primary" size="small" @click="handleClickSave" :disabled="!data.list.length">保存</el-button>
@@ -18,9 +20,11 @@
 <script setup>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+  import { useStore } from 'vuex';
   import storeGetters from '@/hooks/useGetters.js';
   import { SaveDocumentPrint } from '@/api/api.js';
   import { ElMessage } from 'element-plus';
+  const store = useStore();
 
   const { getDataJson } = storeGetters(['getDataJson']);
   const data = ref(getDataJson);
@@ -37,6 +41,7 @@
   // 保存按钮
   function handleClickSave(type) {
     const { config, list } = data.value;
+    
     const form = {
       formName: config.formName,
       formKey: config.key,
@@ -54,8 +59,8 @@
   };
 
   // 另存为
-  function handleClickOtherSave() {
-    console.log('123123123');
+  function handleAddNewForm() {
+    store.commit('addNewDataJson', `form_${new Date().getTime()}`);
   }
 </script>
 
