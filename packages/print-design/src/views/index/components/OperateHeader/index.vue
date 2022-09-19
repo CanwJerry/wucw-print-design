@@ -18,6 +18,7 @@
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   import storeGetters from '@/hooks/useGetters.js';
+  import { SaveDocumentPrint } from '@/api/api.js';
 
   const { getDataJson } = storeGetters(['getDataJson']);
   const data = ref(getDataJson);
@@ -32,7 +33,15 @@
   }
 
   function handleClickSave() {
-    console.log(data.value);
+    const { config, list } = data.value;
+    const form = {
+      formName: config.formName,
+      formKey: config.key,
+      formJson: JSON.stringify(list)
+    }
+    SaveDocumentPrint(form).then(res => {
+      console.log(res);
+    })
   }
 </script>
 

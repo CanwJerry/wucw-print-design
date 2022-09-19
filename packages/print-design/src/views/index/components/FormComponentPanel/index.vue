@@ -48,10 +48,11 @@
 </script>
 
 <script setup>
-  import { companyInfo, externalManage } from '@/views/index/testdata.js';
+  import { externalManage } from '@/views/index/testdata.js';
   import { ref, onMounted, onBeforeUnmount } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
+  import { GetCompanyInfo } from '@/api/api.js';
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
   import RightMenu from '../RightMenu/index.vue';
@@ -109,6 +110,18 @@
   // 取消右键菜单
   function handleRemoveRightMenu() {
     showRightMenu.value = false;
+  };
+
+  // 获取公司信息
+  function getCompanyInfo() {
+    GetCompanyInfo({}).then(res => {
+      // 更新dataJson里面每一项的数据
+      const newObj = {...res.data, ...externalManage.data}
+      if(newObj.matters.at(0).child.length) {
+        newObj.child = newObj.matters.at(0).child;
+      }
+      store.commit('updateDataJsonItemData', newObj);
+    })
   }
 
   onMounted(() => {
@@ -119,13 +132,8 @@
       
       // 获取缓存中的数据
       store.commit('updateDataJson', JSON.parse(localStorage.getItem('previewData')));
-
-      // 更新dataJson里面每一项的数据
-      const newObj = {...companyInfo.data, ...externalManage.data}
-      if(newObj.matters.at(0).child.length) {
-        newObj.child = newObj.matters.at(0).child;
-      }
-      store.commit('updateDataJsonItemData', newObj);
+      
+      getCompanyInfo();
     }
 
     // 添加监听取消右键菜单
