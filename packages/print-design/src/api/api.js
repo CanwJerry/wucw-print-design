@@ -36,3 +36,12 @@ export function GetDocumentPrintInfo(params) {
     params
   });
 }
+
+// 删除单据打印模板
+export function RemoveDocumentPrint(params) {
+  return request({
+    url: '/api/DocumentPrint/RemoveDocumentPrint',
+    method: 'post',
+    params
+  });
+}

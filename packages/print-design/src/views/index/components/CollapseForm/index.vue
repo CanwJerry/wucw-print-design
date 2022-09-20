@@ -1,11 +1,18 @@
 <template>
   <ul class="form-list">
     <li
-      @click="handleChangeDataJson(item)"
       v-for="item in documentData"
-      :class="{ active: item.formKey === activeName }"
     >
-      {{ item.formName }}
+      <p
+        class="label"
+        :class="{ active: item.formKey === activeName }"
+        @click="handleChangeDataJson(item)"
+      >
+        {{ item.formName }}
+      </p>
+      <el-icon class="del" @click="handleDel(item)">
+        <CircleCloseFilled />
+      </el-icon>
     </li>
   </ul>
 </template>
@@ -18,7 +25,9 @@
 
 <script setup>
   import { ref, onMounted } from 'vue';
-  import { GetDocumentPrintInfo } from '@/api/api.js';
+  import { CircleCloseFilled } from '@element-plus/icons-vue'
+  import { ElMessage, ElMessageBox } from 'element-plus'
+  import { GetDocumentPrintInfo, RemoveDocumentPrint } from '@/api/api.js';
   import { useStore } from 'vuex';
   import storeGetters from '@/hooks/useGetters.js';
   const store = useStore();
@@ -41,6 +50,29 @@
       }
       store.commit('updateDataJson', dataJson);
     }
+  };
+
+  function handleDel(item) {
+    console.log(item.formKey);
+    ElMessageBox.confirm(
+      `确认删除 ${item.formName} 单据?`,
+      '提示',
+      {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }
+    ).then(() => {
+      const data = { formKey: item.formKey };
+      RemoveDocumentPrint(data).then(res => {
+        if(res.code === 0) {
+          ElMessage.success('删除成功');
+          getDocumentPrintInfo();
+        } else {
+          ElMessage.error(res.msg);
+        }
+      })
+    });
   };
 
   // 获取单据数据
@@ -66,16 +98,34 @@
 <style lang='scss' scope>
   .form-list {
     li {
-      height: 30px;
-      line-height: 30px;
-      border-radius: 4px;
-      padding: 0 5px;
-      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 4px;
 
-      &:hover {
+      .label {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 4px;
+        padding: 0 5px;
+        box-sizing: border-box;
+        &:hover {
+          cursor: pointer;
+          background-color: #f4f5f7;
+        }
+      }
+
+      .del {
         cursor: pointer;
-        background-color: #f4f5f7;
+        display: inline-block;
+        margin-left: 5px;
+        color: rgba(255, 0, 0, 0.384);
+        height: 16px;
+        width: 16px;
+        &:hover {
+          color: red;
+        }
       }
     }
   }
