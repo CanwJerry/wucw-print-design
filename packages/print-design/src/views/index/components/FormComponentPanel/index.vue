@@ -151,7 +151,7 @@
       isPreview.value = true;
       store.commit('updatePreviewPage', true);
       
-      // 获取缓存中的数据
+      // 获取缓存中的数据用于控件的布局
       store.commit('updateDataJson', JSON.parse(localStorage.getItem('previewData')));
       
       const cInfo = await getCompanyInfo();

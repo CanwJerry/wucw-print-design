@@ -58,7 +58,29 @@ export const store = createStore({
     // 清空dataJson数据
     addNewDataJson(state, newKey) {
       state.dataJson = {
-        list: [],
+        list: [
+          {
+            type: 'text',
+            label: '新建单据',
+            icon: 'icon-??',
+            fields: '',
+            value: '',
+            key: `text_${new Date().getTime()}`,
+            options: {
+              textAlign: 'left',
+              hidden: false, // 是否隐藏，false显示，true隐藏
+              color: '#000',
+              fontFamily: 'SimHei',
+              fontSize: 16,
+              fontWeight: 'normal',
+              letterSpacing: 0,
+              marginTop: 0,
+              marginRight: 0,
+              marginBottom: 8,
+              marginLeft: 0,
+            },
+          },
+        ],
         config: {
           formName: '',
           key: newKey
