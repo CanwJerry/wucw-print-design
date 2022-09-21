@@ -23,7 +23,7 @@
   import { useStore } from 'vuex';
   import storeGetters from '@/hooks/useGetters.js';
   import { SaveDocumentPrint } from '@/api/api.js';
-  import { ElMessage } from 'element-plus';
+  import { ElMessage, ElMessageBox } from 'element-plus';
   const store = useStore();
 
   const { getDataJson } = storeGetters(['getDataJson']);
@@ -42,7 +42,7 @@
   }
 
   // 保存按钮
-  function handleClickSave(type) {
+  function handleClickSave(type = '') {
     const { config, list } = data.value;
     
     const form = {
@@ -50,10 +50,30 @@
       formKey: config.key,
       formJson: JSON.stringify(list)
     }
+
     // 如果是另存为的话重新获取key值，将当前表单作为新的表单保存
     if(type === 'other') {
-      form.formKey = `form_${new Date().getTime()}`;
+      ElMessageBox.confirm(
+        `确认另存为新的单据?`,
+        '提示',
+        {
+          confirmButtonText: '确认',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }
+      ).then(() => {
+        form.formKey = `form_${new Date().getTime()}`;
+        handleSave(form, type);
+      }).catch(() => {
+        return;
+      })
+    }else {
+      handleSave(form, type);
     }
+  };
+
+  // 保存
+  function handleSave(form, type) {
     SaveDocumentPrint(form).then(res => {
       if(res.code === 0) {
         ElMessage.success(type === 'other' ? '另存存成功' :'保存成功');
