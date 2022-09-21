@@ -42,6 +42,7 @@ export function RemoveDocumentPrint(params) {
   return request({
     url: '/api/DocumentPrint/RemoveDocumentPrint',
     method: 'post',
-    params
+    params,
+    paramsKey: true
   });
 }

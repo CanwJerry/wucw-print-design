@@ -58,7 +58,7 @@
     })
   };
 
-  // 另存为
+  // 新建
   function handleAddNewForm() {
     store.commit('addNewDataJson', `form_${new Date().getTime()}`);
   }
