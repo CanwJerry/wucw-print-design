@@ -33,9 +33,12 @@
   function handleClickPreview() {
     // 将当前数据保存到缓存，用于预览新界面的渲染
     localStorage.setItem('previewData', JSON.stringify(getDataJson.value));
-
+    
     const { href } = router.resolve({ name: 'Preview' });
+    // 正常的预览
     window.open(href, '_blank');
+    // 测试：使用必须要这样传递
+    // window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
   }
 
   // 保存按钮
@@ -54,6 +57,8 @@
     SaveDocumentPrint(form).then(res => {
       if(res.code === 0) {
         ElMessage.success(type === 'other' ? '另存存成功' :'保存成功');
+      } else {
+        ElMessage.error(res.msg);
       }
     })
   };

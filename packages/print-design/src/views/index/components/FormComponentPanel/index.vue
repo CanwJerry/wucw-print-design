@@ -51,7 +51,7 @@
   import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
-  import { GetCompanyInfo, InvoiceDetail } from '@/api/api.js';
+  import { GetCompanyInfo, InvoiceDetail, GetDocumentPrintInfo } from '@/api/api.js';
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
   import RightMenu from '../RightMenu/index.vue';
@@ -122,11 +122,8 @@
   };
 
   // 获取单据信息
-  function getInvoiceDetail() {
-    const data = {
-      no: 'WW20220914000002'
-    };
-    const documentInfo = InvoiceDetail(data).then(res => {
+  function getInvoiceDetail(no) {
+    const documentInfo = InvoiceDetail({ no }).then(res => {
       if(res.code === 0) {
         return res.data;
       }
@@ -138,11 +135,27 @@
   function updateDataJson(c, d) {
     const newObj = { ...c, ...d };
 
-    if(newObj.matters.at(0).child?.length) {
+    if(newObj.matters?.at(0).child?.length) {
       newObj.child = newObj.matters.at(0).child;
     }
 
     store.commit('updateDataJsonItemData', newObj);
+  };
+
+  // 根据单据名称获取单据对应的控件结构
+  function getDocumentByName(formName) {
+    const data = {
+      pageIndex: 1,
+      pageSize: 100,
+      keyword: formName,
+      formKey: '',
+    }
+    const info = GetDocumentPrintInfo(data).then(res => {
+      if(res.code === 0) {
+        return res.data.list;
+      }
+    })
+    return info;
   };
 
   onMounted(async () => {
@@ -151,12 +164,26 @@
       isPreview.value = true;
       store.commit('updatePreviewPage', true);
       
-      // 获取缓存中的数据用于控件的布局
-      store.commit('updateDataJson', JSON.parse(localStorage.getItem('previewData')));
-      
-      const cInfo = await getCompanyInfo();
-      const dInfo = await getInvoiceDetail();
-      updateDataJson(cInfo, dInfo);
+      if(route.query.formName && route.query.no) {
+        // 根据用户传递过来的formName获取到对应的控件用于布局
+        const doc = await getDocumentByName(route.query.formName);
+        const previewData = {
+          list: JSON.parse(doc[0].formJson),
+          config: {
+            formName: doc[0].formName,
+            key: doc[0].formKey
+          },
+        }
+        store.commit('updateDataJson', previewData);
+        
+        // 获取单据的数据
+        const cInfo = await getCompanyInfo();
+        const dInfo = await getInvoiceDetail(route.query.no);
+        updateDataJson(cInfo, dInfo);
+      } else {
+        // 点击预览按钮：获取缓存中的数据用于控件的布局
+        store.commit('updateDataJson', JSON.parse(localStorage.getItem('previewData')));
+      }
     }
 
     // 添加监听取消右键菜单
