@@ -48,10 +48,10 @@
 </script>
 
 <script setup>
-  import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
+  import { ref, onMounted, onBeforeUnmount } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
-  import { GetCompanyInfo, InvoiceDetail, GetDocumentPrintInfo } from '@/api/api.js';
+  import { GetCompanyInfo, InvoiceDetail } from '@/api/api.js';
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
   import RightMenu from '../RightMenu/index.vue';
@@ -150,12 +150,16 @@
       keyword: formName,
       formKey: '',
     }
-    const info = GetDocumentPrintInfo(data).then(res => {
-      if(res.code === 0) {
-        return res.data.list;
+    store.dispatch('getDocumentList', data).then(res => {
+      const previewData = {
+        list: JSON.parse(res.list[0].formJson),
+        config: {
+          formName: res.list[0].formName,
+          key: res.list[0].formKey
+        },
       }
-    })
-    return info;
+      store.commit('updateDataJson', previewData);
+    });
   };
 
   onMounted(async () => {
@@ -166,15 +170,7 @@
       
       if(route.query.formName && route.query.no) {
         // 根据用户传递过来的formName获取到对应的控件用于布局
-        const doc = await getDocumentByName(route.query.formName);
-        const previewData = {
-          list: JSON.parse(doc[0].formJson),
-          config: {
-            formName: doc[0].formName,
-            key: doc[0].formKey
-          },
-        }
-        store.commit('updateDataJson', previewData);
+        getDocumentByName(route.query.formName);
         
         // 获取单据的数据
         const cInfo = await getCompanyInfo();

@@ -37,7 +37,7 @@
     const { href } = router.resolve({ name: 'Preview' });
     // 正常的预览
     window.open(href, '_blank');
-    // 测试：使用必须要这样传递
+    // TODO: 预览想要有数据必须要这样传递
     // window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
   }
 
@@ -57,6 +57,8 @@
     SaveDocumentPrint(form).then(res => {
       if(res.code === 0) {
         ElMessage.success(type === 'other' ? '另存存成功' :'保存成功');
+        // 保存成功后更新右侧单据数据菜单
+        store.dispatch('getDocumentList');
       } else {
         ElMessage.error(res.msg);
       }

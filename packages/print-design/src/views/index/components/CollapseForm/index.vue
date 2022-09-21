@@ -1,7 +1,7 @@
 <template>
   <ul class="form-list">
     <li
-      v-for="item in documentData"
+      v-for="item in getLeftDocumentData"
     >
       <p
         class="label"
@@ -27,17 +27,16 @@
   import { ref, onMounted } from 'vue';
   import { CircleCloseFilled } from '@element-plus/icons-vue'
   import { ElMessage, ElMessageBox } from 'element-plus'
-  import { GetDocumentPrintInfo, RemoveDocumentPrint } from '@/api/api.js';
+  import { RemoveDocumentPrint } from '@/api/api.js';
   import { useStore } from 'vuex';
   import storeGetters from '@/hooks/useGetters.js';
   const store = useStore();
-  const { getActiveName } = storeGetters(['getActiveName']);
+  const { getActiveName, getLeftDocumentData } = storeGetters(['getActiveName', 'getLeftDocumentData']);
 
-  const documentData = ref([]);
   const activeName = ref(getActiveName);
 
   function handleChangeDataJson(item) {
-    if(documentData.value.length) {
+    if(getLeftDocumentData.value.length) {
       // 更新activeName
       store.commit('updateActiveName', item.formKey);
       
@@ -53,7 +52,6 @@
   };
 
   function handleDel(item) {
-    console.log(item.formKey);
     ElMessageBox.confirm(
       `确认删除 ${item.formName} 单据?`,
       '提示',
@@ -75,19 +73,9 @@
     });
   };
 
-  // 获取单据数据
+  // 获取左侧单据数据
   function getDocumentPrintInfo() {
-    const data = {
-      pageIndex: 1,
-      pageSize: 100,
-      keyword: '',
-      formKey: ''
-    }
-    GetDocumentPrintInfo(data).then(res => {
-      if(res.code === 0) {
-        documentData.value = res.data.list;
-      }
-    })
+    store.dispatch('getDocumentList');
   };
 
   onMounted(() => {

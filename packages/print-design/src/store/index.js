@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import { traverse, traverseItemData } from '@/utils';
+import { GetDocumentPrintInfo } from '@/api/api.js';
 
 /**
  * vuex仓库
@@ -21,7 +22,9 @@ export const store = createStore({
     // 当前是否在预览界面
     previewPage: false,
     // 左侧单据数据选中项
-    activeName: ''
+    activeName: '',
+    // 左侧菜单单据数据
+    leftDocumentData: {}
   },
 
   getters: {
@@ -33,7 +36,10 @@ export const store = createStore({
     },
     getActiveName(state) {
       return state.activeName;
-    }
+    },
+    getLeftDocumentData(state) {
+      return state.leftDocumentData;
+    },
   },
 
   mutations: {
@@ -94,6 +100,7 @@ export const store = createStore({
     // 更新dataJson
     updateDataJson(state, data) {
       state.dataJson = data;
+      state.selectItem = {};
     },
 
     // 更新dataJson里面每一项的数据
@@ -122,9 +129,32 @@ export const store = createStore({
     // 更新activeName
     updateActiveName(state, val) {
       state.activeName = val;
+    },
+
+    // 更新activeName
+    updateLeftDocumentData(state, val) {
+      state.leftDocumentData = val;
     }
   },
-  actions: {},
+
+  actions: {
+    getDocumentList({ state, commit }, { pageIndex = 1, pageSize = 100, keyword = '', formKey = '' } = {}) {
+      return new Promise(async resolve => {
+        const data = {
+          pageIndex,
+          pageSize,
+          keyword,
+          formKey,
+        }
+        const res = await GetDocumentPrintInfo(data);
+        if(res.code === 0) {
+          commit('updateLeftDocumentData', res.data.list);
+          resolve(res.data);
+        }
+      })
+      
+    }
+  },
 });
 
 export default store;
