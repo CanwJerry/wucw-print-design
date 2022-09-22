@@ -55,13 +55,101 @@
   })
 
   // 向下合并单元格
-  function handleDownMerge() {};
+  function handleDownMerge() {
+    const { tdIndex, trIndex, list } = props.options;
+    // 获取当前的单元格
+    const currentTd = list.trs[trIndex].tds[tdIndex];
+
+    // 判断是否为最后一行，最后一行的话则不进行合并
+    if (list.trs.length - currentTd.rowspan <= trIndex) {
+      ElMessage.error("当前是最后一行，无法向下合并");
+      return false;
+    }
+
+    // 获取当前单元格的rowspan
+    const currentRowspan = currentTd.rowspan;
+
+    // 判断下一列单元格与当前单元格的colspan是否一致，如果不一致则无法合并
+    if (currentTd.colspan !== list.trs[trIndex + currentRowspan].tds[tdIndex].colspan) {
+      ElMessage.error("当前表格无法向下合并");
+      return false;
+    }
+
+    // 获取下一列单元格的rowspan
+    const nextRowspan = list.trs[trIndex + currentRowspan].tds[tdIndex].rowspan;
+
+    // 当前单元格rowspan等于当前单元格rowspan加上下一列单元格rowspan
+    list.trs[trIndex].tds[tdIndex].rowspan = currentRowspan + nextRowspan;
+
+    // 将被合并的单元rowspan修改为0
+    list.trs[trIndex + currentRowspan].tds[tdIndex].rowspan = 0;
+
+    // 清空被合并单元格list
+    list.trs[trIndex + currentRowspan].tds[tdIndex].list = [];
+  };
 
   // 向右合并单元格
-  function handleRightMerge() {};
+  function handleRightMerge() {
+    const { tdIndex, trIndex, list } = props.options;
+    // 获取当前的单元格
+    const currentTd = list.trs[trIndex].tds[tdIndex];
+
+    // 获取当前列的所有colspan总和
+    const sumCols = list.trs[trIndex].tds.map(item => item.colspan).reduce((partial, value) => {
+      return partial + value;
+    });
+
+    // 判断是否为最后一列，最后一列的话则不进行合并
+    if(sumCols - currentTd.colspan <= tdIndex) {
+      ElMessage.error("当前是最后一列，无法向右合并");
+      return false;
+    }
+
+    // 获取当前单元格的colspan
+    const currentColspan = currentTd.colspan;
+
+    // 判断需要合并的单元格rowspan是否与当前单元格一致
+    if(currentTd.rowspan !== list.trs[trIndex].tds[tdIndex + currentColspan].rowspan) {
+      ElMessage.error("当前表格无法向右合并");
+      return false;
+    }
+
+    // 获取下一列单元格的colspan
+    const nextColspan = list.trs[trIndex].tds[tdIndex + currentColspan].colspan;
+
+    // 合并单元格colspan
+    list.trs[trIndex].tds[tdIndex].colspan = currentColspan + nextColspan;
+    
+    // 将被合并的单元格colspan设置为0
+    list.trs[trIndex].tds[tdIndex + currentColspan].colspan = 0;
+
+    // 清空被合并单元格的list
+    list.trs[trIndex].tds[tdIndex + currentColspan].list = [];
+  };
 
   // 拆分单元格
-  function handleSplit() {};
+  function handleSplit() {
+    const { tdIndex, trIndex, list } = props.options;
+    // 获取当前单元格的colspan及rowspan
+    const { colspan, rowspan } = list.trs[trIndex].tds[tdIndex];
+    
+    // 遍历当前的行
+    for(let rowIndex = trIndex; rowIndex < trIndex + rowspan; rowIndex++) {
+      for (let colIndex = tdIndex; colIndex < tdIndex + colspan; colIndex++) {
+        if (rowIndex === trIndex && colIndex === tdIndex) continue;
+        list.trs[rowIndex].tds.splice(colIndex, 1, {
+          colspan: 1,
+          rowspan: 1,
+          list: []
+        });
+      }
+    }
+
+    // 修改当前单元格colspan、rowspan为 1
+    const currentSpan = list.trs[trIndex].tds[tdIndex];
+    currentSpan.colspan = 1;
+    currentSpan.rowspan = 1;
+  };
 
   // 增加一列
   function handleAddCol() {

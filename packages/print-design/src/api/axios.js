@@ -13,7 +13,7 @@ axios.interceptors.request.use(
     config.headers = {
       'Content-Type':'application/json',         // 传参方式json
       'Account-Token': localStorage.getItem('accessToken') ?? '',
-      'ClientVersion': '20220916-1',
+      'ClientVersion': '20220922-1',
     };
     return config;
   },
