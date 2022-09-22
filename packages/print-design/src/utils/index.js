@@ -47,11 +47,11 @@ export function traverseItemData(arr, obj) {
 
     switch(item.type) {
       case 'text':
-        item.value = obj[item.fields];
+        item.value = obj[item.fields] || '';
         break;
       case 'batchTable':
-        item.tableData = obj[item.fields];
-        break;  
+        item.tableData = obj[item.fields] || '';
+        break;
     }
   });
 }

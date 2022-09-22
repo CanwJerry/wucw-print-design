@@ -134,17 +134,18 @@
         }
       })
       return documentInfo;
+    } else {
+      return {};
     }
   };
 
   // 更新dataJson里面每一项的数据
   function updateDataJson(c, d) {
     const newObj = { ...c, ...d };
-
+    
     if(newObj.matters?.at(0).child?.length) {
       newObj.child = newObj.matters.at(0).child;
     }
-
     store.commit('updateDataJsonItemData', newObj);
   };
 
@@ -163,7 +164,7 @@
           formName: res.list[0].formName,
           key: res.list[0].formKey,
         },
-        otherConfig: JSON.parse(res.list[0].otherConfig)
+        otherConfig: JSON.parse(res.list[0].otherConfig) || {}
       }
       store.commit('updateDataJson', previewData);
     });
