@@ -40,12 +40,19 @@
       // 更新activeName
       store.commit('updateActiveName', item.formKey);
       
+      const otherConfig = JSON.parse(item.otherConfig);
       const dataJson = {
         list: JSON.parse(item.formJson),
         config: {
           formName: item.formName,
           key: item.formKey
         },
+        // 旧表单可能存在没有对应的字段的情况
+        otherConfig: {
+          formApi: otherConfig?.formApi || '',
+          method: otherConfig?.method || 'post',
+          paramsKey: otherConfig?.paramsKey || false,
+        }
       }
       store.commit('updateDataJson', dataJson);
     }

@@ -4,12 +4,27 @@
       <el-empty description="未选择控件" />
     </p>
 
-    <el-form v-else label-width="82px">
+    <el-form v-else label-width="100px">
       <el-form-item label="关键字：">
         {{ nowJson.config.key }}
       </el-form-item>
       <el-form-item label="表单名称：">
         <el-input v-model="nowJson.config.formName" placeholder="请输入" />
+      </el-form-item>
+      <el-form-item label="单据接口：">
+        <el-input v-model="nowJson.otherConfig.formApi" placeholder="请输入" />
+      </el-form-item>
+      <el-form-item label="接口方法：" class="common-radio">
+        <el-radio-group v-model="nowJson.otherConfig.method">
+          <el-radio label="get" size="large">get</el-radio>
+          <el-radio label="post" size="large">post</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="paramsKey：" class="common-radio">
+        <el-radio-group v-model="nowJson.otherConfig.paramsKey">
+          <el-radio :label="true" size="large">是</el-radio>
+          <el-radio :label="false" size="large">否</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
   </div>
@@ -31,4 +46,10 @@
 
 <style lang='scss' scope>
   @import '../../scss/common.scss';
+
+  .common-radio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 </style>

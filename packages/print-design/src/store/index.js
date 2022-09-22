@@ -16,8 +16,13 @@ export const store = createStore({
       list: [],
       config: {
         formName: '',
-        key: ''
+        key: '',
       },
+      otherConfig: {
+        formApi: '',
+        method: 'post',
+        paramsKey: false
+      }
     },
     // 当前是否在预览界面
     previewPage: false,
@@ -89,8 +94,13 @@ export const store = createStore({
         ],
         config: {
           formName: '',
-          key: newKey
+          key: newKey,
         },
+        otherConfig: {
+          formApi: '',
+          method: 'post',
+          paramsKey: false
+        }
       }
       state.selectItem = {};
       state.previewPage = false;
@@ -106,7 +116,6 @@ export const store = createStore({
     // 更新dataJson里面每一项的数据
     updateDataJsonItemData(state, data) {
       traverseItemData(state.dataJson.list, data);
-      // console.log('更新dataJson里面每一项的数据', data);
     },
 
     // 根据索引更新dataJson.list, 因为没有key, 所以通过索引

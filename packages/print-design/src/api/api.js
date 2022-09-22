@@ -46,3 +46,13 @@ export function RemoveDocumentPrint(params) {
     paramsKey: true
   });
 }
+
+// 自定义接口
+export function CustomApi(url, params, method, paramsKey = false) {
+  return request({
+    url,
+    method,
+    params,
+    paramsKey
+  });
+}

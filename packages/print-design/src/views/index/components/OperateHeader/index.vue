@@ -36,19 +36,26 @@
     
     const { href } = router.resolve({ name: 'Preview' });
     // 正常的预览
-    window.open(href, '_blank');
+    // window.open(href, '_blank');
     // TODO: 预览想要有数据必须要这样传递
-    // window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
+    window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
   }
 
   // 保存按钮
   function handleClickSave(type = '') {
-    const { config, list } = data.value;
+    const { config, list, otherConfig } = data.value;
     
+    const otherConfigJson = {
+      formApi: otherConfig.formApi,
+      method: otherConfig.method,
+      paramsKey: otherConfig.paramsKey
+    }
+
     const form = {
       formName: config.formName,
+      formJson: JSON.stringify(list),
       formKey: config.key,
-      formJson: JSON.stringify(list)
+      otherConfig: JSON.stringify(otherConfigJson)
     }
 
     // 如果是另存为的话重新获取key值，将当前表单作为新的表单保存

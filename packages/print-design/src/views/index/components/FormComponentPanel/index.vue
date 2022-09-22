@@ -51,7 +51,7 @@
   import { ref, onMounted, onBeforeUnmount } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
-  import { GetCompanyInfo, InvoiceDetail } from '@/api/api.js';
+  import { GetCompanyInfo, InvoiceDetail, CustomApi } from '@/api/api.js';
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
   import RightMenu from '../RightMenu/index.vue';
@@ -122,13 +122,19 @@
   };
 
   // 获取单据信息
-  function getInvoiceDetail(no) {
-    const documentInfo = InvoiceDetail({ no }).then(res => {
-      if(res.code === 0) {
-        return res.data;
-      }
-    })
-    return documentInfo;
+  function getDocumentDetail() {
+    // CustomApi 用户自定义的接口
+    const { formApi, method, paramsKey } = data.value.otherConfig;
+    const { formName, ...otherParams } = route.query;
+    const params = otherParams;
+    if(formApi) {
+      const documentInfo = CustomApi(formApi, params, method, paramsKey).then(res => {
+        if(res.code === 0) {
+          return res.data;
+        }
+      })
+      return documentInfo;
+    }
   };
 
   // 更新dataJson里面每一项的数据
@@ -155,8 +161,9 @@
         list: JSON.parse(res.list[0].formJson),
         config: {
           formName: res.list[0].formName,
-          key: res.list[0].formKey
+          key: res.list[0].formKey,
         },
+        otherConfig: JSON.parse(res.list[0].otherConfig)
       }
       store.commit('updateDataJson', previewData);
     });
@@ -168,13 +175,13 @@
       isPreview.value = true;
       store.commit('updatePreviewPage', true);
       
-      if(route.query.formName && route.query.no) {
+      if(route.query.formName) {
         // 根据用户传递过来的formName获取到对应的控件用于布局
         getDocumentByName(route.query.formName);
         
         // 获取单据的数据
         const cInfo = await getCompanyInfo();
-        const dInfo = await getInvoiceDetail(route.query.no);
+        const dInfo = await getDocumentDetail();
         updateDataJson(cInfo, dInfo);
       } else {
         // 点击预览按钮：获取缓存中的数据用于控件的布局
