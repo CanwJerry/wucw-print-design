@@ -39,9 +39,9 @@
     // window.open(href, '_blank');
     // TODO: 预览想要有数据必须要这样传递
     // 委外发货单
-    // window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
+    window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
     // 销售出库送货单
-    window.open(`${href}?formName=${data.value.config.formName}&salesOutOfStockNO=${'XSCK20220915000001'}`, '_blank');
+    // window.open(`${href}?formName=${data.value.config.formName}&salesOutOfStockNO=${'XSCK20220915000001'}`, '_blank');
   }
 
   // 保存按钮

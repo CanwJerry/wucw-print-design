@@ -51,7 +51,7 @@
   import { ref, onMounted, onBeforeUnmount } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
-  import { GetCompanyInfo, InvoiceDetail, CustomApi } from '@/api/api.js';
+  import { GetCompanyInfo, CustomApi } from '@/api/api.js';
   import draggable from 'vuedraggable';
   import LayoutItem from '../LayoutItem/index.vue';
   import RightMenu from '../RightMenu/index.vue';
