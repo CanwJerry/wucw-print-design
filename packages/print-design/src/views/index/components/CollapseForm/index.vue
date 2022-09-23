@@ -54,7 +54,27 @@
     }
   };
 
+  const baseDoc = [
+    "form_1663921719422",
+    "form_1663919735791",
+    "form_1663919153158",
+    "form_1663917610582",
+    "form_1663917074831",
+    "form_1663916595383",
+    "form_1663915859888",
+    "form_1663915222984",
+    "form_1663912962548",
+    "form_1663912217461",
+    "form_1663904244360",
+    "form_1663753674575",
+    "form_1663230371276"
+  ];
   function handleDel(item) {
+    if(baseDoc.includes(item.formKey)) {
+      ElMessage.error('无法删除初始单据');
+      return;
+    }
+
     ElMessageBox.confirm(
       `确认删除 ${item.formName} 单据?`,
       '提示',
