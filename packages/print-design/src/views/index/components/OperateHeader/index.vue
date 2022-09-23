@@ -39,9 +39,31 @@
     // window.open(href, '_blank');
     // TODO: 预览想要有数据必须要这样传递
     // 委外发货单
-    window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
+    // window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
     // 销售出库送货单
     // window.open(`${href}?formName=${data.value.config.formName}&salesOutOfStockNO=${'XSCK20220915000001'}`, '_blank');
+    // 委外入库单(负数)
+    // window.open(`${href}?formName=${data.value.config.formName}&delegateExternalWarehousingNo=${'WWRKFS20220923000002'}`, '_blank');
+    // 委外入库单
+    // window.open(`${href}?formName=${data.value.config.formName}&delegateExternalWarehousingNo=${'WWRK20220921000003'}`, '_blank');
+    // 领料单
+    // window.open(`${href}?formName=${data.value.config.formName}&pickingOrderNo=${'LL20220827000001'}`, '_blank');
+    // 生产入库单
+    // window.open(`${href}?formName=${data.value.config.formName}&ptwNo=${'SCRK20220913000001'}&isAllMatter=false`, '_blank');
+    // 采购单
+    // window.open(`${href}?formName=${da ta.value.config.formName}&poNo=${'CG20220921000003'}&isAllMatter=false`, '_blank');
+    // 采购入库单(负数)
+    // window.open(`${href}?formName=${data.value.config.formName}&pwNo=${'CGRK20220916000044'}`, '_blank');
+    // 采购退货单
+    // window.open(`${href}?formName=${data.value.config.formName}&prNo=${'CGTH20220920000001'}`, '_blank');
+    // 采购退货出库单(负数)
+    // window.open(`${href}?formName=${data.value.config.formName}&proNo=${'CGTHCK20220920000002'}`, '_blank');
+    // 销售退货入库单
+    // window.open(`${href}?formName=${data.value.config.formName}&salesReturnOrderWarehousingNO=${'XSTHRK20220920000001'}`, '_blank');
+    // 库存调整单
+    // window.open(`${href}?formName=${data.value.config.formName}&saNo=${'KCTZ20220919000001'}`, '_blank');
+    // 转码调拨单
+    window.open(`${href}?formName=${data.value.config.formName}&productionNo=${'ZMDB20220923000001'}`, '_blank');
   }
 
   // 保存按钮
