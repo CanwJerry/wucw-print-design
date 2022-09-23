@@ -169,6 +169,8 @@
         if(res.code === 0) {
           return res.data;
         }
+      }).catch(err => {
+        return {};
       })
       return documentInfo;
     } else {

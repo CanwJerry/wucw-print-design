@@ -32,6 +32,7 @@ axios.interceptors.response.use(
     if (response) {
       // 请求已发出，但是不在2xx的范围
       showMessage(response.status);           // 传入响应码，匹配响应码对应信息
+      ElMessage.error(response.data.msg)
       return Promise.reject(response.data);
     } else {
       ElMessage.warning('网络连接异常,请稍后再试!');
