@@ -21,7 +21,8 @@ export const store = createStore({
       otherConfig: {
         formApi: '',
         method: 'post',
-        paramsKey: false
+        paramsKey: false,
+        contentType: 'application/json'
       }
     },
     // 当前是否在预览界面
@@ -99,7 +100,8 @@ export const store = createStore({
         otherConfig: {
           formApi: '',
           method: 'post',
-          paramsKey: false
+          paramsKey: false,
+          contentType: 'application/json'
         }
       }
       state.selectItem = {};

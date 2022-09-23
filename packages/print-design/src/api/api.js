@@ -48,12 +48,21 @@ export function RemoveDocumentPrint(params) {
 }
 
 // 自定义接口
-export function CustomApi(url, params, method, paramsKey = false) {
+export function CustomApi(
+  url, 
+  params, 
+  method, 
+  paramsKey = false, 
+  contentType = 'application/json'
+) {
   const key = method === 'get' ? 'data' : 'params';
   return request({
     url,
     method,
     [key]: params,
-    paramsKey
+    paramsKey,
+    headers: {
+      'Content-Type': contentType,
+    },
   });
 }

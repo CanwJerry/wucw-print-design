@@ -4,7 +4,7 @@
       <el-empty description="未选择控件" />
     </p>
 
-    <el-form v-else label-width="100px">
+    <el-form v-else label-width="120px">
       <el-form-item label="关键字：">
         {{ nowJson.config.key }}
       </el-form-item>
@@ -20,11 +20,14 @@
           <el-radio label="post" size="large">post</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="paramsKey：" class="common-radio">
+      <el-form-item label="ParamsKey：" class="common-radio">
         <el-radio-group v-model="nowJson.otherConfig.paramsKey">
           <el-radio :label="true" size="large">是</el-radio>
           <el-radio :label="false" size="large">否</el-radio>
         </el-radio-group>
+      </el-form-item>
+      <el-form-item label="ContentType：">
+        <el-input v-model="nowJson.otherConfig.contentType" placeholder="请输入" />
       </el-form-item>
     </el-form>
   </div>
