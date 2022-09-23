@@ -55,11 +55,10 @@ export function CustomApi(
   paramsKey = false, 
   contentType = 'application/json'
 ) {
-  const key = method === 'get' ? 'data' : 'params';
   return request({
     url,
     method,
-    [key]: params,
+    params,
     paramsKey,
     headers: {
       'Content-Type': contentType,
