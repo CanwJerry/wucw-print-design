@@ -111,6 +111,43 @@
     showRightMenu.value = false;
   };
 
+  // 更新dataJson里面每一项的数据
+  function updateDataJson(c, d) {
+    const newObj = { ...c, ...d };
+    
+    if(newObj.matters?.at(0).child?.length) {
+      newObj.child = newObj.matters.at(0).child;
+    }
+    store.commit('updateDataJsonItemData', newObj);
+  };
+
+  // 根据单据名称获取单据对应的控件结构
+  function getDocumentByName(formName) {
+    const data = {
+      pageIndex: 1,
+      pageSize: 100,
+      keyword: formName,
+      formKey: '',
+    }
+    store.dispatch('getDocumentList', data).then(res => {
+      // 获取页面结构数据
+      const previewData = {
+        list: JSON.parse(res.list[0].formJson),
+        config: {
+          formName: res.list[0].formName,
+          key: res.list[0].formKey,
+        },
+        otherConfig: JSON.parse(res.list[0].otherConfig) || {}
+      }
+      store.commit('updateDataJson', previewData);
+    }).then(async () => {
+      // 获取单据的数据
+      const cInfo = await getCompanyInfo();
+      const dInfo = await getDocumentDetail();
+      updateDataJson(cInfo, dInfo);
+    });
+  };
+
   // 获取公司信息
   function getCompanyInfo() {
     const componentInfo = GetCompanyInfo({}).then(res => {
@@ -139,38 +176,7 @@
     }
   };
 
-  // 更新dataJson里面每一项的数据
-  function updateDataJson(c, d) {
-    const newObj = { ...c, ...d };
-    
-    if(newObj.matters?.at(0).child?.length) {
-      newObj.child = newObj.matters.at(0).child;
-    }
-    store.commit('updateDataJsonItemData', newObj);
-  };
-
-  // 根据单据名称获取单据对应的控件结构
-  function getDocumentByName(formName) {
-    const data = {
-      pageIndex: 1,
-      pageSize: 100,
-      keyword: formName,
-      formKey: '',
-    }
-    store.dispatch('getDocumentList', data).then(res => {
-      const previewData = {
-        list: JSON.parse(res.list[0].formJson),
-        config: {
-          formName: res.list[0].formName,
-          key: res.list[0].formKey,
-        },
-        otherConfig: JSON.parse(res.list[0].otherConfig) || {}
-      }
-      store.commit('updateDataJson', previewData);
-    });
-  };
-
-  onMounted(async () => {
+  onMounted(() => {
     // 当前页面是否在预览界面
     if(route.name === 'Preview') {
       isPreview.value = true;
@@ -179,11 +185,6 @@
       if(route.query.formName) {
         // 根据用户传递过来的formName获取到对应的控件用于布局
         getDocumentByName(route.query.formName);
-        
-        // 获取单据的数据
-        const cInfo = await getCompanyInfo();
-        const dInfo = await getDocumentDetail();
-        updateDataJson(cInfo, dInfo);
       } else {
         // 点击预览按钮：获取缓存中的数据用于控件的布局
         store.commit('updateDataJson', JSON.parse(localStorage.getItem('previewData')));

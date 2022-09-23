@@ -47,12 +47,8 @@
           formName: item.formName,
           key: item.formKey
         },
-        // 旧表单可能存在没有对应的字段的情况
-        otherConfig: {
-          formApi: otherConfig?.formApi || '',
-          method: otherConfig?.method || 'post',
-          paramsKey: otherConfig?.paramsKey || false,
-        }
+        // TODO:如果有新增另外的字段可以在此处做兼容
+        otherConfig
       }
       store.commit('updateDataJson', dataJson);
     }

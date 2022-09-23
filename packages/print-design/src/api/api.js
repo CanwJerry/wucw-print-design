@@ -49,10 +49,11 @@ export function RemoveDocumentPrint(params) {
 
 // 自定义接口
 export function CustomApi(url, params, method, paramsKey = false) {
+  const key = method === 'get' ? 'data' : 'params';
   return request({
     url,
     method,
-    params,
+    [key]: params,
     paramsKey
   });
 }
