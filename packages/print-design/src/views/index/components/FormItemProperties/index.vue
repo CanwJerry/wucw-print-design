@@ -62,6 +62,12 @@
         <el-form-item label="字体颜色：">
           <el-color-picker v-model="selectItem.options.color"></el-color-picker>
         </el-form-item>
+        <el-form-item label="只展示年月日：" label-width="110px" class="common-radio">
+          <el-radio-group v-model="selectItem.options.ymd">
+            <el-radio :label="true" size="large">是</el-radio>
+            <el-radio :label="false" size="large">否</el-radio>
+          </el-radio-group>
+        </el-form-item>
       </template>
 
       <!-- button 控件 -->

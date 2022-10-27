@@ -61,9 +61,9 @@
     // 销售退货入库单
     // window.open(`${href}?formName=${data.value.config.formName}&salesReturnOrderWarehousingNO=${'XSTHRK20220920000001'}`, '_blank');
     // 库存调整单
-    // window.open(`${href}?formName=${data.value.config.formName}&saNo=${'KCTZ20220919000001'}`, '_blank');
+    window.open(`${href}?formName=${data.value.config.formName}&saNo=${'KCTZ20220919000001'}`, '_blank');
     // 转码调拨单
-    window.open(`${href}?formName=${data.value.config.formName}&productionNo=${'ZMDB20220923000001'}`, '_blank');
+    // window.open(`${href}?formName=${data.value.config.formName}&productionNo=${'ZMDB20220923000001'}`, '_blank');
   }
 
   // 保存按钮
