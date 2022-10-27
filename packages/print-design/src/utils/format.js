@@ -11,3 +11,11 @@ export function formateDate(date) {
     return date
   }
 }
+
+export function formateValue(val, type) {
+  if(val !== undefined && val !== null) {
+    const typeStr = type.replace(/\s+/g,"");
+    const typeObj = (new Function("return " + typeStr))();
+    return typeObj[val];
+  }
+}

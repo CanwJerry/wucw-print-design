@@ -19,7 +19,8 @@ export const basicsList = [
       marginRight: 0,
       marginBottom: 8,
       marginLeft: 0,
-      ymd: false
+      ymd: false,
+      showType: {}
     },
   },
   {

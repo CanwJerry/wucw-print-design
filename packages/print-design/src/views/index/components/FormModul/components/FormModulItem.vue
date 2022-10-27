@@ -13,6 +13,7 @@
     >
       <span class="text-label">{{ record.label }}</span>
       <span v-if="previewPage && record.options.ymd">{{ formateDate(record.value) }}</span>
+      <span v-else-if="previewPage && record.options.showType">{{ formateValue(record.value, record.options.showType) }}</span>
       <span v-else-if="previewPage">{{ record.value }}</span>
     </div>
   </el-form-item>
@@ -80,7 +81,7 @@
 
 <script setup>
   import storeState from '@/hooks/useState.js';
-  import { formateDate } from '@/utils/format-date.js';
+  import { formateDate, formateValue } from '@/utils/format.js';
   const { previewPage } = storeState(['previewPage']);
 
   const props = defineProps({

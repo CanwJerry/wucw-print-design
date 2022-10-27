@@ -68,6 +68,14 @@
             <el-radio :label="false" size="large">否</el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="展示类型：">
+          <el-input
+            v-model="selectItem.options.showType"
+            :rows="2"
+            type="textarea"
+            placeholder="请输入类型"
+          />
+        </el-form-item>
       </template>
 
       <!-- button 控件 -->
