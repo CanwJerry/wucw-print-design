@@ -112,7 +112,9 @@
       width: 100%;
       border-collapse: collapse;
       border-top: 1px solid #909399;
+      border-bottom: 1px solid #909399;
       border-left: 1px solid #909399;
+      border-right: 1px solid #909399;
       tr{
         th{
           line-height: 32px;
