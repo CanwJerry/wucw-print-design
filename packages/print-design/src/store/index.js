@@ -91,7 +91,7 @@ export const store = createStore({
               marginBottom: 8,
               marginLeft: 0,
               ymd: false,
-              showType: {}
+              showType: []
             },
           },
         ],

@@ -68,14 +68,11 @@
             <el-radio :label="false" size="large">否</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="展示类型：">
-          <el-input
-            v-model="selectItem.options.showType"
-            :rows="2"
-            type="textarea"
-            placeholder="请输入类型"
-          />
+        <el-form-item label="配置字典：">
+          <el-button type="primary" @click="handleShowType('add')">添加</el-button>
         </el-form-item>
+
+        <DialogShowType ref="showTypeRef" @save="handleShowType"/>
       </template>
 
       <!-- button 控件 -->
@@ -157,7 +154,7 @@
           <el-button type="primary" @click="handleBatch(true)">添加</el-button>
         </el-form-item>
 
-        <BatchTableHead v-if="headDialogVisible" :headList="batchTableHeadList" @btnEvent="handleBatch"/>
+        <DialogBatchTableHead v-if="headDialogVisible" :headList="batchTableHeadList" @btnEvent="handleBatch"/>
       </template>
     </el-form>
   </div>
@@ -173,7 +170,8 @@
   import { ref, watch } from 'vue';
   import { useStore } from 'vuex';
   import { Delete } from '@element-plus/icons-vue';
-  import BatchTableHead from './components/BatchTableHead.vue';
+  import DialogBatchTableHead from './components/dialog-batchTableHead.vue';
+  import DialogShowType from './components/dialog-showType.vue';
   import storeGetters from '@/hooks/useGetters.js';
   const store = useStore();
 
@@ -212,6 +210,19 @@
     }
 
     headDialogVisible.value = show;
+  }
+
+  const showTypeRef = ref();
+  function handleShowType(type, data = []) {
+    switch(type) {
+      case 'add':
+        showTypeRef.value.show(selectItem.value.options.showType);
+        break;
+      case 'save':
+        selectItem.value.options.showType = data;
+        break;  
+    }
+      
   }
 </script>
 
