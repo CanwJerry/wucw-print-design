@@ -216,7 +216,7 @@
   function handleShowType(type, data = []) {
     switch(type) {
       case 'add':
-        showTypeRef.value.show(selectItem.value.options.showType);
+        showTypeRef.value.show(selectItem.value.options.showType || []);
         break;
       case 'save':
         selectItem.value.options.showType = data;
