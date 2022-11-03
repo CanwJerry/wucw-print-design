@@ -37,6 +37,11 @@
     const { href } = router.resolve({ name: 'Preview' });
     // 正常的预览
     // window.open(href, '_blank');
+
+    // 使用方式：
+    // const { href } = router.resolve({ name: 'printDesign.priview' });
+    // window.open(`${href}?formName=库存调整单&saNo=${'KCTZ20220919000001'}`, '_blank');
+
     // TODO: 预览想要有数据必须要这样传递
     // 委外发货单
     // window.open(`${href}?formName=${data.value.config.formName}&no=${'WW20220914000002'}`, '_blank');
