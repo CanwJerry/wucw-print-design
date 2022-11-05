@@ -5,7 +5,7 @@ export const routes = [
   // 根路径
   { path: '/', name: 'Root', redirect: '/index' },
   // 重定向
-  { path: '/index', name: 'Index', component: () => import('@/views/index/Index.vue') },
+  { path: '/index', name: 'Index', component: () => import('@/views/index/Index.vue'), meta: { title: '打印订单设计器' }  },
   // 预览界面
   { path: '/preview', name: 'Preview', component: () => import('@/views/index/components/FormComponentPanel/index.vue'), meta: { title: '预览' } },
 
