@@ -112,9 +112,8 @@
   };
 
   // 更新dataJson里面每一项的数据
-  function updateDataJson(c, d) {
-    const newObj = { ...c, ...d };
-    
+  function updateDataJson(newObj) {
+    // 特殊处理
     if(newObj.matters?.at(0).child?.length) {
       newObj.child = newObj.matters.at(0).child;
     }
@@ -141,41 +140,35 @@
       }
       store.commit('updateDataJson', previewData);
     }).then(async () => {
-      // 获取单据的数据
-      const cInfo = await getCompanyInfo();
-      const dInfo = await getDocumentDetail();
-      updateDataJson(cInfo, dInfo);
+      getDocumentData();
     });
   };
 
-  // 获取公司信息
-  function getCompanyInfo() {
-    const componentInfo = GetCompanyInfo({}).then(res => {
-      if(res.code === 0) {
-        return res.data;
+  // 获取单据数据
+  async function getDocumentData() {
+    const { formApi } = data.value.otherConfig;
+    const { formName, ...otherParams } = route.query;
+    const getQuery = otherParams;
+    const apiFn = [];
+
+    // 组合成对应的api接口函数
+    formApi.forEach(item => {
+      let params = {};
+      if(item.params) {
+        item.params.split(',').map(item => { params[item] = getQuery[item] });
+      }
+      apiFn.push(CustomApi(item.url, params, item.method, item.paramsKey));
+    });
+
+    // 调用接口
+    const result = await Promise.allSettled(apiFn);
+    let obj = {};
+    result.map(item => {
+      if(item.status === 'fulfilled') {
+        Object.assign(obj, item.value.data);
       }
     })
-    return componentInfo;
-  };
-
-  // 获取单据信息
-  function getDocumentDetail() {
-    // CustomApi 用户自定义的接口
-    const { formApi, method, paramsKey } = data.value.otherConfig;
-    const { formName, ...otherParams } = route.query;
-    const params = otherParams;
-    if(formApi) {
-      const documentInfo = CustomApi(formApi, params, method, paramsKey).then(res => {
-        if(res.code === 0) {
-          return res.data;
-        }
-      }).catch(err => {
-        return {};
-      })
-      return documentInfo;
-    } else {
-      return {};
-    }
+    updateDataJson(obj);
   };
 
   onMounted(() => {

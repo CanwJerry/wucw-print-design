@@ -11,25 +11,12 @@
       <el-form-item label="表单名称：">
         <el-input v-model="nowJson.config.formName" placeholder="请输入" />
       </el-form-item>
-      <el-form-item label="单据接口：">
-        <el-input v-model="nowJson.otherConfig.formApi" placeholder="请输入" />
-      </el-form-item>
-      <el-form-item label="接口方法：" class="common-radio">
-        <el-radio-group v-model="nowJson.otherConfig.method">
-          <el-radio label="get" size="large">get</el-radio>
-          <el-radio label="post" size="large">post</el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="ParamsKey：" class="common-radio">
-        <el-radio-group v-model="nowJson.otherConfig.paramsKey">
-          <el-radio :label="true" size="large">是</el-radio>
-          <el-radio :label="false" size="large">否</el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="ContentType：">
-        <el-input v-model="nowJson.otherConfig.contentType" placeholder="请输入" />
+      <el-form-item label="单据数据接口：">
+        <el-button type="primary" @click="handleAddApi">添加接口</el-button>
       </el-form-item>
     </el-form>
+
+    <DialogAddApi ref="AddApiRef" @save="handleSaveApi"/>
   </div>
 </template>
 
@@ -42,9 +29,18 @@
 <script setup>
   import { ref } from 'vue';
   import storeGetters from '@/hooks/useGetters.js';
+  import DialogAddApi from './components/dialog-addApi.vue';
 
   const { getDataJson } = storeGetters(['getDataJson']);
   const nowJson = ref(getDataJson);
+
+  const AddApiRef = ref(null);
+  function handleAddApi() {
+    AddApiRef.value.show(nowJson.value.otherConfig.formApi);
+  }
+  function handleSaveApi(saveApi) {
+    nowJson.value.otherConfig.formApi = saveApi;
+  }
 </script>
 
 <style lang='scss' scope>
