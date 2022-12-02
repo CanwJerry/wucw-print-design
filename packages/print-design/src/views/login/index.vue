@@ -12,11 +12,11 @@
       </el-form>
       <div class="login-options">
         <el-checkbox v-model="keepLoginStatus">保持登录状态</el-checkbox>
-        <p class="login-forget">忘记密码</p>
+        <p class="login-forget" @click="handleForgetPassword">忘记密码</p>
       </div>
-      <el-button class="login-btn" type="primary">登录</el-button>
+      <button class="login-btn" @click="handleLogin">登录</button>
       <div class="login-signup">
-        还没有账户?<span class="signup">注册新用户</span>
+        还没有账户?<span class="signup" @click="handleSignUp">注册新用户</span>
       </div>
     </div>
   </div>
@@ -49,6 +49,18 @@
       { required: true, message: '密码不能为空', trigger: 'blur' },
     ]
   })
+
+  const handleLogin = function() {
+    console.log('登录');
+  }
+
+  const handleForgetPassword = function() {
+    console.log('忘记密码');
+  }
+
+  const handleSignUp = function() {
+    console.log('注册新用户');
+  }
 
   const loginRef = ref(null);
 
