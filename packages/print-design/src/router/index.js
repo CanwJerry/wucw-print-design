@@ -8,7 +8,8 @@ export const routes = [
   { path: '/index', name: 'Index', component: () => import('@/views/index/Index.vue'), meta: { title: '单据设计器' }  },
   // 预览界面
   { path: '/preview', name: 'Preview', component: () => import('@/views/index/components/FormComponentPanel/index.vue'), meta: { title: '单据预览' } },
-
+  // 登录界面
+  { path: '/login', name: 'Login', component: () => import('@/views/login/index.vue'), meta: { title: '登录界面' }  },
   // 错误页，404页面放最后以匹配*
   { path: '/404', component: () => import('@/views/error/404.vue'), meta: { title: '404', noLogin: true } },
   { path: '/:pathMatch(.*)*', component: () => import('@/views/error/404.vue'), meta: { noLogin: true } },

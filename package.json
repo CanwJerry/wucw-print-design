@@ -15,6 +15,8 @@
     "axios": "^0.27.2",
     "element-china-area-data": "^5.0.2",
     "element-plus": "^2.2.15",
+    "three": "^0.147.0",
+    "vanta": "^0.5.24",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5",
     "vuedraggable": "^4.1.0",
