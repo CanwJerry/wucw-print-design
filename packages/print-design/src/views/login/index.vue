@@ -31,8 +31,11 @@
 <script setup>
   import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
   import { User, Lock } from '@element-plus/icons-vue'
+  import { useRouter } from "vue-router";
   import * as THREE from "three";
   import GLOBE from 'vanta/src/vanta.globe';
+
+  const router = useRouter();
 
   let keepLoginStatus = ref(false);
 
@@ -52,6 +55,7 @@
 
   const handleLogin = function() {
     console.log('登录');
+    router.push('/index');
   }
 
   const handleForgetPassword = function() {
@@ -66,20 +70,20 @@
 
   let vantaEffect = null;
 
-  // onMounted(() => {
-  //   vantaEffect = GLOBE({
-  //     el: loginRef.value,
-  //     THREE: THREE,
-  //     color: '#6f7f6f',
-  //     backgroundColor: '#92c892',
-  //   })
-  // })
+  onMounted(() => {
+    vantaEffect = GLOBE({
+      el: loginRef.value,
+      THREE: THREE,
+      color: '#6f7f6f',
+      backgroundColor: '#92c892',
+    })
+  })
 
-  // onBeforeUnmount(() => {
-  //   if(vantaEffect) {
-  //     vantaEffect.destroy();
-  //   }
-  // })
+  onBeforeUnmount(() => {
+    if(vantaEffect) {
+      vantaEffect.destroy();
+    }
+  })
 </script>
 
 <style lang='scss' scope>
