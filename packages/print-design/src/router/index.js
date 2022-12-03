@@ -21,10 +21,25 @@ export const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, form, next) => {
+router.beforeEach(async (to, form, next) => {
   document.title = to.meta.title;
-
-  next();
+  
+  const token = localStorage.getItem('accessToken');
+  
+  if(!token) {
+    // 未登录
+    if(to.path !== '/login') {
+      return next({ path: '/login' });
+    } else {
+      next();
+    }
+  } else {
+    // 已登录
+    if(to.path === '/login') {
+      return next({ path: '/index' });
+    }
+    next();
+  }  
 })
 
 export default router;
