@@ -2,12 +2,12 @@
   <div class="login" ref="loginRef">
     <div class="login-box">
       <p class="login-title">Welcome</p>
-      <el-form :model="form" :rules="rules">
+      <el-form :model="form" :rules="rules" ref="formRef">
         <el-form-item prop="username">
           <el-input v-model="form.username" size="large" placeholder="请输入用户名" :prefix-icon="User" clearable></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="form.password" size="large" placeholder="请输入密码" :prefix-icon="Lock" clearable></el-input>
+          <el-input v-model="form.password" size="large" placeholder="请输入密码" :prefix-icon="Lock" type="password" show-password clearable></el-input>
         </el-form-item>
       </el-form>
       <div class="login-options">
@@ -40,6 +40,8 @@
 
   let keepLoginStatus = ref(false);
 
+  const formRef = ref(null);
+
   const form = reactive({
     username: '',
     password: ''
@@ -55,12 +57,15 @@
   })
 
   const handleLogin = function() {
-    userLogin(form).then(res => {
-      if(res.status === 200) {
-        const { token } = res.data;
-        localStorage.setItem('accessToken', token);
-        router.push('/index');
-      }
+    formRef.value.validate(vaild => {
+      if(!vaild) return; 
+      userLogin(form).then(res => {
+        if(res.status === 200) {
+          const { token } = res.data;
+          localStorage.setItem('accessToken', token);
+          router.push('/index');
+        }
+      })
     })
   }
 
@@ -74,22 +79,22 @@
 
   const loginRef = ref(null);
 
-  // let vantaEffect = null;
+  let vantaEffect = null;
 
-  // onMounted(() => {
-  //   vantaEffect = GLOBE({
-  //     el: loginRef.value,
-  //     THREE: THREE,
-  //     color: '#6f7f6f',
-  //     backgroundColor: '#92c892',
-  //   })
-  // })
+  onMounted(() => {
+    vantaEffect = GLOBE({
+      el: loginRef.value,
+      THREE: THREE,
+      color: '#6f7f6f',
+      backgroundColor: '#92c892',
+    })
+  })
 
-  // onBeforeUnmount(() => {
-  //   if(vantaEffect) {
-  //     vantaEffect.destroy();
-  //   }
-  // })
+  onBeforeUnmount(() => {
+    if(vantaEffect) {
+      vantaEffect.destroy();
+    }
+  })
 </script>
 
 <style lang='scss' scope>
