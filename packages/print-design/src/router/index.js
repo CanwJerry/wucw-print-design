@@ -15,7 +15,6 @@ export const routes = [
   { path: '/:pathMatch(.*)*', component: () => import('@/views/error/404.vue'), meta: { noLogin: true } },
 ];
 
-// router
 export const router = createRouter({
   history: createWebHashHistory(),
   routes,
@@ -23,7 +22,7 @@ export const router = createRouter({
 
 router.beforeEach(async (to, form) => {
   document.title = to.meta.title;
-  
+   
   const token = localStorage.getItem('accessToken');
   
   if(!token) {

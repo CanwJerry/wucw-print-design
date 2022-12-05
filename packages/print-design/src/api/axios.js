@@ -36,8 +36,13 @@ class HttpRequest {
         if (response.status !== 0) {
           const msg = showMessage(response.status)
           ElMessage.error(response.data)
-
-          return Promise.reject(response.data);
+          
+          const errorMsg = {
+            data: response.data,
+            status: response.status,
+            msg: response.statusText
+          }
+          return Promise.resolve(errorMsg);
         } else {
           ElMessage.warning('网络连接异常,请稍后再试!');
         }

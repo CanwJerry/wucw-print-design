@@ -11,16 +11,24 @@ export function userLogin(data) {
 
 // 用户注册接口
 export function userRegist(data) {
-  return request({
+  return http.request({
     url: '/regist',
     method: 'post',
     data
   });
 }
 
+// 验证token是否过期
+export function checkToken() {
+  return http.request({
+    url: '/checkToken',
+    method: 'post',
+  });
+}
+
 // 用户更新信息接口
 export function updateUserInfo(data) {
-  return request({
+  return http.request({
     url: '/updateUserInfo',
     method: 'post',
     data
@@ -29,7 +37,7 @@ export function updateUserInfo(data) {
 
 // 保存单据模板
 export function SaveDocumentPrint(data) {
-  return request({
+  return http.request({
     url: '/api/DocumentPrint/SaveDocumentPrint',
     method: 'post',
     data
@@ -38,7 +46,7 @@ export function SaveDocumentPrint(data) {
 
 // 获取单据数据
 export function GetDocumentPrintInfo(data) {
-  return request({
+  return http.request({
     url: '/api/DocumentPrint/GetDocumentPrintInfo',
     method: 'post',
     data
@@ -47,7 +55,7 @@ export function GetDocumentPrintInfo(data) {
 
 // 删除单据打印模板
 export function RemoveDocumentPrint(data) {
-  return request({
+  return http.request({
     url: '/api/DocumentPrint/RemoveDocumentPrint',
     method: 'post',
     data,
