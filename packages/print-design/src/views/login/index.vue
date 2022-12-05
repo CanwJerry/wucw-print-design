@@ -7,7 +7,16 @@
           <el-input v-model="form.username" size="large" placeholder="请输入用户名" :prefix-icon="User" clearable></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="form.password" size="large" placeholder="请输入密码" :prefix-icon="Lock" type="password" show-password clearable></el-input>
+          <el-input
+            v-model="form.password"
+            clearable
+            size="large"
+            placeholder="请输入密码"
+            type="password"
+            show-password
+            :prefix-icon="Lock"
+            @keyup.enter.native="handleLogin">
+          </el-input>
         </el-form-item>
       </el-form>
       <div class="login-options">
