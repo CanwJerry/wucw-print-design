@@ -1,0 +1,46 @@
+.forget-password, .user-signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.forget-form, .user-signup-form {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 2% 1%;
+  width: 30%;
+
+  .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 26px;
+    font-weight: 700;
+    color: #92c892;
+
+    .el-icon {
+      width: 20px;
+      margin-right: 10px;
+      background-color: #92c892;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }
+
+  .el-form {
+    width: 100%;
+  }
+
+  .btn {
+    width: 30%;
+    margin-left: auto;
+    margin-bottom: 0;
+    :deep(.el-form-item__content) {
+      justify-content: flex-end;
+    }
+  }
+}

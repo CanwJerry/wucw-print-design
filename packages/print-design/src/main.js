@@ -1,10 +1,16 @@
 import { createApp } from 'vue';
+import Wbutton from '@/components/Wbutton/index.vue';
+import Wbackground from '@/components/Wbackground/index.vue';
 import App from '@/App.vue';
-const app = createApp(App);
 import router from '@/router';
-app.use(router);
 import store from '@/store';
+
+const app = createApp(App);
+app.use(router);
 app.use(store);
+app.component('w-button', Wbutton);
+app.component('w-background', Wbackground);
+
 import './style.scss';
 
 /**

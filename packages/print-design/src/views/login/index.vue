@@ -1,34 +1,36 @@
 <template>
-  <div class="login" ref="loginRef">
-    <div class="login-box">
-      <p class="login-title">Welcome</p>
-      <el-form :model="form" :rules="rules" ref="formRef">
-        <el-form-item prop="username">
-          <el-input v-model="form.username" size="large" placeholder="请输入用户名" :prefix-icon="User" clearable></el-input>
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input
-            v-model="form.password"
-            clearable
-            size="large"
-            placeholder="请输入密码"
-            type="password"
-            show-password
-            :prefix-icon="Lock"
-            @keyup.enter.native="handleLogin">
-          </el-input>
-        </el-form-item>
-      </el-form>
-      <div class="login-options">
-        <el-checkbox v-model="keepLoginStatus">保持登录状态</el-checkbox>
-        <p class="login-forget" @click="handleForgetPassword">忘记密码</p>
-      </div>
-      <button class="login-btn" @click="handleLogin">登录</button>
-      <div class="login-signup">
-        还没有账户?<span class="signup" @click="handleSignUp">注册新用户</span>
+  <w-background>
+    <div class="login" ref="loginRef">
+      <div class="login-box">
+        <p class="login-title">Welcome</p>
+        <el-form :model="form" :rules="rules" ref="formRef">
+          <el-form-item prop="username">
+            <el-input v-model="form.username" size="large" placeholder="请输入用户名" :prefix-icon="User" clearable></el-input>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input
+              v-model="form.password"
+              clearable
+              size="large"
+              placeholder="请输入密码"
+              type="password"
+              show-password
+              :prefix-icon="Lock"
+              @keyup.enter="handleLogin">
+            </el-input>
+          </el-form-item>
+        </el-form>
+        <div class="login-options">
+          <el-checkbox v-model="keepLoginStatus">保持登录状态</el-checkbox>
+          <p class="login-forget" @click="handleForgetPassword">忘记密码</p>
+        </div>
+        <w-button @click="handleLogin"></w-button>
+        <div class="login-signup">
+          还没有账户?<span class="signup" @click="handleSignUp">注册新用户</span>
+        </div>
       </div>
     </div>
-  </div>
+  </w-background>
 </template>
 
 <script>
@@ -38,12 +40,10 @@
 </script>
 
 <script setup>
-  import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
+  import { ref, reactive } from 'vue';
   import { User, Lock } from '@element-plus/icons-vue'
   import { useRouter } from "vue-router";
   import { userLogin } from '@/api/api';
-  import * as THREE from "three";
-  import GLOBE from 'vanta/src/vanta.globe';
 
   const router = useRouter();
 
@@ -79,31 +79,13 @@
   }
 
   const handleForgetPassword = function() {
-    console.log('忘记密码');
+    router.push('/forget');
   }
 
   const handleSignUp = function() {
-    console.log('注册新用户');
+    router.push('/signup');
   }
 
-  const loginRef = ref(null);
-
-  let vantaEffect = null;
-
-  onMounted(() => {
-    vantaEffect = GLOBE({
-      el: loginRef.value,
-      THREE: THREE,
-      color: '#6f7f6f',
-      backgroundColor: '#92c892',
-    })
-  })
-
-  onBeforeUnmount(() => {
-    if(vantaEffect) {
-      vantaEffect.destroy();
-    }
-  })
 </script>
 
 <style lang='scss' scope>
