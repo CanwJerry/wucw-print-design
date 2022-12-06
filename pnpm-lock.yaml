@@ -11,6 +11,7 @@ importers:
       element-plus: ^2.2.15
       eslint: 8.22.0
       eslint-plugin-vue: ^9.4.0
+      pinia: ^2.0.27
       sass: ^1.54.5
       three: ^0.147.0
       unplugin-element-plus: ^0.4.1
@@ -28,6 +29,7 @@ importers:
       axios: registry.npmmirror.com/axios/0.27.2
       element-china-area-data: registry.npmmirror.com/element-china-area-data/5.0.2
       element-plus: registry.npmmirror.com/element-plus/2.2.16_vue@3.2.38
+      pinia: registry.npmmirror.com/pinia/2.0.27_vue@3.2.38
       three: registry.npmmirror.com/three/0.147.0
       vanta: registry.npmmirror.com/vanta/0.5.24
       vue: registry.npmmirror.com/vue/3.2.38
@@ -300,6 +302,12 @@ packages:
     resolution: {integrity: sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.2.1.tgz}
     name: '@vue/devtools-api'
     version: 6.2.1
+    dev: false
+
+  registry.npmmirror.com/@vue/devtools-api/6.4.5:
+    resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.4.5.tgz}
+    name: '@vue/devtools-api'
+    version: 6.4.5
     dev: false
 
   registry.npmmirror.com/@vue/reactivity-transform/3.2.38:
@@ -1882,6 +1890,26 @@ packages:
     version: 2.3.1
     engines: {node: '>=8.6'}
     dev: true
+
+  registry.npmmirror.com/pinia/2.0.27_vue@3.2.38:
+    resolution: {integrity: sha512-nOnXP0OFeL8R4WjAHsterU+11vptda643gH02xKNtSCDPiRzVfRYodOLihLDoa0gL1KKuQKV+KOzEgdt3YvqEw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia/-/pinia-2.0.27.tgz}
+    id: registry.npmmirror.com/pinia/2.0.27
+    name: pinia
+    version: 2.0.27
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.4.5
+      vue: registry.npmmirror.com/vue/3.2.38
+      vue-demi: registry.npmmirror.com/vue-demi/0.13.11_vue@3.2.38
+    dev: false
 
   registry.npmmirror.com/postcss-selector-parser/6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/postcss-selector-parser/-/postcss-selector-parser-6.0.10.tgz}
