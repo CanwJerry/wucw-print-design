@@ -1,8 +1,5 @@
-<script setup>
-</script>
-
 <template>
-  <div>welcome</div>
+  <router-view class="App-root"></router-view>
 </template>
 
 <style scoped>
