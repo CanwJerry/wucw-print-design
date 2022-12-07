@@ -7,10 +7,10 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "print:dev": "pnpm run -C packages/print-design dev  --mode=dev",
-    "print:build": "pnpm run -C packages/print-design build  --mode=build",
-    "crm:dev": "pnpm run -C packages/crm dev  --mode=dev",
-    "crm:build": "pnpm run -C packages/crm build  --mode=build"
+    "print:dev": "pnpm run -C packages/print-design dev --mode=dev",
+    "print:build": "pnpm run -C packages/print-design build --mode=prod",
+    "crm:dev": "pnpm run -C packages/crm dev --mode=dev",
+    "crm:build": "pnpm run -C packages/crm build --mode=prod"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",
