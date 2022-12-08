@@ -9,7 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "print-design": "workspace:^1.0.0",
-    "common": "workspace:^1.0.0"
+    "autoprefixer": "^10.4.13",
+    "common": "workspace:^1.0.0",
+    "print-design": "workspace:^1.0.0"
+  },
+  "devDependencies": {
+    "amfe-flexible": "^2.2.1",
+    "postcss-pxtorem": "^6.0.0"
   }
 }

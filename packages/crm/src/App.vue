@@ -2,4 +2,9 @@
   <router-view class="App-root"></router-view>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .App-root{
+    width: 100vw;
+    height: 100vh;
+  }
+</style>

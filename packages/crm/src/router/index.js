@@ -12,7 +12,7 @@ export const routes = [
 
   {path: '/index', name: 'Index', component: () => import('@/views/Index/index.vue'), meta: { title: 'index', affix: true }},
 
-  { path: '/home', name: 'Home', component: () => import('@/views/Home/index.vue'), meta: { title: '首页', affix: true } },
+  { path: '/login', name: 'Login', component: () => import('@/views/Login/index.vue'), meta: { title: '登录', affix: true } },
 
   // 需登录进来的各页面
   // {
@@ -27,8 +27,8 @@ export const routes = [
   // },
 
   // 错误页，404页面放最后以匹配*
-  { path: '/404', component: () => import('@/views/error/404.vue'), meta: { title: '404', noLogin: true } },
-  { path: '/:pathMatch(.*)*', component: () => import('@/views/error/404.vue'), meta: { noLogin: true } },
+  { path: '/404', component: () => import('common/src/Error/404.vue'), meta: { title: '404', noLogin: true } },
+  { path: '/:pathMatch(.*)*', component: () => import('common/src/Error/404.vue'), meta: { noLogin: true } },
 ];
 
 // router

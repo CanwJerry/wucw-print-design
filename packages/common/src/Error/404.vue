@@ -9,14 +9,27 @@
     </footer>
   </main>
 </template>
+
 <script>
   export default {
     name: 'Error404',
   };
 </script>
+
 <style scoped lang="scss">
-  .Error404-root{text-align: center;padding: 100px 0;
-    img{width: 80%;}
-    article{color: #808695;font-size: 20px;margin: 20px 0;}
+  .Error404-root{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 30%;
+    }
+    article{
+      color: #808695;
+      font-size: 20px;
+      margin: 0 0 20px 0;
+    }
   }
 </style>
