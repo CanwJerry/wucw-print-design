@@ -13,6 +13,9 @@
 					<el-form-item prop="password">
 						<el-input v-model="form.password" type="password" show-password placeholder="请输入密码" clearable></el-input>
 					</el-form-item>
+					<el-form-item prop="phone">
+						<el-input v-model="form.phone" type="phone" placeholder="请输入电话号码" clearable></el-input>
+					</el-form-item>
 				</el-form>
 				<div class="btn">
 					<w-button @click="handleSignup">注册</w-button>
@@ -40,6 +43,7 @@
 	const form = reactive({
 		username: '',
 		password: '',
+		phone: ''
 	});
 
 	const rules = ref({
@@ -48,6 +52,9 @@
 		],
 		password: [
 			{ required: true, message: '密码不能为空', trigger: 'blur' },
+		],
+		phone: [
+			{ required: true, message: '电话号码不能为空', trigger: 'blur' },
 		],
 	})
 
