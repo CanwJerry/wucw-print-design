@@ -19,12 +19,10 @@
 <style scoped lang="scss">
   .Error404-root{
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     img{
       width: 30%;
+      margin-bottom: 20px;
+      margin-top: 20px;
     }
     article{
       color: #808695;

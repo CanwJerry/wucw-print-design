@@ -28,7 +28,7 @@ export const routes = [
 
   // 错误页，404页面放最后以匹配*
   { path: '/404', component: () => import('common/src/Error/404.vue'), meta: { title: '404', noLogin: true } },
-  { path: '/:pathMatch(.*)*', component: () => import('common/src/Error/404.vue'), meta: { noLogin: true } },
+  { path: '/:pathMatch(.*)*', component: () => import('common/src/Error/404.vue'), meta: { title: '404', noLogin: true } },
 ];
 
 // router
