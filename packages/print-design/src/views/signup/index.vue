@@ -1,6 +1,6 @@
 <template>
 	<w-background>
-		<div class="user-signup">
+		<div class="user-signup" v-loading="loading" :element-loading-background="bg">
 			<div class="user-signup-form">
 				<p class="title">
 					<el-icon @click="handleBack"><Back /></el-icon>
@@ -34,7 +34,8 @@
 <script setup>
 	import { ref, reactive } from 'vue';
 	import { useRouter } from 'vue-router';
-	import { Back } from '@element-plus/icons-vue'
+	import { Back } from '@element-plus/icons-vue';
+	import { userRegist } from '@/api/api';
 
 	const router = useRouter();
 
@@ -58,10 +59,21 @@
 		],
 	})
 
+	const bg = 'rgba(146, 200, 146, 0.2)';
+	
+	let loading = ref(false);
+
 	const handleSignup = () => {
 		formRefs.value.validate(vaild => {
 			if(!vaild) return;
-			console.log('注册')
+			loading.value = true;
+			userRegist(form).then(res => {
+				if(res.status === 200) {
+					router.push('/login');
+				}
+			}).finally(() => {
+				loading.value = false;
+			})
 		})
 	}
 

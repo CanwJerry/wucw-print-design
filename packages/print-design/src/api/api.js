@@ -35,6 +35,15 @@ export function updateUserInfo(data) {
   });
 }
 
+// 用户更新密码接口
+export function updateUserPassword(data) {
+  return http.request({
+    url: '/updateUserPassword',
+    method: 'post',
+    data
+  });
+}
+
 // 保存单据模板
 export function SaveDocumentPrint(data) {
   return http.request({

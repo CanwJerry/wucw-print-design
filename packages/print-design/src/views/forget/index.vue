@@ -1,7 +1,7 @@
 <template>
 	<w-background>
 		<div class="forget-password">
-			<div class="forget-form">
+			<div class="forget-form" v-loading="loading" :element-loading-background="bg">
 				<p class="title">
 					<el-icon @click="handleBack"><Back /></el-icon>
 					忘记密码
@@ -10,11 +10,14 @@
 					<el-form-item prop="username">
 						<el-input v-model="form.username" placeholder="请输入用户名" clearable></el-input>
 					</el-form-item>
-					<el-form-item prop="oldPassword">
-						<el-input v-model="form.oldPassword" type="password" show-password placeholder="请输入旧密码" clearable></el-input>
+					<el-form-item prop="password">
+						<el-input v-model="form.password" type="password" show-password placeholder="请输入密码" clearable></el-input>
 					</el-form-item>
-					<el-form-item prop="newPassword">
-						<el-input v-model="form.newPassword" type="password" show-password placeholder="请输入新密码" clearable></el-input>
+					<el-form-item prop="phone">
+						<el-input v-model="form.phone" placeholder="请输入电话号码" clearable></el-input>
+					</el-form-item>
+					<el-form-item prop="verifyCode">
+						<el-input v-model="form.verifyCode" placeholder="请输入验证码" clearable></el-input>
 					</el-form-item>
 				</el-form>
 				<div class="btn">
@@ -34,7 +37,8 @@
 <script setup>
 	import { ref, reactive } from 'vue';
 	import { useRouter } from 'vue-router';
-	import { Back } from '@element-plus/icons-vue'
+	import { Back } from '@element-plus/icons-vue';
+	import { updateUserPassword } from '@/api/api';
 
 	const router = useRouter();
 
@@ -42,26 +46,38 @@
 
 	const form = reactive({
 		username: '',
-		oldPassword: '',
-		newPassword: '',
+		phone: '',
+		password: '',
+		verifyCode: ''
 	});
 
 	const rules = ref({
 		username: [
 			{ required: true, message: '用户名称不能为空', trigger: 'blur' },
 		],
-		oldPassword: [
+		phone: [
 			{ required: true, message: '旧密码不能为空', trigger: 'blur' },
 		],
-		newPassword: [
-			{ required: true, message: '新密码不能为空', trigger: 'blur' },
+		password: [
+			{ required: true, message: '密码不能为空', trigger: 'blur' },
 		],
 	})
+
+	const bg = 'rgba(146, 200, 146, 0.2)';
+	
+	let loading = ref(false);
 
 	const handleChangePassword = () => {
 		formRefs.value.validate(vaild => {
 			if(!vaild) return;
-			console.log('修改密码')
+			loading.value = true;
+			updateUserPassword(form).then(res => {
+				if(res.status === 200) {
+					router.push('/index');
+				}
+			}).finally(() => {
+				loading.value = false;
+			})
 		})
 	}
 

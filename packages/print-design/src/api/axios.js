@@ -2,6 +2,7 @@ import axios from "axios";
 import { showMessage } from "./status";
 import { ElMessage } from 'element-plus';
 
+
 class HttpRequest {
   constructor(baseURL, timeout=10000) {
     this.instance = axios.create({
