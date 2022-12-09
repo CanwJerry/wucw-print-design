@@ -60,12 +60,12 @@
   import { useStore } from 'vuex';
   // FIXME:暂时有点问题
   // import storeMutations from '@/hooks/useMutations.js';
-  import CollapseItem from '@/views/index/components/CollapseItem/index.vue';
-  import CollapseForm from '@/views/index/components/CollapseForm/index.vue';
-  import FormComponentPanel from '@/views/index/components/FormComponentPanel/index.vue';
-  import FormItemProperties from '@/views/index/components/FormItemProperties/index.vue';
-  import FormProperties from '@/views/index/components/FormProperties/index.vue';
-  import OperateHeader from '@/views/index/components/OperateHeader/index.vue';
+  import CollapseItem from '@/views/Print/components/CollapseItem/index.vue';
+  import CollapseForm from '@/views/Print/components/CollapseForm/index.vue';
+  import FormComponentPanel from '@/views/Print/components/FormComponentPanel/index.vue';
+  import FormItemProperties from '@/views/Print/components/FormItemProperties/index.vue';
+  import FormProperties from '@/views/Print/components/FormProperties/index.vue';
+  import OperateHeader from '@/views/Print/components/OperateHeader/index.vue';
   import { basicsList, layoutList } from './config/formItem.config.js';
 
   const store = useStore();
