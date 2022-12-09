@@ -96,3 +96,8 @@ s, i, em {
 .col-red {
   color: #C81623 !important;
 }
+
+.custom-loading .el-loading-spinner .path {
+  stroke-width: 5px;
+  stroke: #fff;
+}

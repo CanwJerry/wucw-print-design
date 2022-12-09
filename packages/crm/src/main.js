@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import pinia from '@/store/index.js';
 import router from '@/router/index.js';
-import Wbackground from 'common/src/components/Wbackground/index.vue';
+import { Wbackground, Wbutton } from 'common/src/components';
 
 import './style.scss';
 import 'amfe-flexible/index.js';
@@ -13,5 +13,6 @@ app.use(router);
 app.use(pinia);
 
 app.component('w-background', Wbackground);
+app.component('w-button', Wbutton);
 
 app.mount('#app')

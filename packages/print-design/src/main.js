@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
-import Wbutton from '@/components/Wbutton/index.vue';
-import Wbackground from '@/components/Wbackground/index.vue';
+import { Wbackground, Wbutton } from 'common/src/components';
 import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';

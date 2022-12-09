@@ -1,7 +1,7 @@
 import axios from "axios";
 import { showMessage } from "./status";
 import { ElMessage } from 'element-plus';
-
+import { showFullScreenLoading as showLoading, hideFullScreenLoading as hideLoading } from 'common/src/utils/serviceLoading';
 
 class HttpRequest {
   constructor(baseURL, timeout=10000) {
@@ -20,7 +20,9 @@ class HttpRequest {
         return config;
       },
 
-      error => Promise.reject(error)
+      error => {
+        return Promise.reject(error);
+      }
     );
 
     this.instance.interceptors.response.use(
@@ -32,7 +34,7 @@ class HttpRequest {
         }
       },
 
-      error => {
+      error => {        
         const { response } = error;
         if (response && response?.status !== 0) {
           const msg = showMessage(response.status)
@@ -53,10 +55,13 @@ class HttpRequest {
 
   request(config) {
     return new Promise((resolve, reject) => {
+      showLoading();
       this.instance.request(config).then((res) => {
         resolve(res);
       }).catch(err => {
         reject(err);
+      }).finally(() => {
+        hideLoading();
       })
     })
   }

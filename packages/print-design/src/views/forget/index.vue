@@ -1,7 +1,7 @@
 <template>
 	<w-background>
 		<div class="forget-password">
-			<div class="forget-form" v-loading="loading" :element-loading-background="bg">
+			<div class="forget-form">
 				<p class="title">
 					<el-icon @click="handleBack"><Back /></el-icon>
 					忘记密码
@@ -56,27 +56,20 @@
 			{ required: true, message: '用户名称不能为空', trigger: 'blur' },
 		],
 		phone: [
-			{ required: true, message: '旧密码不能为空', trigger: 'blur' },
+			{ required: true, message: '电话号码不能为空', trigger: 'blur' },
 		],
 		password: [
 			{ required: true, message: '密码不能为空', trigger: 'blur' },
 		],
 	})
 
-	const bg = 'rgba(146, 200, 146, 0.2)';
-	
-	let loading = ref(false);
-
 	const handleChangePassword = () => {
 		formRefs.value.validate(vaild => {
 			if(!vaild) return;
-			loading.value = true;
 			updateUserPassword(form).then(res => {
 				if(res.status === 200) {
 					router.push('/index');
 				}
-			}).finally(() => {
-				loading.value = false;
 			})
 		})
 	}

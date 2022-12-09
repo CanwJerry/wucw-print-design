@@ -1,6 +1,6 @@
 <template>
 	<w-background>
-		<div class="user-signup" v-loading="loading" :element-loading-background="bg">
+		<div class="user-signup">
 			<div class="user-signup-form">
 				<p class="title">
 					<el-icon @click="handleBack"><Back /></el-icon>
@@ -58,21 +58,14 @@
 			{ required: true, message: '电话号码不能为空', trigger: 'blur' },
 		],
 	})
-
-	const bg = 'rgba(146, 200, 146, 0.2)';
 	
-	let loading = ref(false);
-
 	const handleSignup = () => {
 		formRefs.value.validate(vaild => {
 			if(!vaild) return;
-			loading.value = true;
 			userRegist(form).then(res => {
 				if(res.status === 200) {
 					router.push('/login');
 				}
-			}).finally(() => {
-				loading.value = false;
 			})
 		})
 	}
