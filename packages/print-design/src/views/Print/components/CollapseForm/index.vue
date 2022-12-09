@@ -1,19 +1,24 @@
 <template>
   <ul class="form-list">
-    <li
-      v-for="item in getLeftDocumentData"
-    >
-      <p
-        class="label"
-        :class="{ active: item.formKey === activeName }"
-        @click="handleChangeDataJson(item)"
+    <template v-if="getLeftDocumentData.length">
+      <li
+        v-for="item in getLeftDocumentData"
       >
-        {{ item.formName }}
-      </p>
-      <el-icon class="del" @click="handleDel(item)">
-        <CircleCloseFilled />
-      </el-icon>
-    </li>
+        <p
+          class="label"
+          :class="{ active: item.formKey === activeName }"
+          @click="handleChangeDataJson(item)"
+        >
+          {{ item.formName }}
+        </p>
+        <el-icon class="del" @click="handleDel(item)">
+          <CircleCloseFilled />
+        </el-icon>
+      </li>
+    </template>
+    <template v-else>
+      <li style="justify-content:center;color:#ccc;">暂无数据</li>
+    </template>
   </ul>
 </template>
 
