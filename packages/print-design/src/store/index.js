@@ -154,8 +154,8 @@ export const store = createStore({
           formKey,
         }
         const res = await GetDocumentPrintInfo(data);
-        if(res.code === 0) {
-          commit('updateLeftDocumentData', res.data.list);
+        if(res.status === 200) {
+          commit('updateLeftDocumentData', res.data);
           resolve(res.data);
         }
       })

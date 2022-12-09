@@ -47,7 +47,7 @@ export function SaveDocumentPrint(data) {
 // 获取单据数据
 export function GetDocumentPrintInfo(data) {
   return http.request({
-    url: '/api/DocumentPrint/GetDocumentPrintInfo',
+    url: '/document/get',
     method: 'post',
     data
   });
@@ -56,7 +56,7 @@ export function GetDocumentPrintInfo(data) {
 // 删除单据打印模板
 export function RemoveDocumentPrint(data) {
   return http.request({
-    url: '/api/DocumentPrint/RemoveDocumentPrint',
+    url: '/document/remove',
     method: 'post',
     data,
     paramsKey: true

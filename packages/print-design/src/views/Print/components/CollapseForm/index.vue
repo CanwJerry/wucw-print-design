@@ -86,7 +86,7 @@
     ).then(() => {
       const data = { formKey: item.formKey };
       RemoveDocumentPrint(data).then(res => {
-        if(res.code === 0) {
+        if(res.status === 200) {
           ElMessage.success('删除成功');
           getDocumentPrintInfo();
         } else {

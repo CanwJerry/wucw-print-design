@@ -1,8 +1,9 @@
 <template>
-  <router-view class="App-root"></router-view>
+  <Index class="App-root"></Index>
 </template>
 
 <script setup>
+  import Index from '@/views/Index/index.vue';
 </script>
 
 <style scoped lang="scss">
