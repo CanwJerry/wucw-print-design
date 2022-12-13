@@ -37,6 +37,13 @@ class HttpRequest {
       error => {        
         const { response } = error;
         if (response && response?.status !== 0) {
+          if(response.data === 'token已失效') {
+            ElMessage.error('token已失效, 请重新登录');
+            localStorage.removeItem('accessToken');
+            location.reload();
+            return;
+          }
+
           const msg = showMessage(response.status)
           ElMessage.error(response.data)
           
