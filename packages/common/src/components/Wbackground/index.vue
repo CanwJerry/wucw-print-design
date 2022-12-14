@@ -38,5 +38,7 @@
 <style lang='scss' scope>
   .Wbackground {
     background-color: #92c892;
+    height: 100%;
+    width: 100%;
   }
 </style>

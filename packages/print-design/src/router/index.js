@@ -4,10 +4,20 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 export const routes = [
   // 根路径
   { path: '/', name: 'Root', redirect: '/index' },
-  // 重定向
-  { path: '/index', name: 'Index', component: () => import('@/views/Print/Index.vue'), meta: { title: '单据设计器' }  },
-  // 预览界面
-  { path: '/preview', name: 'Preview', component: () => import('@/views/Print/components/FormComponentPanel/index.vue'), meta: { title: '单据预览' } },
+
+  // 首页界面
+  { 
+    path: '/index', name: 'Index', component: () => import('@/views/Index/Index.vue'), redirect: '/home',
+    children: [
+      // 导航界面
+      { path: '/home', name: 'Home', component: () => import('@/views/Home/Index.vue'), meta: { title: '首页' } },
+      // 设计器界面
+      { path: '/print', name: 'Print', component: () => import('@/views/Print/Index.vue'), meta: { title: '单据设计器' }  },
+      // 预览界面
+      { path: '/preview', name: 'Preview', component: () => import('@/views/Print/components/FormComponentPanel/index.vue'), meta: { title: '单据预览' } },
+    ]
+  },
+  
   // 登录界面
   { path: '/login', name: 'Login', component: () => import('@/views/Login/index.vue'), meta: { title: '登录' }  },
   // 注册界面
