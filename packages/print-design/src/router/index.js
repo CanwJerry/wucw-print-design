@@ -13,8 +13,6 @@ export const routes = [
       { path: '/home', name: 'Home', component: () => import('@/views/Home/Index.vue'), meta: { title: '首页' } },
       // 设计器界面
       { path: '/print', name: 'Print', component: () => import('@/views/Print/Index.vue'), meta: { title: '单据设计器' }  },
-      // 预览界面
-      { path: '/preview', name: 'Preview', component: () => import('@/views/Print/components/FormComponentPanel/index.vue'), meta: { title: '单据预览' } },
     ]
   },
   
@@ -24,6 +22,8 @@ export const routes = [
   { path: '/signup', name: 'Signup', component: () => import('@/views/Signup/index.vue'), meta: { title: '注册' }  },
   // 忘记密码界面
   { path: '/forget', name: 'Forget', component: () => import('@/views/Forget/index.vue'), meta: { title: '忘记密码' }  },
+  // 预览界面
+  { path: '/preview', name: 'Preview', component: () => import('@/views/Print/components/FormComponentPanel/index.vue'), meta: { title: '单据预览' } },
   // 错误页，404页面放最后以匹配*
   { path: '/404', component: () => import('common/src/views/Error/404.vue'), meta: { title: '404', noLogin: true } },
   { path: '/:pathMatch(.*)*', component: () => import('common/src/views/Error/404.vue'), meta: { title: '404', noLogin: true } },
