@@ -131,12 +131,12 @@
     store.dispatch('getDocumentList', data).then(res => {
       // 获取页面结构数据
       const previewData = {
-        list: JSON.parse(res.list[0].formJson),
+        list: JSON.parse(res[0].formJson),
         config: {
-          formName: res.list[0].formName,
-          key: res.list[0].formKey,
+          formName: res[0].formName,
+          key: res[0].formKey,
         },
-        otherConfig: JSON.parse(res.list[0].otherConfig) || {}
+        otherConfig: JSON.parse(res[0].otherConfig) || {}
       }
       store.commit('updateDataJson', previewData);
     }).then(async () => {

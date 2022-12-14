@@ -79,7 +79,7 @@ export function CustomApi(
   paramsKey = false, 
   contentType = 'application/json'
 ) {
-  return request({
+  return http.request({
     url,
     method,
     params,
