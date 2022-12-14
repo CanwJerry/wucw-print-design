@@ -34,6 +34,13 @@ export default defineConfig(({command, mode}) => {
       fs: {
         strict: false,
       },
+      proxy: {
+        '/api': {
+          target: 'http://192.168.5.252:8111',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ' '),
+        },
+      }
     },
     build: {
       // 打包输出目录
