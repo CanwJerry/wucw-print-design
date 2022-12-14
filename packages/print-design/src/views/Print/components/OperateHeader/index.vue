@@ -106,12 +106,10 @@
   // 保存
   function handleSave(form, type) {
     SaveDocumentPrint(form).then(res => {
-      if(res.code === 0) {
+      if(res.status === 200) {
         ElMessage.success(type === 'other' ? '另存存成功' :'保存成功');
         // 保存成功后更新右侧单据数据菜单
         store.dispatch('getDocumentList');
-      } else {
-        ElMessage.error(res.msg);
       }
     })
   };

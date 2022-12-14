@@ -34,7 +34,7 @@ class HttpRequest {
         }
       },
 
-      error => {        
+      error => {
         const { response } = error;
         if (response && response?.status !== 0) {
           if(response.data === 'token已失效') {

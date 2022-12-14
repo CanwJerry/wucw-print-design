@@ -47,7 +47,7 @@ export function updateUserPassword(data) {
 // 保存单据模板
 export function SaveDocumentPrint(data) {
   return http.request({
-    url: '/api/DocumentPrint/SaveDocumentPrint',
+    url: '/document/save',
     method: 'post',
     data
   });
@@ -68,7 +68,6 @@ export function RemoveDocumentPrint(data) {
     url: '/document/remove',
     method: 'post',
     data,
-    paramsKey: true
   });
 }
 
