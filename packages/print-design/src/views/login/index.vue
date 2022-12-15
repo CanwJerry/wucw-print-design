@@ -71,7 +71,7 @@
       userLogin(form).then(res => {
         if(res.status === 200) {
           const { token } = res.data;
-          localStorage.setItem('accessToken', token);
+          sessionStorage.setItem('accessToken', token);
           router.push('/index');
         }
       })

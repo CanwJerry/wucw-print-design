@@ -14,7 +14,7 @@ class HttpRequest {
       config => {
         config.headers = {
           'Content-Type':'application/json',
-          'Account-Token': localStorage.getItem('accessToken'),
+          'Account-Token': sessionStorage.getItem('accessToken'),
         };
 
         return config;
@@ -39,7 +39,7 @@ class HttpRequest {
         if (response && response?.status !== 0) {
           if(response.data === 'token已失效') {
             ElMessage.error('token已失效, 请重新登录');
-            localStorage.removeItem('accessToken');
+            sessionStorage.removeItem('accessToken');
             location.reload();
             return;
           }
