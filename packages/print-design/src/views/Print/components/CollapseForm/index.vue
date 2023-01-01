@@ -1,9 +1,7 @@
 <template>
   <ul class="form-list">
     <template v-if="getLeftDocumentData.length">
-      <li
-        v-for="item in getLeftDocumentData"
-      >
+      <li v-for="item in getLeftDocumentData">
         <p
           class="label"
           :class="{ active: item.formKey === activeName }"

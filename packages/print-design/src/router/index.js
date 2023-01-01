@@ -37,7 +37,7 @@ export const router = createRouter({
 router.beforeEach(async (to, form) => {
   document.title = to.meta.title;
    
-  const token = localStorage.getItem('accessToken');
+  const token = sessionStorage.getItem('accessToken');
   
   if(!token) {
     const path = to.path;

@@ -70,8 +70,9 @@
       if(!vaild) return; 
       userLogin(form).then(res => {
         if(res.status === 200) {
-          const { token } = res.data;
-          localStorage.setItem('accessToken', token);
+          const { token, refreshToken } = res.data;
+          sessionStorage.setItem('accessToken', token);
+          sessionStorage.setItem('refreshToken', refreshToken);
           router.push('/index');
         }
       })

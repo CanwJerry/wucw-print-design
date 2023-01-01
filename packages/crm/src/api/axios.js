@@ -13,7 +13,7 @@ class HttpRequest {
       config => {
         config.headers = {
           'Content-Type':'application/json',
-          'Account-Token': localStorage.getItem('accessToken'),
+          'Account-Token': sessionStorage.getItem('accessToken'),
         };
 
         return config;
