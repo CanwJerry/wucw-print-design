@@ -26,6 +26,18 @@ export function checkToken() {
   });
 }
 
+// 刷新token
+export function updateToken(data) {
+  return http.request({
+    url: '/updateToken',
+    method: 'post',
+    headers: {
+      'Refresh-token': data.refreshToken
+    },
+    data
+  });
+}
+
 // 用户更新信息接口
 export function updateUserInfo(data) {
   return http.request({
@@ -70,6 +82,7 @@ export function RemoveDocumentPrint(data) {
     data,
   });
 }
+
 
 // 自定义接口 get => params post => data
 export function CustomApi(
