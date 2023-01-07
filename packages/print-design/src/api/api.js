@@ -32,7 +32,7 @@ export function updateToken(data) {
     url: '/updateToken',
     method: 'post',
     headers: {
-      'Refresh-token': data.refreshToken
+      'Refresh-Token': data.refreshToken
     },
     data
   });

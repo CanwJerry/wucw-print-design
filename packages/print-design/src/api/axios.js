@@ -14,10 +14,10 @@ class HttpRequest {
 
     this.instance.interceptors.request.use(
       config => {
-        config.headers = {
+        config.headers = Object.assign(config.headers, {
           'Content-Type':'application/json',
           'Account-Token': sessionStorage.getItem('accessToken'),
-        };
+        })
 
         return config;
       },
@@ -46,25 +46,22 @@ class HttpRequest {
             if (!isRefreshToken) {
               isRefreshToken = true;
               const refreshToken = sessionStorage.getItem('refreshToken');
-              return updateToken({ refreshToken }).then(data => {
-                console.log(data);
+              return updateToken({ refreshToken }).then(res => {
+                const { data } = res;
+                sessionStorage.setItem('accessToken', data.accessToken)
                 if (data.accessToken) {
                   refreshRequest.forEach(callback => {
                     callback(data.accessToken);
                   });
-                  return service(response.config);
+                  return this.request(response.config);
                 } else {
                   // 刷新失败需要重新登录
-                  // sessionStorage.removeItem('accessToken');
-                  // sessionStorage.removeItem('refreshToken');
-                  // location.reload();
+                  this.resetLogin()
                   return Promise.reject();
                 }
               }).catch(err => {
                 // 刷新失败需要重新登录
-                // sessionStorage.removeItem('accessToken');
-                // sessionStorage.removeItem('refreshToken');
-                // location.reload();
+                this.resetLogin()
               }).finally(() => {
                 isRefreshToken = false;
               });
@@ -74,7 +71,7 @@ class HttpRequest {
                 refreshRequest.push((token) => {
                   // 更新请求头
                   response.config.headers['Account-Token'] = token;
-                  resolve(service(response.config));
+                  resolve(this.request(response.config));
                 });
               });
             }
@@ -82,9 +79,7 @@ class HttpRequest {
 
           if(response.data.code === 102) {
             ElMessage.error(response.data.msg);
-            sessionStorage.removeItem('accessToken');
-            sessionStorage.removeItem('refreshToken');
-            // location.reload();
+            this.resetLogin()
             return;
           }
           
@@ -115,6 +110,12 @@ class HttpRequest {
         hideLoading();
       })
     })
+  }
+
+  resetLogin() {
+    sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('refreshToken');
+    location.reload();
   }
 }
 
