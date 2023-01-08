@@ -56,12 +56,14 @@ class HttpRequest {
                   return this.request(response.config);
                 } else {
                   // 刷新失败需要重新登录
-                  this.resetLogin()
+                  console.warn('刷新失败')
+                  // this.resetLogin()
                   return Promise.reject();
                 }
               }).catch(err => {
                 // 刷新失败需要重新登录
-                this.resetLogin()
+                console.warn('刷新失败')
+                // this.resetLogin()
               }).finally(() => {
                 isRefreshToken = false;
               });
@@ -79,7 +81,7 @@ class HttpRequest {
 
           if(response.data.code === 102) {
             ElMessage.error(response.data.msg);
-            this.resetLogin()
+            // this.resetLogin()
             return;
           }
           
