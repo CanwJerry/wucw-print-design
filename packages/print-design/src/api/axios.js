@@ -1,9 +1,8 @@
 import axios from "axios";
 import { showMessage } from "./status";
-import { ElMessage } from 'element-plus';
+import { ElMessage, ElMessageBox } from 'element-plus';
 import { showFullScreenLoading as showLoading, hideFullScreenLoading as hideLoading } from 'common/src/utils/serviceLoading';
 import { updateToken } from './api.js';
-import store from '@/store';
 
 class HttpRequest {
   constructor(baseURL, timeout=10000) {
@@ -55,15 +54,10 @@ class HttpRequest {
                   });
                   return this.request(response.config);
                 } else {
-                  // 刷新失败需要重新登录
-                  console.warn('刷新失败')
-                  // this.resetLogin()
                   return Promise.reject();
                 }
               }).catch(err => {
-                // 刷新失败需要重新登录
-                console.warn('刷新失败')
-                // this.resetLogin()
+                return Promise.reject();
               }).finally(() => {
                 isRefreshToken = false;
               });
@@ -80,9 +74,23 @@ class HttpRequest {
           }
 
           if(response.data.code === 102) {
-            ElMessage.error(response.data.msg);
-            // this.resetLogin()
-            return;
+            ElMessageBox.confirm(
+              response.data.msg,
+              '温馨提示',
+              {
+                confirmButtonText: '重新登录',
+                closeOnclickModal: false,
+                closeOnPressEscape: false,
+                showCancelButton: false,
+                showClose: false,
+                type: 'warning',
+              },
+            ).then(() => {
+              console.warn('请重新登录');
+              this.resetLogin();
+            }).catch(() => {
+              console.warn('取消');
+            });
           }
           
           const msg = showMessage(response.status)
