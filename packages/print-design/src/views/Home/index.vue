@@ -1,11 +1,20 @@
 <template>
-  <div class="home">
+  <div class="home" v-wLoading:[title]="loading">
     home
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+  import { ref } from "vue";
+
+  const title = ref('加载中');
+
+  const loading = ref(false);
+</script>
 
 <style lang="scss" scoped>
-  
+  .home {
+    height: 100%;
+    width: 100%;
+  }
 </style>
