@@ -7,10 +7,10 @@ export const routes = [
 
   // 首页界面
   { 
-    path: '/index', name: 'Index', component: () => import('@/views/Index/Index.vue'), redirect: '/home',
+    path: '/index', name: 'Index', component: () => import('@/views/Index/index.vue'), redirect: '/home',
     children: [
       // 导航界面
-      { path: '/home', name: 'Home', component: () => import('@/views/Home/Index.vue'), meta: { title: '首页' } },
+      { path: '/home', name: 'Home', component: () => import('@/views/Home/index.vue'), meta: { title: '首页' } },
       // 设计器界面
       { path: '/print', name: 'Print', component: () => import('@/views/Print/Index.vue'), meta: { title: '单据设计器' }  },
     ]

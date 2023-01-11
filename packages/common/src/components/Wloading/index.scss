@@ -15,6 +15,13 @@
   background-color: rgba($color: #fff, $alpha: .4);
 }
 
+.text {
+  margin-left: 20px;
+  font-size: 12px;
+  color: #000;
+}
+
+// loading logo part start
 .boxes {
   --size: 32px;
   --duration: 800ms;
@@ -61,7 +68,7 @@
 }
 
 .boxes .box > div {
-  --background: #5C8DF6;
+  --background: #92c892;
   --top: auto;
   --right: auto;
   --bottom: auto;
@@ -86,13 +93,13 @@
 }
 
 .boxes .box > div:nth-child(2) {
-  --background: #145af2;
+  --background: #6b926b;
   --right: 0;
   --rotateY: 90deg;
 }
 
 .boxes .box > div:nth-child(3) {
-  --background: #447cf5;
+  --background: #8abb8a;
   --rotateX: -90deg;
 }
 
@@ -198,3 +205,5 @@
     transform: translate(100%, 100%);
   }
 }
+
+// loading logo part end

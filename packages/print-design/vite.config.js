@@ -40,7 +40,8 @@ export default defineConfig(({command, mode}) => {
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ' '),
         },
-      }
+      },
+      hmr: true
     },
     build: {
       // 打包输出目录

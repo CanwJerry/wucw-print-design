@@ -26,8 +26,8 @@
         <div></div>
         <div></div>
       </div>
-      <div class="text">{{ title }}</div>
     </div>
+    <div class="text">{{ title }}</div>
   </div>
 </template>
 
