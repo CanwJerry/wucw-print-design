@@ -9,7 +9,7 @@
 
   // const title = ref('加载中...');
 
-  const loading = ref(false);
+  const loading = ref(true);
 </script>
 
 <style lang="scss" scoped>
