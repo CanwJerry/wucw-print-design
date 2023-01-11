@@ -91,6 +91,7 @@ class HttpRequest {
             }).catch(() => {
               console.warn('取消');
             });
+            return;
           }
           
           const msg = showMessage(response.status)
