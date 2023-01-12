@@ -1,5 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
+// 获取文件下独立定义的routes
+// const routesObj = Object.values(import.meta.glob('../views/**/routes.js', { eager: true })).map(esm => esm.default || []).flat();
+
 // routes 各页面路由
 export const routes = [
   // 根路径

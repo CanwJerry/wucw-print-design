@@ -1,7 +1,7 @@
 <template>
   <div class="home" v-wLoading="loading">
     home
-    <el-button v-wBtnLimit:saveID @click="handleSave">保存</el-button>
+    <el-button type="primary" v-wBtnLimit:saveID @click="handleSave">保存</el-button>
   </div>
 </template>
 
@@ -14,10 +14,12 @@
   const loading = ref(false);
 
   const handleSave = () => {
-    loading.value = true;
+    proxy.$wLoadingShow();
+    // loading.value = true;
     setTimeout(() => {
-      loading.value = false;
-      proxy.$clearBtnLimit('saveID');
+      proxy.$wLoadingClose();
+      // loading.value = false;
+      // proxy.$clearBtnLimit('saveID');
     }, 2000);
   }
 </script>

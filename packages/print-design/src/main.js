@@ -4,11 +4,13 @@ import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
 import { loadingDirective, btnLimit, clearBtnLimit } from 'common/src/directives/index';
+import wLoading from "common/src/components/Wloading/index.js";
 import './style.scss';
 
 const app = createApp(App);
 app.use(router);
 app.use(store);
+app.use(wLoading);
 
 // 注册全局组件
 app.component('w-button', Wbutton);
