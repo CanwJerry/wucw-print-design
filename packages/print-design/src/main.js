@@ -3,15 +3,23 @@ import { Wbackground, Wbutton } from 'common/src/components';
 import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
-import loadingDirective from 'common/src/directive/loading';
+import { loadingDirective, btnLimit, clearBtnLimit } from 'common/src/directives/index';
 import './style.scss';
 
 const app = createApp(App);
 app.use(router);
 app.use(store);
+
+// 注册全局组件
 app.component('w-button', Wbutton);
 app.component('w-background', Wbackground);
+
+// 注册全局指令
 app.directive('wLoading', loadingDirective);
+app.directive('wBtnLimit', btnLimit);
+
+// 注册全局方法
+app.config.globalProperties.$clearBtnLimit = clearBtnLimit;
 
 /**
  * UI框架、css变量

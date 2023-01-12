@@ -51,4 +51,10 @@ router.beforeEach(async (to, form) => {
   }
 })
 
+export function resetRouter() {
+  const newRouter = createRouter();
+  router.options.isAddDynamicMenuRoutes = false;
+  router.matcher = newRouter.matcher; // reset router
+}
+
 export default router;

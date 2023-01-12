@@ -58,4 +58,4 @@ function remove(el) {
   el.removeChild(el.instance.$el);
 }
 
-export default loadingDirective;
+export { loadingDirective };

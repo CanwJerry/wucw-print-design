@@ -3,6 +3,7 @@ import { showMessage } from "./status";
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { showFullScreenLoading as showLoading, hideFullScreenLoading as hideLoading } from 'common/src/utils/serviceLoading';
 import { updateToken } from './api.js';
+import { resetRouter } from '@/router';
 
 class HttpRequest {
   constructor(baseURL, timeout=10000) {
@@ -126,6 +127,7 @@ class HttpRequest {
   resetLogin() {
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('refreshToken');
+    resetRouter();
     location.reload();
   }
 }
