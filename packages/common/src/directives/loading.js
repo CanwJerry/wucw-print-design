@@ -13,6 +13,8 @@ const loadingDirective = {
     // 在 updated中 通过el.instance 可访问到
     el.instance = instance;
 
+    el.appendChild(el.instance.$el);
+
     // v-loading传过来的值储存在 binding.value 中
     if(binding.value) {
       append(el);
@@ -44,18 +46,21 @@ const hidden = 'w-hidden';
 // 插入节点
 function append(el) {
   const style = getComputedStyle(el);
+  
   // 解决遮罩层后面的页面会发生滚动，滚动遮罩层时会造成底部页面跟着一块滚动问题
   el.classList.add(hidden);
+
   // 判断挂载的节点是否有定位
   if(['absolute', 'relative', 'fixed'].indexOf(style.position) === -1) {
     el.classList.add(relative);
   }
-  el.appendChild(el.instance.$el);
+  
+  el.instance.show('inside');
 }
 
 // 移除节点
 function remove(el) {
-  el.removeChild(el.instance.$el);
+  el.instance.hide();
 }
 
 export { loadingDirective };

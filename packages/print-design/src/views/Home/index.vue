@@ -6,20 +6,19 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
-  import { getCurrentInstance } from 'vue'
+  import { ref, getCurrentInstance } from "vue";
 
   const { proxy } = getCurrentInstance();
 
   const loading = ref(false);
 
   const handleSave = () => {
-    proxy.$wLoadingShow();
-    // loading.value = true;
+    // proxy.$wLoadingShow();
+    loading.value = true;
     setTimeout(() => {
-      proxy.$wLoadingClose();
-      // loading.value = false;
-      // proxy.$clearBtnLimit('saveID');
+      // proxy.$wLoadingClose();
+      loading.value = false;
+      proxy.$clearBtnLimit('saveID');
     }, 2000);
   }
 </script>

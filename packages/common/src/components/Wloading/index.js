@@ -8,8 +8,6 @@ export default {
     div.id = 'wLoading';
 
     const style = {
-      width: '100%',
-      height: '100%',
       position: 'fixed',
       top: '0',
     }
@@ -17,22 +15,14 @@ export default {
     Object.keys(style).forEach(item => {
       div.style[item] = style[item];
     })
+
+    document.body.appendChild(div)
+
+    // 获取到元素实例
+    const loadingInstance = loading.mount('#wLoading');
     
-    // 兼容v-wLoading指令写法
-    app.config.globalProperties.$wLoadingShow = () => {
-      if(!document.getElementById('wLoading')) {
-        document.body.appendChild(div);
-        loading.mount('#wLoading');
-      }
-    }
+    app.config.globalProperties.$wLoadingShow = () => loadingInstance.show('external');
 
-    // 兼容v-wLoading指令写法
-    app.config.globalProperties.$wLoadingClose = () => {
-      if(document.getElementById('wLoading')) {
-        document.body.removeChild(div);
-        loading.mount('#wLoading');
-      }
-    }
-
+    app.config.globalProperties.$wLoadingClose = loadingInstance.hide;
   }
 }
