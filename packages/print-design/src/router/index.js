@@ -55,7 +55,10 @@ router.beforeEach(async (to, form) => {
 })
 
 export function resetRouter() {
-  const newRouter = createRouter();
+  const newRouter = createRouter({
+    history: createWebHashHistory(),
+    routes: [],
+  });
   router.options.isAddDynamicMenuRoutes = false;
   router.matcher = newRouter.matcher; // reset router
 }

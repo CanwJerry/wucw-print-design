@@ -3,7 +3,7 @@ import { showMessage } from "./status";
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { showFullScreenLoading as showLoading, hideFullScreenLoading as hideLoading } from 'common/src/utils/serviceLoading';
 import { updateToken } from './api.js';
-import { resetRouter } from '@/router';
+import resetLogin from '@/utils/resetLogin';
 
 class HttpRequest {
   constructor(baseURL, timeout=10000) {
@@ -88,7 +88,7 @@ class HttpRequest {
               },
             ).then(() => {
               console.warn('请重新登录');
-              this.resetLogin();
+              resetLogin();
             }).catch(() => {
               console.warn('取消');
             });
@@ -122,13 +122,6 @@ class HttpRequest {
         hideLoading();
       })
     })
-  }
-
-  resetLogin() {
-    sessionStorage.removeItem('accessToken');
-    sessionStorage.removeItem('refreshToken');
-    resetRouter();
-    location.reload();
   }
 }
 

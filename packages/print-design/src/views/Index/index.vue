@@ -2,7 +2,7 @@
    <div class="common-layout">
     <el-container>
       <el-header>
-        Header
+        <Header></Header>
       </el-header>
       <el-container class="content">
         <el-aside width="200px">
@@ -28,7 +28,10 @@
     name: 'Index'
   }
 </script>
-<script setup></script>
+
+<script setup>
+  import Header from '../Header/index.vue';
+</script>
 
 <style lang="scss" scoped>
   .el-container {
