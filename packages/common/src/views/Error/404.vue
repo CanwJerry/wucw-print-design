@@ -20,7 +20,7 @@
   .Error404-root{
     text-align: center;
     img{
-      width: 30%;
+      width: 33.33vw;
       margin-bottom: 20px;
       margin-top: 20px;
     }

@@ -1,4 +1,4 @@
-import { ElLoading } from 'element-plus'
+import { ElLoading } from 'element-plus';
 
 let loading;
 

@@ -21,8 +21,8 @@ export default {
     // 获取到元素实例
     const loadingInstance = loading.mount('#wLoading');
     
-    app.config.globalProperties.$wLoadingShow = () => loadingInstance.show('external');
+    app.config.globalProperties.$WLoadingShow = () => loadingInstance.show('external');
 
-    app.config.globalProperties.$wLoadingClose = loadingInstance.hide;
+    app.config.globalProperties.$WLoadingClose = loadingInstance.hide;
   }
 }
