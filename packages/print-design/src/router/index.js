@@ -27,6 +27,8 @@ export const routes = [
   { path: '/forget', name: 'Forget', component: () => import('@/views/Forget/index.vue'), meta: { title: '忘记密码' }  },
   // 预览界面
   { path: '/preview', name: 'Preview', component: () => import('@/views/Print/components/FormComponentPanel/index.vue'), meta: { title: '单据预览' } },
+  // 大屏展示界面
+  { path: '/powerScreen', name: 'PowerScreen', component: () => import('@/views/PowerScreen/index.vue'), meta: { title: 'PowerScreen' } },
   // 错误页，404页面放最后以匹配*
   { path: '/404', component: () => import('common/src/views/Error/404.vue'), meta: { title: '404', noLogin: true } },
   { path: '/:pathMatch(.*)*', component: () => import('common/src/views/Error/404.vue'), meta: { title: '404', noLogin: true } },
