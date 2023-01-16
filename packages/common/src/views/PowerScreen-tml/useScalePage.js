@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted, nextTick } from 'vue';
 import _ from 'lodash';
 
 export default function useScalePage(options){

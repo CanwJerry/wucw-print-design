@@ -1,19 +1,19 @@
 <template>
   <div class="power-screen">
-    <div class="header">123</div>
+    <div class="header"></div>
     <div class="main">
       <div class="left">
-        <div>left 1</div>
-        <div>left 2</div>
+        <div class="left-top"></div>
+        <div class="left-bottom"></div>
       </div>
       <div class="center">
-        <div class="chart">center 1</div>
-        <div class="count">center 2</div>
+        <div class="center-top"></div>
+        <div class="center-bottom"></div>
       </div>
       <div class="right">
-        <div>right 1</div>
-        <div>right 2</div>
-        <div>right 3</div>
+        <div class="right-top"></div>
+        <div class="right-center"></div>
+        <div class="right-bottom"></div>
       </div>
     </div>
   </div>
@@ -38,44 +38,75 @@
 </script>
 
 <style lang="scss" scoped>
+  $border: 1px solid #fff;
+
   .power-screen {
-    display: flex;
-    flex-direction: column;
-    transform-origin: left top;
+    color: #fff;
+    background: url('./images/bg.png') no-repeat;
   }
 
   .header {
     height: 50px;
     line-height: 50px;
     text-align: center;
+    background: url('./images/bg_header.svg') no-repeat;
   }
 
   .main {
-    display: flex;
-    justify-content: space-between;
-    .left {
-      div {
-        width: 460px;
-        height: 515px;
-      }
-    }
+    position: relative;
+  }
 
-    .center {
-      width: 100%;
-      .chart {
-        height: 830px;
-      }
-      .count {
-        height: 200px;
-      }
-    }
-
-    .right {
-      div {
-        width: 460px;
-        height: 343.3px;
-      }
-    }
+  .left-top {
+    position: absolute;
+    height: 515px;
+    width: 480px;
+    background: url('./images/bg_left-top.svg') no-repeat;
+  }
+  .left-bottom {
+    position: absolute;
+    top: 515px;
+    height: 515px;
+    width: 480px;
+    background: url('./images/bg_left_bottom.svg') no-repeat;
+  }
+  .center-top {
+    border: $border;
+    position: absolute;
+    top: 0;
+    left: 480px;
+    height: 800px;
+    width: 960px;
+  }
+  .center-bottom {
+    position: absolute;
+    top: 800px;
+    left: 480px;
+    height: 230px;
+    width: 960px;
+  }
+  .right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 343px;
+    width: 480px;
+    background: url('./images/bg_right_top.svg') no-repeat;
+  }
+  .right-center {
+    position: absolute;
+    top: 344px;
+    right: 0;
+    height: 343px;
+    width: 480px;
+    background: url('./images/bg_right_center.svg') no-repeat;
+  }
+  .right-bottom {
+    position: absolute;
+    top: 687px;
+    right: 0;
+    height: 343px;
+    width: 480px;
+    background: url('./images/bg_right_bottom.svg') no-repeat;
   }
 </style>
 
@@ -83,5 +114,6 @@
   html, body {
     position: relative;
     transform-origin: left top;
+    overflow: hidden;
   }
 </style>
