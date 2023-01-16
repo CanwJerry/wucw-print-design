@@ -16,6 +16,8 @@ export const routes = [
       { path: '/home', name: 'Home', component: () => import('@/views/Home/index.vue'), meta: { title: '首页' } },
       // 设计器界面
       { path: '/print', name: 'Print', component: () => import('@/views/Print/Index.vue'), meta: { title: '单据设计器' }  },
+      // 大屏展示界面
+      { path: '/screen', name: 'Screen', component: () => import('@/views/Screen/index.vue'), meta: { title: 'Screen' }  },
     ]
   },
   

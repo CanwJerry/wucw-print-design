@@ -5,15 +5,15 @@
         <Header></Header>
       </el-header>
       <el-container class="content">
-        <el-aside width="200px">
+        <el-aside class="aside">
           Aside
         </el-aside>
         <el-container>
-          <el-main>
+          <main class="main">
             <router-view #default="{ Component }">
               <component :is="Component" :key="$route.fullPath"></component>
             </router-view>
-          </el-main>
+          </main>
           <el-footer>
             Footer
           </el-footer>
@@ -39,5 +39,14 @@
   }
   .content {
     height: 0;
+  }
+  .aside {
+    width: 200px;
+    padding-left: 20px;
+  }
+  .main {
+    flex: 1;
+    overflow: hidden;
+    padding-right: 20px;
   }
 </style>
